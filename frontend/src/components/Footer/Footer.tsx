@@ -11,37 +11,37 @@ const colorArray = ["#CAE4DA", "#E4C8A2", "#EDD6D6", "#B0CDC2", "#E6D0B2", "#E8C
 // get the content from sanity and pass it as props
 
 
-export default function Footer({content, pathname}: {content?: any, pathname: string}) {
+export default function Footer({ content, pathname }: { content?: any, pathname: string }) {
     const [isClient, setIsClient] = useState(false)
     const [isHomePage, setIsHomePage] = useState<boolean>()
 
     const currentYear = new Date().getFullYear()
 
-    useEffect(()=>{
+    useEffect(() => {
         setIsClient(typeof window !== 'undefined')
-        if(pathname === "/"){
+        if (pathname === "/") {
             setIsHomePage(true)
         } else {
             setIsHomePage(false)
         }
-        return (()=>{
-          setIsClient(false)
-          setIsHomePage(false)
+        return (() => {
+            setIsClient(false)
+            setIsHomePage(false)
         })
-      },[, pathname])
+    }, [, pathname])
 
-    useEffect(()=>{
-    if(pathname === "/"){
-        setIsHomePage(true)
-    } else {
-        setIsHomePage(false)
-    }        
-    },[, pathname])
+    useEffect(() => {
+        if (pathname === "/") {
+            setIsHomePage(true)
+        } else {
+            setIsHomePage(false)
+        }
+    }, [, pathname])
 
     console.log('isHomePage', isHomePage)
 
     return (
-        <InViewAnim><footer className={styles.component}>
+        <InViewAnim><div className={styles.component}>
             <div className={styles.wrapper}>
                 <div className={styles.bricks}>
                     {colorArray.map((item, index) => (
@@ -49,20 +49,20 @@ export default function Footer({content, pathname}: {content?: any, pathname: st
                             key={index}
                             style={{
                                 backgroundColor: item,
-                                transitionDelay: isClient ? `${Math.random() * 300 + 500}ms` : '0s'        
+                                transitionDelay: isClient ? `${Math.random() * 300 + 500}ms` : '0s'
                             }}
                         ></div>
                     ))}
                 </div>
                 <div className={styles.inner}>
                     {!isHomePage &&
-                    <ul className={styles.link_wrapper}>
-                        {!!content && content.footer_links?.map((item: any, index: number) => (
-                            <li key={index}>
-                                <Link className={styles.link} href={item.link_url}>{item.link_title}</Link>
-                            </li>
-                        ))}
-                    </ul>}
+                        <ul className={styles.link_wrapper}>
+                            {!!content && content.footer_links?.map((item: any, index: number) => (
+                                <li key={index}>
+                                    <Link className={styles.link} href={item.link_url}>{item.link_title}</Link>
+                                </li>
+                            ))}
+                        </ul>}
                     <div className={styles.social_wrapper}>
                         <Link href="https://github.com/PaulRGU2014" className={styles.social} target="_blank">
                             <img src="/socials/github.svg" alt="Github" />
@@ -70,16 +70,19 @@ export default function Footer({content, pathname}: {content?: any, pathname: st
                         <Link href="https://www.linkedin.com/in/paulrgu2014/" className={styles.social} target="_blank">
                             <img src="/socials/linkedin.svg" alt="LinkedIn" />
                         </Link>
+                        <Link href="https://www.instagram.com/krupaul.store" className={styles.social} target="_blank">
+                            <img src="/socials/instagram.svg" alt="Instagram" />
+                        </Link>
                         <Link href="https://www.youtube.com/c/PaulsChemistryThailand" className={styles.social} target="_blank">
                             <img src="/socials/youtube.svg" alt="Youtube" />
                         </Link>
                     </div>
                     <h5 className={styles.disclaimer}>
-                        This page is built using Next.js, TypeScript and Sanity.io <br/> by Paul Thanataweenont
+                        This page is built using Next.js, TypeScript and Sanity.io <br /> by Paul Thanataweenont
                     </h5>
                     <p>© {currentYear} Paul Thanataweenont. All rights reserved.</p>
                 </div>
             </div>
-        </footer></InViewAnim>
+        </div></InViewAnim>
     )
 }
