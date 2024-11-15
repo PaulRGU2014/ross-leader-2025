@@ -10,23 +10,23 @@ interface MenuNavProps {
   onClick?: () => void; // Define the onClick prop
 }
 
-function Hamburger({ isMenuOpen, hamburgerRef, onClick }: { isMenuOpen: boolean, hamburgerRef: React.RefObject<HTMLDivElement>, onClick?: () => void }) {
-  return (
-    <div
-      ref={hamburgerRef}
-      className={isMenuOpen ? styles.hamburger_wrapper_open : styles.hamburger_wrapper}
-      onClick={() => {
-        if (onClick) {
-          onClick();
-        }
-      }}
-    >
-      <div className={styles.hamburger_first} />
-      <div className={styles.hamburger_second} />
-      <div className={styles.hamburger_third} />
-    </div>
-  );
-}
+// function Hamburger({ isMenuOpen, hamburgerRef, onClick }: { isMenuOpen: boolean, hamburgerRef: React.RefObject<HTMLDivElement>, onClick?: () => void }) {
+//   return (
+//     <div
+//       ref={hamburgerRef}
+//       className={isMenuOpen ? styles.hamburger_wrapper_open : styles.hamburger_wrapper}
+//       onClick={() => {
+//         if (onClick) {
+//           onClick();
+//         }
+//       }}
+//     >
+//       <div className={styles.hamburger_first} />
+//       <div className={styles.hamburger_second} />
+//       <div className={styles.hamburger_third} />
+//     </div>
+//   );
+// }
 
 function MenuContent({ content, isMenuOpen, setIsMenuOpen, isMenuOpening, menuRef }: { content: any, isMenuOpen: boolean, setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>, isMenuOpening: boolean, menuRef: React.RefObject<HTMLUListElement> }) {
   return (
@@ -62,49 +62,54 @@ function MenuContent({ content, isMenuOpen, setIsMenuOpen, isMenuOpening, menuRe
 }
 
 export default function MenuNav({ content }: MenuNavProps) {
-  console.log("MenuContent", content);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMenuOpening, setIsMenuOpening] = useState(false);
-  const menuRef = useRef<HTMLUListElement>(null);
-  const hamburgerRef = useRef<HTMLDivElement>(null);
+  // console.log("MenuContent", content);
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [isMenuOpening, setIsMenuOpening] = useState(false);
+  // const menuRef = useRef<HTMLUListElement>(null);
+  // const hamburgerRef = useRef<HTMLDivElement>(null);
 
-  // This is the handle click outside function
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target as Node) &&
-        hamburgerRef.current &&
-        !hamburgerRef.current.contains(event.target as Node)
-      ) {
-        setIsMenuOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [menuRef, hamburgerRef]);
+  // // This is the handle click outside function
+  // useEffect(() => {
+  //   function handleClickOutside(event: MouseEvent) {
+  //     if (
+  //       menuRef.current &&
+  //       !menuRef.current.contains(event.target as Node) &&
+  //       hamburgerRef.current &&
+  //       !hamburgerRef.current.contains(event.target as Node)
+  //     ) {
+  //       setIsMenuOpen(false);
+  //     }
+  //   }
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [menuRef, hamburgerRef]);
 
-  const menuListNumber = content?.footer_links?.length || 0;
+  // const menuListNumber = content?.footer_links?.length || 0;
 
-  function handleMenuToggle () {
-    if (!isMenuOpen) {
-      setIsMenuOpening(true);
-      setIsMenuOpen(true);
-      setTimeout(() => {
-        setIsMenuOpening(false);
-      }, menuListNumber * 100 + 100);
-    } else {
-      setIsMenuOpen(false);
-    }
-  };
+  // function handleMenuToggle () {
+  //   if (!isMenuOpen) {
+  //     setIsMenuOpening(true);
+  //     setIsMenuOpen(true);
+  //     setTimeout(() => {
+  //       setIsMenuOpening(false);
+  //     }, menuListNumber * 100 + 100);
+  //   } else {
+  //     setIsMenuOpen(false);
+  //   }
+  // };
 
   return (
-    <div className={isMenuOpen ? styles.component : styles.component_close}>
-      <div className={`${styles.wrapper} ${isMenuOpen ? styles.open : ""}`}>
-        <Hamburger isMenuOpen={isMenuOpen} hamburgerRef={hamburgerRef} onClick={handleMenuToggle} />
-        <MenuContent {...{content, isMenuOpen, setIsMenuOpen, isMenuOpening, menuRef}} />
+    <div 
+      // className={isMenuOpen ? styles.component : styles.component_close}
+    >
+      <div 
+        // className={`${styles.wrapper} ${isMenuOpen ? styles.open : ""}`}
+      >
+        Start Edit the menu here
+        {/* <Hamburger isMenuOpen={isMenuOpen} hamburgerRef={hamburgerRef} onClick={handleMenuToggle} />
+        <MenuContent {...{content, isMenuOpen, setIsMenuOpen, isMenuOpening, menuRef}} /> */}
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 
 
 export default async function Page() {
-  const headersList = headers();
+  const headersList = await headers();
   const pathname = headersList.get('x-pathname') || '';
 
   const query = `*[_type=="pages"&& page_url.current=="${pathname}"]{...,components[]->}`;
@@ -29,7 +29,7 @@ export default async function Page() {
       <Header content={(menuData as any)[0]} />
       <ComponentLoader components={(data as any[])[0]?.components} />
       <Footer content={(footerData as any)[0]} pathname={pathname} />
-      <GoogleAnalytics gaId="G-606GP5V2VM" />
+      {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
     </>
   );
 }

@@ -40,7 +40,8 @@ export default function Hero({ content }: HeroProps) {
 
   return (
     <div data-in-view={isInView}>
-    <div className={styles.component}>
+      Start Edit Hero Here
+    {/* <div className={styles.component}>
       <div className={styles.wrapper}>
         <div className={styles.inner}>
           <div className={styles.bricks}>
@@ -60,7 +61,7 @@ export default function Hero({ content }: HeroProps) {
           </div>  
         </div>
       </div>
-    </div>
+    </div> */}
     </div>
   );
 }

@@ -51,7 +51,8 @@ const Header = ({ content }: { content: Content }) => {
 
   return (
     <header className={`${styles.header} ${isVisible ? styles.visible : styles.hidden}`}>
-      <div className={styles.wrapper}>
+      Start Edit Header Here
+      {/* <div className={styles.wrapper}>
         <div className={styles.logo}>
           <Link href="/" className={styles.logo_main}>
             <Image src="/Logo_New.svg" alt="Logo" width={150} height={90} style={{objectPosition: "center", objectFit: "cover"}} />
@@ -71,7 +72,7 @@ const Header = ({ content }: { content: Content }) => {
             <Link href="https://krupaul.square.site/" target='_self'>Store</Link>
           </li>
         </ul>
-      </div>
+      </div> */}
     </header>
   );
 };

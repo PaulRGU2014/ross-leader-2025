@@ -14,7 +14,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
       <body suppressHydrationWarning={true}>
           {children}
       </body>
-      <GoogleAnalytics gaId="G-606GP5V2VM" />
+      {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
     </html>
   )
 }
