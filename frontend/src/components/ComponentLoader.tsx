@@ -1,13 +1,15 @@
 "use client"
 
-import Hero from "./Hero/Hero";
-import Footer from "./Footer/Footer";
-import Resume from "./Resume/Resume";
-import GalleryCollage from "./GalleryCollage/GalleryCollage";
-import ContactForm from "./ContactForm/ContactForm";
-import HomePageAnim from "./HomePageAnim/HomePageAnim";
+//importHere
+  import Hero from "./Hero/Hero";
+  import Footer from "./Footer/Footer";
+  import Resume from "./Resume/Resume";
+  import GalleryCollage from "./GalleryCollage/GalleryCollage";
+  import ContactForm from "./ContactForm/ContactForm";
+  import HomePageAnim from "./HomePageAnim/HomePageAnim";
 
 const hardcodedComponents = {
+//hardCodedHere
   contactForm: ContactForm,
   homePageAnim: HomePageAnim,
 };
@@ -21,6 +23,7 @@ function HardcodedComponent ({ block_title, ...props }: { block_title: keyof typ
 }
 
 const componentMap: { [key: string]: React.ComponentType<any> } = {
+//associateHere
   hero: Hero,
   footer: Footer,
   resume: Resume,
