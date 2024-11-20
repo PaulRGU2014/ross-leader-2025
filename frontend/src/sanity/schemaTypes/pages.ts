@@ -21,6 +21,7 @@ export const pages = defineType({
           type: 'reference',
           to: [
           //associateHere
+	{ type : 'fullPageHero' },
             {type: 'footer'},
             {type: 'hero'},
             {type: 'gridLinksCarousel'},

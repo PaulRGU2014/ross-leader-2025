@@ -1,6 +1,7 @@
 "use client"
 
 //importHere
+	import FullPageHero from './FullPageHero/FullPageHero';
   import Hero from "./Hero/Hero";
   import Footer from "./Footer/Footer";
   import ContactForm from "./ContactForm/ContactForm";
@@ -20,6 +21,7 @@ function HardcodedComponent ({ block_title, ...props }: { block_title: keyof typ
 
 const componentMap: { [key: string]: React.ComponentType<any> } = {
 //associateHere
+	fullPageHero: FullPageHero,
   hero: Hero,
   footer: Footer,
   hardcodedBlocks: HardcodedComponent, // Add HardcodedComponent to the componentMap

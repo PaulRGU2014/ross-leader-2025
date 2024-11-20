@@ -51,9 +51,8 @@ module.exports = (plop) => {
         type: 'append',
         path: '../src/sanity/schemaTypes/pages.ts',
         pattern: /\/\/associateHere/,
-        template: "\t{ {type : {{camelCase name}} },",              
+        template: "\t{ type : '{{camelCase name}}' },",              
       },
-      
     ],
   });
   plop.setGenerator('hard-coded', {
