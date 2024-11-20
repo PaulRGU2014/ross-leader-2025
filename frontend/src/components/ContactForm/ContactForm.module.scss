@@ -1,11 +1,11 @@
-@use '../../scss/helpers/import';
+@use '../../scss/helpers/import' as *;
 
 .component{
     background-color: $lt-yellow;
 }
 .wrapper{
-    @include centered($max-width);
     padding: 60px 0;
+    @include centered($max-width);
 }
 
 .inner{

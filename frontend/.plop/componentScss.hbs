@@ -1,10 +1,12 @@
-@use "../../scss/helpers/import.scss";
+@use '../../scss/helpers/import' as *;
 
 .component{}
 .wrapper{
     @include centered($max-width);
-    margin: {
-        top: $standard-vertical-spacing;
-        bottom: $standard-vertical-spacing;
-    };
+    & {
+        margin: {
+            top: $standard-vertical-spacing;
+            bottom: $standard-vertical-spacing;
+        };
+    }
 }

@@ -1,4 +1,4 @@
-@use "../scss/helpers/import.scss";
+@use "../scss/helpers/import.scss" as *;
 
 .component {
     // @include centered ($max-width);
@@ -16,12 +16,12 @@
 }
 
 .wrapper{
-    @include centered ($max-width);
     padding:90px 0;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    min-height: 350px
+    min-height: 350px;
+    @include centered ($max-width);
 }
 
 .inner{

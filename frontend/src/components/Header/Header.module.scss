@@ -1,4 +1,4 @@
-@use "../../scss/helpers/import.scss";
+@use '../../scss/helpers/import' as *;
 
 .header {
   background-color: $white;
@@ -21,10 +21,12 @@
 
 .wrapper {
   @include centered($max-width);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
+  & { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
 }
 
 .logo {
