@@ -61,7 +61,7 @@ module.exports = (plop) => {
         type: 'append',
         path: '../src/components/ComponentLoader.tsx',
         pattern: /\/\/importHere/,
-        template: "\timport {{name}} from './{{name}}/{{name}}';",
+        template: "\timport {{{name}}} from './{{name}}/{{name}}';",
       },
       {
         type: 'append',
