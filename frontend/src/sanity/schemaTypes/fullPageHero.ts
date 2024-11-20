@@ -2,7 +2,7 @@ import {defineField, defineType} from 'sanity'
 
 export const fullPageHero = defineType({
   name: 'fullPageHero',
-  title: 'FullPageHero',
+  title: 'Full Page Hero',
   type: 'document',
   fields: [
     defineField({
