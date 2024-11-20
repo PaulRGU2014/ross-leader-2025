@@ -4,18 +4,18 @@ module.exports = (plop) => {
       {
         type: 'input',
         name: 'name',
-        message: 'What to name the block component? (Pascal Case e.g. MyComponent)',
+        message: 'What to name the block component?',
       },
     ],
     actions: [
       {
         type: 'add',
-        path: '../src/components/{{name}}/{{name}}.tsx',
+        path: '../src/components/{{pascalCase name}}/{{pascalCase name}}.tsx',
         templateFile: './componentJs.hbs',
       },
       {
         type: 'add',
-        path: '../src/components/{{name}}/{{name}}.module.scss',
+        path: '../src/components/{{pascalCase name}}/{{pascalCase name}}.module.scss',
         templateFile: './componentScss.hbs',
       },
       {
@@ -27,13 +27,31 @@ module.exports = (plop) => {
         type: 'append',
         path: '../src/components/ComponentLoader.tsx',
         pattern: /\/\/importHere/,
-        template: "\timport {{name}} from './{{name}}/{{name}}';",
+        template: "\timport {{pascalCase name}} from './{{pascalCase name}}/{{pascalCase name}}';",
+      },
+      {
+        type: 'append',
+        path: '../src/sanity/schemaTypes/index.ts',
+        pattern: /\/\/importHere/,
+        template: "\timport { {{camelCase name}} } from './{{camelCase name}}';",
       },
       {
         type: 'append',
         path: '../src/components/ComponentLoader.tsx',
         pattern: /\/\/associateHere/,
         template: "\t{{camelCase name}}: {{name}},",
+      },
+      {
+        type: 'append',
+        path: '../src/sanity/schemaTypes/index.ts',
+        pattern: /\/\/associateHere/,
+        template: "{{camelCase name}},"
+      },
+      {
+        type: 'append',
+        path: '../src/sanity/schemaTypes/pages.ts',
+        pattern: /\/\/associateHere/,
+        template: "{\t{type : {{camelCase name}}},",              
       },
       
     ],
@@ -43,31 +61,31 @@ module.exports = (plop) => {
       {
         type: 'input',
         name: 'name',
-        message: 'What to name the hard-coded component? (Pascal Case e.g. MyComponent)',
+        message: 'What to name the hard-coded component?',
       },
     ],
     actions: [
       {
         type: 'add',
-        path: '../src/components/{{name}}/{{name}}.tsx',
+        path: '../src/components/{{pascalCase name}}/{{pascalCase name}}.tsx',
         templateFile: './componentJs.hbs',
       },
       {
         type: 'add',
-        path: '../src/components/{{name}}/{{name}}.module.scss',
+        path: '../src/components/{{pascalCase name}}/{{pascalCase name}}.module.scss',
         templateFile: './componentScss.hbs',
       },
       {
         type: 'append',
         path: '../src/components/ComponentLoader.tsx',
         pattern: /\/\/importHere/,
-        template: "\timport {{{name}}} from './{{name}}/{{name}}';",
+        template: "\timport {{{pascalCase name}}} from './{{pascalCase name}}/{{pascalCase name}}';",
       },
       {
         type: 'append',
         path: '../src/components/ComponentLoader.tsx',
         pattern: /\/\/hardCodedHere/,
-        template: "\t{{camelCase name}}: {{name}},",
+        template: "\t{{camelCase name}}: {{pascalCase name}},",
       },
     ],
   });
@@ -76,18 +94,18 @@ module.exports = (plop) => {
       {
         type: 'input',
         name: 'name',
-        message: 'What to name the utility component? (Pascal Case e.g. MyComponent)',
+        message: 'What to name the utility component?',
       },
     ],
     actions: [
       {
         type: 'add',
-        path: '../src/util/{{name}}/{{name}}.tsx',
+        path: '../src/util/{{pascalCase name}}/{{pascalCase name}}.tsx',
         templateFile: './utilJs.hbs',
       },
       {
         type: 'add',
-        path: '../src/util/{{name}}/{{name}}.module.scss',
+        path: '../src/util/{{pascalCase name}}/{{pascalCase name}}.module.scss',
         templateFile: './utilScss.hbs',
       },
     ],
