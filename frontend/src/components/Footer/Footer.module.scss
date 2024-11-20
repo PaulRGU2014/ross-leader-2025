@@ -4,11 +4,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: $lt-yellow;
+    background-color: $black;
     min-height: 350px;
     @include scroll-animation($anim: fromTop, $speed: 1000ms, $delay: 250ms );
     position: relative;
     overflow-x: clip;
+
 }
 
 .wrapper{
@@ -32,6 +33,7 @@
     padding: 50px 0px;
     p{
         max-width: 70%;
+        color: $white;
     }
     @include responsive(md){
         padding: 20px 0px;
@@ -62,36 +64,10 @@
     padding: 10px 0;
 }
 
-.bricks{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    position: absolute;
-    left: calc(75%);
-    width: 460px;
-    min-height: 350px;
-    height: 100%;
-    row-gap: 40px;
-    margin-top: 0px;
-    align-content: center;
-    bottom: 0;
-    &_each{
-        width: 200px;
-        height: 100px;
-        transform: rotate(-45deg);
-        margin: 0 -30px;;
-        opacity: 0;
-        [data-in-view=true] &{
-            opacity: 1;
-            transition: all 1s $ease-out-quint;
-        }
-    }
-}
-
 .disclaimer{
     width: 60%;
     height: auto;
-    color: $lt-black;
+    color: $white;
     @include responsive(md){
         width: 80%;
     }

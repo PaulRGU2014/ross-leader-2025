@@ -6,8 +6,6 @@ import styles from './Footer.module.scss';
 import InViewAnim from './../../utils/InViewAnim/InViewAnim'
 
 
-const colorArray = ["#CAE4DA", "#E4C8A2", "#EDD6D6", "#B0CDC2", "#E6D0B2", "#E8C4C4", "#8EB8A8", "#EBDAC4", "#DBA6A6"]
-
 // get the content from sanity and pass it as props
 
 
@@ -43,17 +41,6 @@ export default function Footer({ content, pathname }: { content?: any, pathname:
     return (
         <InViewAnim><div className={styles.component}>
             <div className={styles.wrapper}>
-                <div className={styles.bricks}>
-                    {colorArray.map((item, index) => (
-                        <div className={styles.bricks_each}
-                            key={index}
-                            style={{
-                                backgroundColor: item,
-                                transitionDelay: isClient ? `${Math.random() * 300 + 500}ms` : '0s'
-                            }}
-                        ></div>
-                    ))}
-                </div>
                 <div className={styles.inner}>
                     {!isHomePage &&
                         <ul className={styles.link_wrapper}>
@@ -64,7 +51,7 @@ export default function Footer({ content, pathname }: { content?: any, pathname:
                             ))}
                         </ul>}
                     <div className={styles.social_wrapper}>
-                        <Link href="https://github.com/PaulRGU2014" className={styles.social} target="_blank">
+                        {/* <Link href="https://github.com/PaulRGU2014" className={styles.social} target="_blank">
                             <img src="/socials/github.svg" alt="Github" />
                         </Link>
                         <Link href="https://www.linkedin.com/in/paulrgu2014/" className={styles.social} target="_blank">
@@ -75,12 +62,9 @@ export default function Footer({ content, pathname }: { content?: any, pathname:
                         </Link>
                         <Link href="https://www.youtube.com/c/PaulsChemistryThailand" className={styles.social} target="_blank">
                             <img src="/socials/youtube.svg" alt="Youtube" />
-                        </Link>
+                        </Link> */}
                     </div>
-                    <h5 className={styles.disclaimer}>
-                        This page is built using Next.js, TypeScript and Sanity.io <br /> by Paul Thanataweenont
-                    </h5>
-                    <p>© {currentYear} Paul Thanataweenont. All rights reserved.</p>
+                    <p>© {currentYear} ROSS Leaders. All Rights Reserved.</p>
                 </div>
             </div>
         </div></InViewAnim>
