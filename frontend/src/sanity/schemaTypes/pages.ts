@@ -22,7 +22,9 @@ export const pages = defineType({
           to: [
             {type: 'footer'},
             {type: 'hero'},
+            {type: 'gridLinksCarousel'},
             {type: 'hardcodedBlocks'},
+            {type: 'textTwoImages'},
           ]
         }
       ],

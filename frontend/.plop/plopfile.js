@@ -19,6 +19,11 @@ module.exports = (plop) => {
         templateFile: './componentScss.hbs',
       },
       {
+        type: 'add',
+        path: '../src/sanity/schemaTypes/{{camelCase name}}.ts',
+        templateFile: './sanityfield.hbs',
+      },
+      {
         type: 'append',
         path: '../src/components/ComponentLoader.tsx',
         pattern: /\/\/importHere/,
@@ -30,6 +35,7 @@ module.exports = (plop) => {
         pattern: /\/\/associateHere/,
         template: "\t{{camelCase name}}: {{name}},",
       },
+      
     ],
   });
   plop.setGenerator('hard-coded', {
