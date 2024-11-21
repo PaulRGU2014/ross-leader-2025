@@ -1,54 +1,46 @@
 @use "../values.scss" as *;
 
-@mixin box-sizing(){
+@mixin box-sizing {
   box-sizing: border-box;
   * {
     box-sizing: border-box;
   }
 }
 
-@mixin centered($width, $padding: 30px){
+@mixin centered($width, $padding: 30px) {
   width: 100%;
   max-width: $width;
   margin: 0 auto;
-  @media(max-width: ($width + $padding*2)){
-    width: calc(100% - $padding*2);
+  @media (max-width: calc(#{$width} + #{$padding} * 2)) {
+    width: calc(100% - #{$padding} * 2);
     margin-left: $padding;
     margin-right: $padding;
   }
 }
 
-//-----------
-
-@mixin responsive($_size, $range: false, $min: false) {
-  @if(type-of($_size) == number){
-    @if($min == true){
-      @media (min-width: $_size) { @content; }
+@mixin responsive($size, $range: false, $min: false) {
+  @if type-of($size) == number {
+    @if $min {
+      @media (min-width: $size) { @content; }
+    } @else {
+      @media (max-width: $size) { @content; }
     }
-    @else {
-      @media (max-width: $_size) { @content; }
-    }
-  }
-  @else {
-    @if(map-has-key($breakpoints, $_size)){
-      $_bp: map-get($breakpoints, $_size);
-      @if(type-of($_bp) == number){
-        @media (max-width: $_bp) { @content; }
-      }
-      @else if(map-has-key($_bp, min) and map-has-key($_bp, max) and $range == true){
-        @media (min-width: map-get($_bp, min)) and (max-width: map-get($_bp, max)) { @content; }
-      }
-      @else if(map-has-key($_bp, max)){
-        @media (max-width: map-get($_bp, max)) { @content; }
-      }
-      @else if(map-has-key($_bp, min)){
-        @media (min-width: map-get($_bp, min)) { @content; }
+  } @else {
+    @if map-has-key($breakpoints, $size) {
+      $bp: map-get($breakpoints, $size);
+      @if type-of($bp) == number {
+        @media (max-width: $bp) { @content; }
+      } @else if map-has-key($bp, min) and map-has-key($bp, max) and $range {
+        @media (min-width: map-get($bp, min)) and (max-width: map-get($bp, max)) { @content; }
+      } @else if map-has-key($bp, max) {
+        @media (max-width: map-get($bp, max)) { @content; }
+      } @else if map-has-key($bp, min) {
+        @media (min-width: map-get($bp, min)) { @content; }
       } @else {
-        @error "RESPONSIVE: $breakpoint value for '#{$_size}' is of an unsupported type."
+        @error "RESPONSIVE: $breakpoint value for '#{$size}' is of an unsupported type.";
       }
-    }
-    @else {
-      @error "RESPONSIVE: '#{$_size}' is not defined within $breakpoints. Currently defined breakpoints: '#{map-keys($breakpoints)}'";
+    } @else {
+      @error "RESPONSIVE: '#{$size}' is not defined within $breakpoints. Currently defined breakpoints: '#{map-keys($breakpoints)}'";
     }
   }
 }
@@ -64,30 +56,31 @@
   }
 }
 
-@mixin nth-range($_start, $_end){
-  @for $_i from $_start to $_end{
-    &:nth-child(#{$_i}){
+@mixin nth-range($start, $end) {
+  @for $i from $start through $end {
+    &:nth-child(#{$i}) {
       @content;
     }
   }
 }
 
-@mixin transition-sequence($_timing-gap, $_elCount, $_initial-delay: 0){
-  @for $_i from 1 to $_elCount{
-    &:nth-child(#{$_i}){
-      transition-delay: 0ms + $_initial-delay + ($_timing-gap * $_i);
-    }
-  }
-}
-@mixin animation-sequence($_timing-gap, $_elCount, $_initial-delay: 0){
-  @for $_i from 1 to $_elCount{
-    &:nth-child(#{$_i}){
-      animation-delay: 0ms + $_initial-delay + ($_timing-gap * $_i);
+@mixin transition-sequence($timing-gap, $elCount, $initial-delay: 0) {
+  @for $i from 1 through $elCount {
+    &:nth-child(#{$i}) {
+      transition-delay: 0ms + $initial-delay + ($timing-gap * $i);
     }
   }
 }
 
-@mixin ghost-center( $_child: '.ghost-center__child' ) {
+@mixin animation-sequence($timing-gap, $elCount, $initial-delay: 0) {
+  @for $i from 1 through $elCount {
+    &:nth-child(#{$i}) {
+      animation-delay: 0ms + $initial-delay + ($timing-gap * $i);
+    }
+  }
+}
+
+@mixin ghost-center($child: '.ghost-center__child') {
   &:before {
     content: '';
     display: inline-block;
@@ -95,44 +88,43 @@
     vertical-align: middle;
     margin-right: -0.28em;
   }
-  #{$_child} {
+  #{$child} {
     display: inline-block;
     vertical-align: middle;
   }
 }
 
-@mixin text-ellipsis($_nowrap: true) {
+@mixin text-ellipsis($nowrap: true) {
   overflow: hidden;
   text-overflow: ellipsis;
-  @if ( $_nowrap ) {
+  @if $nowrap {
     white-space: nowrap;
   }
 }
 
-@mixin font-smooth($_smooth: true) {
-  @if $_smooth {
+@mixin font-smooth($smooth: true) {
+  @if $smooth {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  @else {
+  } @else {
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: none;
   }
 }
 
-@mixin ellipsis(){
+@mixin ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-@mixin setup-perspective($depth: $perspective-depth, $origin: center center){
+@mixin setup-perspective($depth: $perspective-depth, $origin: center center) {
   perspective: $depth;
   perspective-origin: $origin;
   transform-style: preserve-3d;
 }
 
-@mixin anchor-fill($z-index: z-layer(base, +1)){
+@mixin anchor-fill($z-index: z-layer(base, +1)) {
   @include fill-parent();
   z-index: $z-index;
 }
