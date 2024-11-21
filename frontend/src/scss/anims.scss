@@ -1,11 +1,8 @@
-@use "helpers/mixins";
-@use "helpers/timing-functions";
-
 @mixin scroll-animation($anim, $delay: 0ms, $sequence: false, $amount: 50px, $speed: 600ms, $trigger: '[data-in-view=true]'){
     opacity: 0;
-    transition: all $speed timing-functions.$ease-out-quint;
+    transition: all $speed $ease-out-quint;
     @if $sequence {
-        @include mixins.transition-sequence($sequence, 20, $delay);
+        @include transition-sequence($sequence, 20, $delay);
     } @else {
         transition-delay: $delay;
     }

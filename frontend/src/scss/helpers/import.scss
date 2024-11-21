@@ -1,5 +1,5 @@
-@forward  '../values';
-@forward  'mixins';
-@forward  'timing-functions';
-@forward  '../anims';
-@forward  '../ui';
+@import '../values';
+@import 'mixins';
+@import 'timing-functions';
+@import '../anims';
+@import '../ui';

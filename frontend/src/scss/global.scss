@@ -1,10 +1,6 @@
-@use "sass:meta";
-@use "helpers/mixins";
-@use "values";
-
 @import 'normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');@include meta.load-css('helpers/import');
-@include meta.load-css('helpers/import');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');@import './helpers/import';
+@import './helpers/import';
 
 
 html{
@@ -12,7 +8,7 @@ html{
 }
 
 body{
-    background-color: rgba($color: values.$green-blue, $alpha: 0.1);
+    background-color: rgba($color: $green-blue, $alpha: 0.1);
     .content-area{
         display: flex;
         flex-direction: column;
@@ -20,7 +16,7 @@ body{
         width: 100%;
         // max-width: $max-width;
         // margin: 0 auto;
-        background-color: values.$lt-yellow;
+        background-color: $lt-yellow;
     }
 }
 
@@ -33,13 +29,13 @@ h1{
     line-height: normal;
     word-break: break-word;
     hyphens: auto;
-    @include mixins.responsive(lg) {
+    @include responsive(lg) {
         font-size: 72px;
     }
-    @include mixins.responsive(md) {
+    @include responsive(md) {
         font-size: 56px;
     }
-    @include mixins.responsive(sm) {
+    @include responsive(sm) {
         font-size: 48px;
     }
 }
@@ -53,13 +49,13 @@ h2 {
     line-height: normal;
     word-break: break-word;
     hyphens: auto;
-    @include mixins.responsive(lg) {
+    @include responsive(lg) {
         font-size: 56px ;
     }
-    @include mixins.responsive(md) {
+    @include responsive(md) {
         font-size: 48px 
     }
-    @include mixins.responsive(sm) {
+    @include responsive(sm) {
         font-size: 36px;
     }
 }
@@ -70,13 +66,13 @@ h3 {
     line-height: normal;
     margin: 0 0 20px 0;
     word-break: break-word;
-    @include mixins.responsive(lg) {
+    @include responsive(lg) {
         font-size: 28px;
     }
-    @include mixins.responsive(md) {
+    @include responsive(md) {
         font-size: 24px;
     }
-    @include mixins.responsive(sm) {
+    @include responsive(sm) {
         font-size: 20px;
     }
 }
@@ -87,14 +83,14 @@ h4{
     line-height: normal;
     margin: 0 0 20px 0;
     word-break: break-word;
-    @include mixins.responsive(lg) {
+    @include responsive(lg) {
         font-size: 24px;
     }
-    @include mixins.responsive(md) {
+    @include responsive(md) {
         font-size: 20px;
         margin: 0 0 10px 0;
     }
-    @include mixins.responsive(sm) {
+    @include responsive(sm) {
         font-size: 18px;
     }
 }
@@ -106,13 +102,13 @@ h5 {
     line-height: normal;
     margin: 0 0 20px 0;
     word-break: break-word;
-    @include mixins.responsive(lg) {
+    @include responsive(lg) {
         font-size: 20px;
     }
-    @include mixins.responsive(md) {
+    @include responsive(md) {
         font-size: 18px;
     }
-    @include mixins.responsive(sm) {
+    @include responsive(sm) {
         font-size: 16px;
     }
 }
@@ -123,13 +119,13 @@ h6 {
     line-height: normal;
     margin: 0 0 20px 0;
     word-break: break-word;
-    @include mixins.responsive(lg) {
+    @include responsive(lg) {
         font-size: 20px;
     }
-    @include mixins.responsive(md) {
+    @include responsive(md) {
         font-size: 18px;
     }
-    @include mixins.responsive(sm) {
+    @include responsive(sm) {
         font-size: 16px;
     }
 }
@@ -140,7 +136,7 @@ a{
     text-decoration: none;
     color: #000; 
     &:hover{
-        color: values.$white;
+        color: $white;
     }
 }
 
@@ -164,7 +160,7 @@ p{
     line-height: 1.5;
     margin: 0 0 20px 0;
     word-break: break-word;
-    @include mixins.responsive(md) {
+    @include responsive(md) {
         font-size: 16px;
     }
 }
@@ -190,7 +186,7 @@ p{
     width: 50px;
     height: 50px;
     border: 5px solid #ccc;
-    border-top: 5px solid values.$dk-pink; /* Change this color to your preference */
+    border-top: 5px solid $dk-pink; /* Change this color to your preference */
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-right: 20px;

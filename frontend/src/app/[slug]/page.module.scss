@@ -1,4 +1,4 @@
-@use "../../scss/helpers/import.scss";
+@use "../../scss/helpers/import.scss" as *;
 
 .component {
     // @include centered ($max-width);
