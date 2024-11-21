@@ -37,17 +37,17 @@ const Header = ({ content }: { content: Content }) => {
     }
   };
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', controlHeader);
-      window.addEventListener('mousemove', handleMouseMove);
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     window.addEventListener('scroll', controlHeader);
+  //     window.addEventListener('mousemove', handleMouseMove);
 
-      return () => {
-        window.removeEventListener('scroll', controlHeader);
-        window.removeEventListener('mousemove', handleMouseMove);
-      };
-    }
-  }, [lastScrollY]);
+  //     return () => {
+  //       window.removeEventListener('scroll', controlHeader);
+  //       window.removeEventListener('mousemove', handleMouseMove);
+  //     };
+  //   }
+  // }, [lastScrollY]);
 
   return (
     <header className={`${styles.header} ${isVisible ? styles.visible : styles.hidden}`}>

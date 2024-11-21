@@ -17,11 +17,13 @@
 
 .wrapper{
     @include centered ($max-width);
-    padding:90px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    min-height: 350px
+    & {
+        padding:90px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        min-height: 350px
+    }
 }
 
 .inner{
