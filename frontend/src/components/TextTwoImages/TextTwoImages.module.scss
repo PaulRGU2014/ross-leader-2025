@@ -1,0 +1,42 @@
+@use '../../scss/helpers/import' as *;
+
+.component{}
+.wrapper{
+    @include centered($max-width);
+    & {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: {
+            top: $standard-vertical-spacing;
+            bottom: $standard-vertical-spacing;
+        };
+    }
+}
+
+.images{
+    width: calc(50% + 60px);
+    position: relative;
+    overflow: hidden;
+}
+
+.image1{
+    position: absolute;
+    width: 50%;
+    padding-top: 50%;
+}
+
+.image2{
+    position: absolute;
+    width: calc(48 / 66 * 100%);
+    padding-top: 10%;
+    right: 0;
+    bottom: 0;
+}
+
+.text {
+    width: calc(50% - 60px);
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+}

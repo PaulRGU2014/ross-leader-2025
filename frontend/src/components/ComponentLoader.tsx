@@ -1,6 +1,7 @@
 "use client"
 
 //importHere
+	import TextTwoImages from './TextTwoImages/TextTwoImages';
 	import FullPageHero from './FullPageHero/FullPageHero';
   import Hero from "./Hero/Hero";
   import Footer from "./Footer/Footer";
@@ -21,6 +22,7 @@ function HardcodedComponent ({ block_title, ...props }: { block_title: keyof typ
 
 const componentMap: { [key: string]: React.ComponentType<any> } = {
 //associateHere
+	textTwoImages: TextTwoImages,
 	fullPageHero: FullPageHero,
   hero: Hero,
   footer: Footer,

@@ -21,12 +21,11 @@ export const pages = defineType({
           type: 'reference',
           to: [
           //associateHere
+	{ type : 'textTwoImages' },
 	{ type : 'fullPageHero' },
             {type: 'footer'},
             {type: 'hero'},
-            {type: 'gridLinksCarousel'},
             {type: 'hardcodedBlocks'},
-            {type: 'textTwoImages'},
           ]
         }
       ],

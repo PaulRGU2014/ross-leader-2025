@@ -16,10 +16,26 @@ export const textTwoImages = defineType({
     defineField({
       name: 'image1',
       type: 'image',
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alt Text',
+          validation: (Rule) => Rule.required(),
+        },
+      ],
     }),
     defineField({
       name: 'image2',
       type: 'image',
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alt Text',
+          validation: (Rule) => Rule.required(),
+        },
+      ],
     }),
   ],
 })

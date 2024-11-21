@@ -2,10 +2,12 @@
 
 import styles from './{{pascalCase name}}.module.scss';
 
-export default function {{pascalCase name}}({content}) {
+export default function {{pascalCase name}}({content}: {{pascalCase name}}) {
   return(
     <div className={styles.component}>
-      <h5>{{name}}</h5>
+      <div className={styles.wrapper}>
+        <h5>{{name}}</h5>
+      </div>
     </div>
   );
 }
