@@ -37,5 +37,14 @@ export const textTwoImages = defineType({
         },
       ],
     }),
+    defineField({
+      name: 'theme',
+      type: 'string',
+      options: {
+        list: ['light', 'dark'],
+        layout: 'radio',
+      },
+      initialValue: 'light',
+    }),
   ],
 })

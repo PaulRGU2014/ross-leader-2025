@@ -9,5 +9,14 @@ export const {{camelCase name}} = defineType({
       name: 'title',
       type: 'string',
     }),
+    defineField({
+      name: 'theme',
+      type: 'string',
+      options: {
+        list: ['light', 'dark'],
+        layout: 'radio',
+      },
+      initialValue: 'light',
+    }),
   ],
 })
