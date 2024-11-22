@@ -3,8 +3,22 @@ import type { NextRequest } from 'next/server';
 
 const [AUTH_USER, AUTH_PASS] = (process.env.HTTP_BASIC_AUTH || ':').split(':');
 
-// Step 2. Check HTTP Basic Auth header if present
-function isAuthenticated(req: NextRequest) {
+export function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+
+  const response = NextResponse.next();
+  response.headers.set('x-pathname', pathname);
+
+  // Step 1. HTTP Basic Auth Middleware for Challenge
+  if (!isAuthenticated(request)) {
+    return new NextResponse('Authentication required', {
+      status: 401,
+      headers: { 'WWW-Authenticate': 'Basic' },
+    });
+  }
+
+  // Step 2. Check HTTP Basic Auth header if present
+  function isAuthenticated(req: NextRequest) {
   const authheader = req.headers.get('authorization') || req.headers.get('Authorization');
 
   if (!authheader) {
@@ -22,20 +36,6 @@ function isAuthenticated(req: NextRequest) {
     return false;
   }
 }
-
-export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
-
-  const response = NextResponse.next();
-  response.headers.set('x-pathname', pathname);
-
-  // Step 1. HTTP Basic Auth Middleware for Challenge
-  if (!isAuthenticated(request)) {
-    return new NextResponse('Authentication required', {
-      status: 401,
-      headers: { 'WWW-Authenticate': 'Basic' },
-    });
-  }
 
   return response;
 }
