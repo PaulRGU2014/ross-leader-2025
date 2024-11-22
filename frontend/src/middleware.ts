@@ -15,7 +15,8 @@ function isAuthenticated(req: NextRequest) {
   const user = auth[0];
   const pass = auth[1];
 
-  if (user == AUTH_USER && pass == AUTH_PASS) {
+
+  if (user === AUTH_USER && pass === AUTH_PASS) {
     return true;
   } else {
     return false;
@@ -27,6 +28,7 @@ export function middleware(request: NextRequest) {
 
   const response = NextResponse.next();
   response.headers.set('x-pathname', pathname);
+
   // Step 1. HTTP Basic Auth Middleware for Challenge
   if (!isAuthenticated(request)) {
     return new NextResponse('Authentication required', {
@@ -38,11 +40,7 @@ export function middleware(request: NextRequest) {
   return response;
 }
 
-
-
-
-
-// // Step 3. Configure "Matching Paths" below to protect routes with HTTP Basic Auth
-// export const config = {
-//   matcher: '/:path*',
-// };
+// Step 3. Configure "Matching Paths" below to protect routes with HTTP Basic Auth
+export const config = {
+  matcher: '/:path*',
+};
