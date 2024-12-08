@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+const [AUTH_USER, AUTH_PASS] = ["R0S5", "R0S5"];
+
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
