@@ -1,4 +1,5 @@
 @use "./helpers/timing-functions.scss" as *;
+@use "./helpers/mixins.scss" as *;
 
 @mixin scroll-animation($anim, $delay: 0ms, $sequence: false, $amount: 50px, $speed: 600ms, $trigger: '[data-in-view=true]'){
     opacity: 0;
