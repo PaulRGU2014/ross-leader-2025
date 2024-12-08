@@ -6,13 +6,13 @@ export const header = defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'menu_title',
-      title: 'Menu Title',
+      name: 'menu_name',
+      title: 'Menu Version',
       type: 'string',
     }),
     defineField({
-      name: 'sub_menus_1',
-      title: 'Sub Menus Level 1',
+      name: 'menu_title',
+      title: 'Main Title',
       type: 'array',
       of: [
         {
@@ -27,8 +27,8 @@ export const header = defineType({
               type: 'string',
             }),
             defineField({
-              name: 'sub_menus_2',
-              title: 'Sub Menus Level 2',
+              name: 'sub_menus_1',
+              title: 'Sub Menus Level 1',
               type: 'array',
               of: [
                 {
@@ -41,6 +41,26 @@ export const header = defineType({
                     defineField({
                       name: 'url',
                       type: 'string',
+                    }),
+                    defineField({
+                      name: 'sub_menus_2',
+                      title: 'Sub Menus Level 2',
+                      type: 'array',
+                      of: [
+                        {
+                          type: 'object',
+                          fields: [
+                            defineField({
+                              name: 'title',
+                              type: 'string',
+                            }),
+                            defineField({
+                              name: 'url',
+                              type: 'string',
+                            }),
+                          ],
+                        },
+                      ],
                     }),
                   ],
                 }
