@@ -2,41 +2,44 @@ import {defineField, defineType} from 'sanity'
 
 export const header = defineType({
   name: 'header',
-  title: 'Header',
+  title: 'Menus',
   type: 'document',
   fields: [
     defineField({
-      name: 'header_title',
+      name: 'menu_title',
+      title: 'Menu Title',
       type: 'string',
     }),
     defineField({
-      name: 'main_menu',
+      name: 'sub_menus_1',
+      title: 'Sub Menus Level 1',
       type: 'array',
       of: [
         {
           type: 'object',
           fields: [
             defineField({
-              name: 'menu_title',
+              name: 'title',
               type: 'string',
             }),
             defineField({
-              name: 'menu_url',
+              name: 'url',
               type: 'string',
             }),
             defineField({
-              name: 'menu_sub',
+              name: 'sub_menus_2',
+              title: 'Sub Menus Level 2',
               type: 'array',
               of: [
                 {
                   type: 'object',
                   fields: [
                     defineField({
-                      name: 'sub_title',
+                      name: 'title',
                       type: 'string',
                     }),
                     defineField({
-                      name: 'sub_url',
+                      name: 'url',
                       type: 'string',
                     }),
                   ],
