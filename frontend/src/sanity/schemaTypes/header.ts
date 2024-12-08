@@ -11,8 +11,8 @@ export const header = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'menu_title',
-      title: 'Main Title',
+      name: 'menu_list',
+      title: 'Menu List',
       type: 'array',
       of: [
         {
