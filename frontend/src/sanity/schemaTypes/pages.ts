@@ -21,6 +21,7 @@ export const pages = defineType({
           type: 'reference',
           to: [
           //associateHere
+	{ type : 'richTextComp' },
 	{ type : 'textTwoImages' },
 	{ type : 'fullPageHero' },
             {type: 'footer'},

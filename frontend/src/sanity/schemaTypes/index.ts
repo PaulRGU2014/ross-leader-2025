@@ -1,5 +1,6 @@
 import { type SchemaTypeDefinition } from "sanity";
 //importHere
+	import { richTextComp } from './richTextComp';
 	import { textTwoImages } from './textTwoImages';
 	import { fullPageHero } from './fullPageHero';
 import { pages } from "./pages";
@@ -11,12 +12,13 @@ import { hardcodedBlocks } from "./hardcodedBlocks";
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
   //associateHere
+pages,
+richTextComp,
 textTwoImages,
 fullPageHero,
     hardcodedBlocks,
     footer,
     header,
     hero,
-    pages,
   ],
 };

@@ -1,6 +1,7 @@
 "use client"
 
 //importHere
+	import RichTextComp from './RichTextComp/RichTextComp';
 	import TextTwoImages from './TextTwoImages/TextTwoImages';
 	import FullPageHero from './FullPageHero/FullPageHero';
   import Hero from "./Hero/Hero";
@@ -22,6 +23,7 @@ function HardcodedComponent ({ block_title, ...props }: { block_title: keyof typ
 
 const componentMap: { [key: string]: React.ComponentType<any> } = {
 //associateHere
+	richTextComp: RichTextComp,
 	textTwoImages: TextTwoImages,
 	fullPageHero: FullPageHero,
   hero: Hero,
