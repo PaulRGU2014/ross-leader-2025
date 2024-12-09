@@ -33,6 +33,10 @@ const componentMap: { [key: string]: React.ComponentType<any> } = {
 
 export default function ComponentLoader({ components }: { components: any }) {
   console.log(components);
+  if (!components) {
+    return null;
+  }
+
   return (
     <>
       {components.map((component: any, index: number) => {

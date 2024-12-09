@@ -75,8 +75,8 @@ const Header = ({ content }: { content: any }) => {
             <Image 
               src="/Logo_short.png" 
               alt="Logo" 
-              width={100} 
-              height={100} 
+              width={80} 
+              height={80} 
               // style={{objectPosition: "center", objectFit: "cover"}} 
             />
             {/* <div className={styles.logo_shadow}></div> */}
