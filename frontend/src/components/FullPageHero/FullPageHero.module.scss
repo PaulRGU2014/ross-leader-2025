@@ -58,15 +58,22 @@
 }
 
 .content{
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    padding: 0 60px;
-    position: relative;
-    z-index: 2;
-    *{
-        color: $white;
-    }
-    @include scroll-animation($anim: fromBottom, $sequence: 60ms, $speed: 1000ms, $delay: 1000ms);
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	padding: 0 60px;
+	position: relative;
+	z-index: 2;
+	*{
+		color: $white;
+		margin: 0;
+	}
+	@include scroll-animation($anim: fromBottom, $sequence: 60ms, $speed: 1000ms, $delay: 1000ms);
+	@include responsive (lg) {
+		padding: 0 30px;
+	}
+	@include responsive (md) {
+		padding: 0 20px;
+	}
 }
 

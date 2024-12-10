@@ -37,7 +37,7 @@ export default function FullPageHero({ content }: FullPageHeroProps) {
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <h4>{content.title}</h4>
-          <h5>{content.subtitle}</h5>
+          <h6>{content.subtitle}</h6>
         </div>
       </div>      
     </div></InViewAnim>
