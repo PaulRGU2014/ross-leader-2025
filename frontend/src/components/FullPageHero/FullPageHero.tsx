@@ -22,16 +22,18 @@ export default function FullPageHero({ content }: FullPageHeroProps) {
 
   return(
     <InViewAnim><div className={styles.component}>
-      <ReactPlayer 
-        className={styles.reactPlayer}
-        url={content.media_url}
-        loop={true}
-        muted={true}
-        playing={true}
-        playsinline={true}
-        width='100%'
-        height='100%'
-      />
+      <div className={styles.media}>
+        <ReactPlayer 
+          className={styles.reactPlayer}
+          url={content.media_url}
+          loop={true}
+          muted={true}
+          playing={true}
+          playsinline={true}
+          width='177vh'
+          height='100%'
+        />
+      </div>
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <h4>{content.title}</h4>
