@@ -5,7 +5,7 @@
   z-index: 1000;
   position: sticky;
   top: 0;
-  margin-bottom: -140px;
+  margin-bottom: -100px;
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
   &.hidden {
     transform: translateY(-100%);
