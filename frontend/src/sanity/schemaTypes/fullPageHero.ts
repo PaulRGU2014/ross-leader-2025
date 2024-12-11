@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 export const fullPageHero = defineType({
   name: 'fullPageHero',
@@ -20,19 +20,10 @@ export const fullPageHero = defineType({
       type: 'string',
       options: {
         list: [
-          {title: 'URL', value: 'url'},
-          {title: 'File', value: 'file'}
+          { title: 'URL', value: 'url' },
+          { title: 'File', value: 'file' }
         ]
       }
-    }),
-    defineField({
-      name: 'media_url',
-      title: 'Media URL',
-      type: 'url',
-      hidden: ({parent}) => parent?.media_source !== 'url',
-      validation: Rule => Rule.uri({
-        scheme: ['http', 'https', 'mailto', 'tel']
-      })
     }),
     defineField({
       name: 'media_type',
@@ -40,16 +31,27 @@ export const fullPageHero = defineType({
       type: 'string',
       options: {
         list: [
-          {title: 'Image', value: 'image'},
-          {title: 'Video', value: 'video'}
+          { title: 'Image', value: 'image' },
+          { title: 'Video', value: 'video' }
         ]
       },
-      hidden: ({parent}) => !parent?.media_source,
+      hidden: ({ parent }) => parent?.media_source !== 'url',
+    }),
+    defineField({
+      name: 'media_url',
+      title: 'Media URL',
+      type: 'url',
+      description: 'For the best experience, use a video with a 16:9 aspect ratio',
+      hidden: ({ parent }) => parent?.media_source !== 'url',
+      validation: Rule => Rule.uri({
+        scheme: ['http', 'https', 'mailto', 'tel']
+      })
     }),
     defineField({
       name: 'image_file',
       title: 'Image File',
       type: 'image',
+      description: 'For the best experience, use an image with a 16:9 aspect ratio',
       fields: [
         {
           name: 'alt',
@@ -57,13 +59,7 @@ export const fullPageHero = defineType({
           type: 'string',
         },
       ],
-      hidden: ({parent}) => parent?.media_source !== 'file' || parent?.media_type !== 'image',
-    }),
-    defineField({
-      name: 'video_file',
-      title: 'Video File',
-      type: 'file',
-      hidden: ({parent}) => parent?.media_source !== 'file' || parent?.media_type !== 'video',
+      hidden: ({ parent }) => parent?.media_source !== 'file',
     }),
   ],
 })
