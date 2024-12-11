@@ -68,13 +68,13 @@ h3 {
     font-weight: 400;
     word-break: break-word;
     @include responsive(lg) {
-        font-size: 28px;
+        font-size: 48px;
     }
     @include responsive(md) {
-        font-size: 24px;
+        font-size: 36px;
     }
     @include responsive(sm) {
-        font-size: 20px;
+        font-size: 28px;
     }
 }
 
@@ -86,14 +86,14 @@ h4{
     font-weight: 400;
     word-break: break-word;
     @include responsive(lg) {
-        font-size: 24px;
+        font-size: 36px;
     }
     @include responsive(md) {
-        font-size: 20px;
+        font-size: 28px;
         margin: 0 0 10px 0;
     }
     @include responsive(sm) {
-        font-size: 18px;
+        font-size: 24px;
     }
 }
 
@@ -105,13 +105,13 @@ h5 {
     margin: 0 0 20px 0;
     word-break: break-word;
     @include responsive(lg) {
-        font-size: 20px;
+        font-size: 28px;
     }
     @include responsive(md) {
-        font-size: 18px;
+        font-size: 24px;
     }
     @include responsive(sm) {
-        font-size: 16px;
+        font-size: 20px;
     }
 }
 
@@ -123,13 +123,13 @@ h6 {
     word-break: break-word;
     font-weight: 400;
     @include responsive(lg) {
-        font-size: 20px;
+        font-size: 28px;
     }
     @include responsive(md) {
-        font-size: 18px;
+        font-size: 24px;
     }
     @include responsive(sm) {
-        font-size: 16px;
+        font-size: 20px;
     }
 }
 
