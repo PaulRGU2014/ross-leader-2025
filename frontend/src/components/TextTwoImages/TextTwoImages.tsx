@@ -2,15 +2,16 @@
 
 import styles from './TextTwoImages.module.scss';
 import Image from '@/utils/ImageLoader/ImageLoader';
+import InViewAnim from './../../utils/InViewAnim/InViewAnim'
 
 interface TextTwoImagesProps {
   content: any; // Replace 'any' with the appropriate type if known
 }
 
 export default function TextTwoImages({content}: TextTwoImagesProps) {
-  console.log(content);
+
   return(
-    <div className={styles.component}>
+    <InViewAnim><div className={styles.component}>
       <div className={styles.wrapper}>
         <section className={styles.images}>
           <Image
@@ -33,6 +34,6 @@ export default function TextTwoImages({content}: TextTwoImagesProps) {
           <p>{content.text}</p>
         </section>
       </div>
-    </div>
+    </div></InViewAnim>
   );
 }
