@@ -22,8 +22,8 @@ export default function LinkWrapper({
     return <a className={className} onClick={onClick} style={style}>{children}</a>;
   }
   return (
-    <Link href={href} passHref>
-      <a className={className} target={target} onClick={onClick} style={style}>{children}</a>
+    <Link className={className} target={target} onClick={onClick} style={style} href={href} passHref>
+      {children}
     </Link>
   );
 }

@@ -5,7 +5,7 @@
     @include scroll-animation($anim: fromTop, $speed: 1000ms, $delay: 250ms );
     display: block;
     // background: linear-gradient(-180deg, $lt-yellow 0%, $blue-purple 50%, $lt-yellow 100%);
-    background: $lt-yellow;
+    // background: $lt-yellow;
 }
 
 .menuBurger{
@@ -52,13 +52,13 @@
         // box-shadow: 0px 0px 10px $dk-navy;
         transition: all 0.3s $ease-out-quint;
         &:hover{
-            background-color: $blue-purple;
-            color: $lt-yellow;
+            // background-color: $blue-purple;
+            // color: $lt-yellow;
             transition: all 0.3s $ease-out-quint;
         }
     }
 }
 
-.link{
-    border: 1px solid $navy
-}
+// .link{
+//     border: 1px solid $navy
+// }

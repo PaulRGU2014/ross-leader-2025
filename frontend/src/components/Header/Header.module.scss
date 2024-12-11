@@ -72,36 +72,17 @@
   }
   h5 {
     margin: 0;
-    color: $lt-black;
+    // color: $lt-black;
     animation: textIn 1000ms 600ms $ease-out-quint both;
   }
 }
 
 .menuLink {
-  transition: all 0.3s $ease-out-quint;
-  animation: panelDrop 800ms $ease-out-quint both;
-  &_wrapper {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-  }
-  a {
-    padding: 10px;
-    text-decoration: none;
-    color: $lt-black;
-    font-weight: bold;
-    transition: all 0.3s $ease-out-quint;
-  }
-  &:hover {
-    transition: all 0.3s $ease-out-quint;
-    a {
-      color: $dk-navy;
-      background-color: $lt-brown;
-      transition: all 0.3s $ease-out-quint;
-    }
-  }
+
+}
+
+.menuButton{
+  @extend %button;
 }
 
 @keyframes iconGrow {

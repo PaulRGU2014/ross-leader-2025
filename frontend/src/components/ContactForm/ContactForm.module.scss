@@ -1,7 +1,7 @@
 @use '../../scss/helpers/import' as *;
 
 .component{
-    background-color: $lt-yellow;
+    // background-color: $lt-yellow;
 }
 .wrapper{
     padding: 60px 0;
@@ -20,7 +20,7 @@
 }
 
 .title{
-    color: $neutral-black;
+    // color: $neutral-black;
     width: 100%;
     margin-bottom: 50px;
     padding-right: 12%;
@@ -42,13 +42,13 @@
     }
     button{
         font-weight: 700;
-        color: $dk-navy;
+        // color: $dk-navy;
         text-transform: uppercase;
         border: none;
-        background-color: $lt-pink;
+        // background-color: $lt-pink;
         padding: 20px 30px;
         &:hover{
-            background-color: $dk-pink;
+            // background-color: $dk-pink;
             color: $white;
         }
     }
