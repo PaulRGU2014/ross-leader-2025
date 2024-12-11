@@ -8,11 +8,13 @@ import { footer } from "./footer";
 import { hero } from "./hero";
 import { header } from "./header";
 import { hardcodedBlocks } from "./hardcodedBlocks";
+import { gridLinksCarousel } from "./gridLinksCarousel";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
   //associateHere
 pages,
+gridLinksCarousel,
 richTextComp,
 textTwoImages,
 fullPageHero,
