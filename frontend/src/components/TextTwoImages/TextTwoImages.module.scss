@@ -49,7 +49,7 @@
     padding-top: calc(36 / 66 * 100%);
     right: 0;
     bottom: 0;
-    @include scroll-animation($anim: fromBotto, $sequence: 60ms, $speed: 1000ms);
+    @include scroll-animation($anim: fromBottom, $sequence: 60ms, $speed: 1000ms);
 }
 
 .text {
