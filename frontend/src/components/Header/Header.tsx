@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
+import Link from '@/utils/LinkWrapper/LinkWrapper';
 import Image from 'next/image';
 import styles from './Header.module.scss';
 
@@ -73,7 +73,7 @@ const Header = ({ content }: { content: any }) => {
         <div className={styles.logo}>
           <Link href="/" className={styles.logo_main}>
             <Image 
-              src="/Logo_short.png" 
+              src="/Logo_Menu.png" 
               alt="Logo" 
               width={80} 
               height={80} 
@@ -90,11 +90,7 @@ const Header = ({ content }: { content: any }) => {
           </li>
           ))} */}
         </ul>
-        <ul className={styles.menuLink_wrapper}>
-          <li className={styles.menuLink} style={{animationDelay: "500ms"}}>
-            <Link href="https://krupaul.square.site/" target='_self'>Store</Link>
-          </li>
-        </ul>
+        <Link className={styles.menuButton} href="https://krupaul.square.site/" target='_self'>Store</Link>
       </div>
     </header>
   );

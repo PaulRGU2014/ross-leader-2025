@@ -22,7 +22,7 @@
   height: 100%;
   transition: all 0.5s $ease-out-quint;
   &.open {
-    background-color: rgba($color: $lt-brown, $alpha: 0.5);
+    // background-color: rgba($color: $lt-brown, $alpha: 0.5);
     transition: all 0.5s $ease-out-quint;
   }
   @include responsive(md) {
@@ -71,7 +71,7 @@
   max-width: 300px;
   height: auto;
   margin: 0;
-  background-color: $pink;
+  // background-color: $pink;
   padding: 40px;
   @include responsive(sm) {
     align-items: center;
@@ -92,7 +92,7 @@
   &:hover {
     transition: all 0.75s $ease-out-quint;
     a {
-      color: $dk-navy;
+      // color: $dk-navy;
     }
   }
   &.open {
