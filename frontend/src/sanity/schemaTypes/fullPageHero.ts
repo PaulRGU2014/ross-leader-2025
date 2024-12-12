@@ -57,6 +57,7 @@ export const fullPageHero = defineType({
           name: 'alt',
           title: 'Image Alt Text',
           type: 'string',
+          validation: Rule => Rule.required()
         },
       ],
       hidden: ({ parent }) => parent?.media_source !== 'file',
