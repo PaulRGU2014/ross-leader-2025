@@ -1,7 +1,7 @@
 @use '../../scss/helpers/import' as *;
 
 .header {
-  background-color: rgba($color: $white, $alpha: 0.8);
+  background-color: rgba($color: $white, $alpha: 1);
   z-index: 1000;
   position: sticky;
   top: 0;
@@ -27,6 +27,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
+    gap: 20px;
+    position: relative;
   }
 }
 
@@ -42,30 +44,6 @@
       animation: logoIn 800ms 200ms $ease-out-back both;
     }
   }
-  &_shadow {
-    position: absolute;
-    width: 67px;
-    height: 90px;
-    animation: iconGrow 800ms 200ms $ease-out-back both;
-    z-index: -1;
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      width: 67px;
-      height: 90px;
-      background-color: #B0CDC2;
-      z-index: -1;
-      clip-path: polygon(
-        50% 0%,  /* Top point */
-        100% 21%, /* Top-right point */
-        100% 79%, /* Bottom-right point */
-        50% 100%, /* Bottom point */
-        0% 79%,  /* Bottom-left point */
-        0% 21%   /* Top-left point */
-      );
-    }
-  }
   a {
     display: flex;
     margin: 0;
@@ -78,11 +56,66 @@
 }
 
 .menuLink {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0 ;
+  padding: 0;
+  position: relative;
+  &_wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    column-gap: 40px;
+    row-gap: 20px;
+    padding: 0 20px;
+    margin: 0;
+    max-width: 768px;
 
+  }
+  &_link{
+    margin: 0;
+    @extend %nav;
+    &:hover {
+      cursor: pointer;
+      color: $yellow-500;
+    }
+  }
+}
+
+.subMenu {
+  @extend .menuLink;
+  padding: 0;
+  &_wrapper{
+    position: absolute;
+    width: 100%;
+    background-color: rgba($color: $white, $alpha: 1);
+    width: max-content;
+    z-index: 2;
+    top: calc(100%);
+    left: -20px;
+    opacity: 0;
+    visibility: hidden;
+    padding: 20px 60px 10px 20px;
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  &_link{
+    @extend %nav;
+    padding: 10px 0px;
+    &:hover {
+      color: $yellow-500;
+    }
+  }
 }
 
 .menuButton{
   @extend %button;
+  min-width: 120px;
+  width: fit-content;
 }
 
 @keyframes iconGrow {
