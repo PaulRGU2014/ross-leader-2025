@@ -7,11 +7,11 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 export default function RootLayout({children}: {children: React.ReactNode}) {
   
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <Head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </Head>
-      <body suppressHydrationWarning={true}>
+      <body>
           {children}
       </body>
       {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
