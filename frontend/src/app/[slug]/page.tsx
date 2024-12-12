@@ -45,7 +45,7 @@ export default async function Page() {
   return (
     <>
       {/* <div className={styles.menuBurger}><MenuNav content={(menuData as any)[0]} /></div> */}
-      <Header content={(menuData as any)[0]} />
+      {/* <Header content={(menuData as any)[0]} /> */}
       <ComponentLoader components={(data as any[])[0]?.components} />
       <Footer content={(footerData as any)[0]} pathname={pathname} />
       {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
