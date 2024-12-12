@@ -78,6 +78,7 @@ const Header = ({ content }: { content: any }) => {
               alt="Logo" 
               width={80} 
               height={80} 
+              priority={true}
               style={{objectPosition: "center"}} 
             />
           </Link>

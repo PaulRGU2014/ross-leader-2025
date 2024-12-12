@@ -34,10 +34,12 @@ const componentMap: { [key: string]: React.ComponentType<any> } = {
 };
 
 export default function ComponentLoader({ components }: { components: any }) {
-  console.log(components);
+
   if (!components) {
     return null;
   }
+
+  console.log(components);
 
   return (
     <>
