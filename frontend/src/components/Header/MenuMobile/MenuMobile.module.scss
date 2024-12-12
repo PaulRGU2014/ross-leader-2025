@@ -3,7 +3,7 @@
 .component {
   display: none;
   position: fixed;
-  top: 10px;
+  top: 0;
   left: 0;
   z-index: 888;
   width: 100vw;
@@ -138,9 +138,7 @@
     transition: all 0.5s $ease-out-quint;
     cursor: pointer;
     pointer-events: all;
-    &_open {
-      @extend .hamburger_wrapper;
-      // background-color: $pink;
+    &.open {
       transition: all 0.5s $ease-out-quint;
       .hamburger_first {
         transform: rotate(45deg) translate3d(13px, 11px, 0);
@@ -152,7 +150,6 @@
       }
       .hamburger_third {
         transform: rotate(-45deg) translate3d(10px, -8px, 0);
-        // background-color: $lt-yellow;
         width: 80%;
       }
     }
@@ -172,5 +169,9 @@
     border-radius: 5px;
     background-color: $yellow-500;
     transition: all 0.5s $ease-out-quint;
+    .open & {
+      opacity: 0;
+      transform: translateX(100%);
+    }
   }
 }

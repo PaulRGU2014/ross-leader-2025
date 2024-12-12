@@ -14,7 +14,7 @@ function Hamburger({ isMenuOpen, hamburgerRef, onClick }: { isMenuOpen: boolean,
   return (
     <div
       ref={hamburgerRef}
-      className={isMenuOpen ? styles.hamburger_wrapper_open : styles.hamburger_wrapper}
+      className={`${styles.hamburger_wrapper} ${isMenuOpen ? styles.open : ""}`}
       onClick={() => {
         if (onClick) {
           onClick();
