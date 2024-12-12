@@ -1,13 +1,19 @@
 @use '../../../scss/helpers/import' as *;
 
 .component {
+  display: none;
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: 888;
   width: 100vw;
   height: 100vh;
-  &_close {
-    @extend .component;
-    pointer-events: none;
+  // &_close {
+  //   @extend .component;
+  //   pointer-events: none;
+  // }
+  @include responsive(lg) {
+    display: block;
   }
 }
 
@@ -15,7 +21,7 @@
   // @include centered($max-width);
   margin: {
     top: 0;
-    bottom: $standard-vertical-spacing;
+    bottom: 0;
   }
   overflow: hidden;
   position: relative;
@@ -118,66 +124,54 @@
 .hamburger {
   &_wrapper {
     position: absolute;
-    right: 15px;
+    left: 15px;
     top: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    width: 75px;
-    height: 75px;
+    width: 50px;
+    height: 50px;
+    gap: 10px;
     background-color: transparent;
     z-index: 889;
     transition: all 0.5s $ease-out-quint;
     cursor: pointer;
     pointer-events: all;
-    &_open {
-      @extend .hamburger_wrapper;
-      // background-color: $pink;
+    &.open {
       transition: all 0.5s $ease-out-quint;
       .hamburger_first {
-        transform: rotate(45deg) translate3d(13px, 12px, 0);
+        transform: rotate(45deg) translate3d(13px, 11px, 0);
         width: 80%;
       }
       .hamburger_second {
         opacity: 0;
-        transform: translateX(-100%);
+        transform: translateX(100%);
       }
       .hamburger_third {
-        transform: rotate(-45deg) translate3d(13px, -12px, 0);
-        // background-color: $lt-yellow;
+        transform: rotate(-45deg) translate3d(10px, -8px, 0);
         width: 80%;
       }
     }
   }
   &_first,
   &_third {
-    width: 50%;
-    height: 3px;
-    background-color: $lt-black;
+    width: 70%;
+    height: 5px;
+    border-radius: 5px;
+    background-color: $yellow-500;
     transform-origin: center;
     transition: all 0.5s $ease-out-quint;
   }
   &_second {
-    width: 80%;
-    height: 3px;
-    background-color: $lt-black;
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+    background-color: $yellow-500;
     transition: all 0.5s $ease-out-quint;
-  }
-  @include responsive(md) {
-    &_wrapper {
-      width: 50px;
-      height: 50px;
-      gap: 10px;
-      &_open {
-        .hamburger_first {
-          transform: rotate(45deg) translate3d(14px, 13px, 0);
-        }
-        .hamburger_third {
-          transform: rotate(-45deg) translate3d(5px, -5px, 0);
-        }
-      }
+    .open & {
+      opacity: 0;
+      transform: translateX(100%);
     }
   }
 }

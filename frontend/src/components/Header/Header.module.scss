@@ -120,6 +120,7 @@
   }
   &_link{
     @extend %nav;
+    text-transform: unset;
     padding: 10px 0px;
     &:hover {
       color: $yellow-500;
