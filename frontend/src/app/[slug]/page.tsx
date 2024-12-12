@@ -1,8 +1,6 @@
 import '../../scss/global.scss'
 import client from "../../../client"
-import styles from './page.module.scss'
 import ComponentLoader from '@/components/ComponentLoader'
-import MenuNav from '@/components/Header/MenuMobile/MenuMobile'
 import Header from '@/components/Header/Header'
 import Footer from '@/components/Footer/Footer'
 import { headers } from 'next/headers'

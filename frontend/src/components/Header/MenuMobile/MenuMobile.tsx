@@ -22,15 +22,9 @@ function Hamburger({ isMenuOpen, hamburgerRef, onClick, initialLoad }: { isMenuO
         }
       }}
     >
-      <div 
-        className={styles.hamburger_first}
-      />
-      <div 
-        className={styles.hamburger_second} 
-      />
-      <div 
-        className={styles.hamburger_third}
-      />
+      <div className={styles.hamburger_first}/>
+      <div className={styles.hamburger_second} />
+      <div className={styles.hamburger_third}/>
     </div>
   );
 }
@@ -132,7 +126,9 @@ export default function MenuMobile({ content, handleMenuClick }: MenuMobileProps
   }, [menuRef, hamburgerRef]);
 
   useEffect(() => {
-    setInitialLoad(false);
+    setTimeout(() => {
+      setInitialLoad(false);
+    }, 750);
   }, []);
 
   const menuListNumber = content?.footer_links?.length || 0;

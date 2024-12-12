@@ -155,10 +155,10 @@
       }
     }
     &.initialLoad > div {
-      animation: burgIn 500ms $ease-out-quint both;
+      animation: burgerIn 500ms $ease-out-quint both 0.5s;
+      @include animation-sequence(60ms, 4);
     }
     & > div {
-      @include animation-sequence(60ms, 4);
       transition: all 0.50s $ease-out-quint;
     } 
   }
@@ -184,7 +184,7 @@
   }
 }
 
-@keyframes burgIn {
+@keyframes burgerIn {
   0% {
     transform: translateX(-100px) scaleX(5);
     opacity: 0;

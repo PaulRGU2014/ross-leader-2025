@@ -1,12 +1,9 @@
 import '../scss/global.scss'
-import styles from './page.module.scss'
 import client from "../../client"
 import ComponentLoader from '@/components/ComponentLoader'
-import MenuNav from '@/components/Header/MenuMobile/MenuMobile'
 import Footer from '@/components/Footer/Footer'
 import { headers } from 'next/headers'
 import Header from '@/components/Header/Header'
-import InViewAnim from '@/utils/InViewAnim/InViewAnim'
 import type { Metadata } from 'next'
 
 type FooterDataType = {
@@ -48,10 +45,10 @@ export default async function Page() {
   const menuData = await client.fetch(`*[_type=="header"]{...}`);
 
   return (
-    <InViewAnim>
+    <>
       <Header content={(menuData as any)[0]} />
       <ComponentLoader components={(data as any[])[0]?.components} />     
       <Footer content={(footerData as any)[0]} pathname={pathname} />
-    </InViewAnim>
+    </>
   );
 }
