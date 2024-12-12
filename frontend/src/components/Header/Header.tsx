@@ -84,7 +84,7 @@ export default function Header ({ content }: { content: any }) {
           </Link>
         </div>
         <ul className={styles.menuLink_wrapper}>
-          {content.menu_list.map((menu: any, index: number) => (
+          {content?.menu_list?.map((menu: any, index: number) => (
             <li 
               key={index} 
               className={styles.menuLink}
@@ -93,14 +93,14 @@ export default function Header ({ content }: { content: any }) {
               onClick={(event) => handleMenuClick(event, index, menu.url)}
             >
               <Link href={menu.url} className={styles.menuLink_link}>{menu.title}&nbsp;&nbsp;&nbsp;{menu.sub_menus_1 && menu.sub_menus_1.length > 0 && <BsChevronCompactDown />}</Link>
-              {menu.sub_menus_1 && (
+              {menu?.sub_menus_1 && (
                 <ul 
                   className={`${styles.subMenu_wrapper}  ${mainMenuIndex === index ? styles.active : ''}`}
                   style={{
                     height: menu.sub_menus_1.length * 40 + 'px',
                   }}
                 >
-                  {menu.sub_menus_1.map((subMenus1: any, subIndex: number) => (
+                  {menu?.sub_menus_1?.map((subMenus1: any, subIndex: number) => (
                     <li 
                       key={subIndex} 
                       className={`${styles.subMenu}`}
