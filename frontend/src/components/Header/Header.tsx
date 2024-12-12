@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useCallback } from 'react';
 import MenuDesktop from './MenuDesktop'; 
+import MenuMobile from './MenuMobile/MenuMobile'
 
 
 interface HeaderProps {
@@ -71,17 +72,24 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
   };
 
   return (
-    <MenuDesktop
-      {...{
-        content,
-        isVisible,
-        mainMenuIndex,
-        setMainMenuIndex,
-        hoveredMenuIndex,
-        setHoveredMenuIndex,
-        handleMenuClick
-      }}
-    />
+    <>
+      <MenuDesktop
+        {...{
+          content,
+          isVisible,
+          mainMenuIndex,
+          setMainMenuIndex,
+          hoveredMenuIndex,
+          setHoveredMenuIndex,
+          handleMenuClick
+        }}
+      />
+      <MenuMobile 
+        {...{
+          content
+        }}
+      />
+    </>
   );
 };
 
