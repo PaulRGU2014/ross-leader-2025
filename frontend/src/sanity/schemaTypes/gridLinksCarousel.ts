@@ -36,6 +36,7 @@ export const gridLinksCarousel = defineType({
                   name: 'alt',
                   title: 'Image Alt Text',
                   type: 'string',
+                  validation: Rule => Rule.required()
                 },
               ],
             }),

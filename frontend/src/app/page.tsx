@@ -2,7 +2,7 @@ import '../scss/global.scss'
 import styles from './page.module.scss'
 import client from "../../client"
 import ComponentLoader from '@/components/ComponentLoader'
-import MenuNav from '@/components/Menus/Menus'
+import MenuNav from '@/components/Header/MenuMobile/MenuMobile'
 import Footer from '@/components/Footer/Footer'
 import { headers } from 'next/headers'
 import Header from '@/components/Header/Header'

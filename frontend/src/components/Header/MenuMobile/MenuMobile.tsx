@@ -1,6 +1,6 @@
 "use client"
 
-import styles from './Menus.module.scss';
+import styles from './MenuMobile.module.scss';
 import React, { useState, useEffect, useRef } from "react";
 import Link from 'next/link';
 import Image from 'next/image';
