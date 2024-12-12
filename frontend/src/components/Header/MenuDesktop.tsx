@@ -11,7 +11,7 @@ interface MenuDesktopProps {
   setMainMenuIndex: (index: number) => void;
   hoveredMenuIndex: number | null;
   setHoveredMenuIndex: (index: number | null) => void;
-  handleMenuClick: (event: React.MouseEvent<HTMLLIElement>, index: number, url: string, hasSubMenus: boolean) => void;
+  handleMenuClick: (event: React.MouseEvent<HTMLLIElement | HTMLAnchorElement>, index: number, url: string, hasSubMenus: boolean) => void;
 }
 
 const MenuDesktop: React.FC<MenuDesktopProps> = ({

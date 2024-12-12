@@ -96,7 +96,10 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
       :
       <MenuMobile 
         {...{
-          content
+          content,
+          mainMenuIndex,
+          setMainMenuIndex,
+          handleMenuClick
         }}
       />}
     </>

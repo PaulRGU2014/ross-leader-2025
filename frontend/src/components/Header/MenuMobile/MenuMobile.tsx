@@ -4,10 +4,11 @@ import styles from './MenuMobile.module.scss';
 import React, { useState, useEffect, useRef } from "react";
 import Link from '@/utils/LinkWrapper/LinkWrapper';
 import Image from 'next/image';
+import { BsChevronCompactDown } from 'react-icons/bs';
 
 interface MenuMobileProps {
   content: any;
-  onClick?: () => void; // Define the onClick prop
+  handleMenuClick: (event: React.MouseEvent, index: number, url: string, hasSubMenus: boolean) => void;
 }
 
 function Hamburger({ isMenuOpen, hamburgerRef, onClick, initialLoad }: { isMenuOpen: boolean, hamburgerRef: React.RefObject<HTMLDivElement>, onClick?: () => void, initialLoad: boolean }) {
@@ -34,7 +35,27 @@ function Hamburger({ isMenuOpen, hamburgerRef, onClick, initialLoad }: { isMenuO
   );
 }
 
-function MenuContent({ content, isMenuOpen, setIsMenuOpen, isMenuOpening, menuRef }: { content: any, isMenuOpen: boolean, setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>, isMenuOpening: boolean, menuRef: React.RefObject<HTMLUListElement> }) {
+interface MenuContentProps {
+  content: any;
+  isMenuOpen: boolean;
+  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isMenuOpening: boolean;
+  menuRef: React.RefObject<HTMLUListElement>;
+  mainMenuIndex: number;
+  setMainMenuIndex: (index: number) => void;
+  handleMenuClick: (event: React.MouseEvent<HTMLLIElement | HTMLAnchorElement>, index: number, url: string, hasSubMenus: boolean) => void;
+}
+
+function MenuContent({ 
+  content, 
+  isMenuOpen, 
+  setIsMenuOpen, 
+  isMenuOpening, 
+  menuRef,
+  mainMenuIndex,
+  setMainMenuIndex,
+  handleMenuClick 
+}: MenuContentProps) {
   return (
     <div className={isMenuOpen ? styles.inner : styles.inner_close}>
       <ul className={styles.content} ref={menuRef}>
@@ -53,11 +74,16 @@ function MenuContent({ content, isMenuOpen, setIsMenuOpen, isMenuOpening, menuRe
             className={`${styles.link} ${isMenuOpen === true ? styles.open : ""}`} 
             key={index} 
             style={{ transitionDelay: isMenuOpening ? `${(index + 1) * 100}ms` : "0ms" }}
-            onClick={() => {
-              setIsMenuOpen(false);
-            }}
+            onMouseEnter={() => setMainMenuIndex(index)}
+            onMouseLeave={() => setMainMenuIndex(-1)}
+            onClick={(event) => handleMenuClick(event, index, item.url, !!item.sub_menus_1)}
           >
-            <Link href={item.url}>{item.title}</Link>
+            <Link 
+              href={item.url}
+              onClick={(event) => handleMenuClick(event, index, item.url, !!item.sub_menus_1)}
+            >
+            {item.title}{item.sub_menus_1 && item.sub_menus_1.length > 0 && <div className={`${styles.dropdown} ${mainMenuIndex === index ? styles.active : ''}`}><BsChevronCompactDown /></div>}
+            </Link>
           </li>
         ))}
         <li 
@@ -78,12 +104,13 @@ function MenuContent({ content, isMenuOpen, setIsMenuOpen, isMenuOpening, menuRe
   );
 }
 
-export default function MenuMobile({ content }: MenuMobileProps) {
+export default function MenuMobile({ content, handleMenuClick }: MenuMobileProps) {
   console.log("MenuContent", content);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuOpening, setIsMenuOpening] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
   const menuRef = useRef<HTMLUListElement>(null);
+  const [mainMenuIndex, setMainMenuIndex] = useState(-1);
   const hamburgerRef = useRef<HTMLDivElement>(null);
 
   // This is the handle click outside function
@@ -130,7 +157,7 @@ export default function MenuMobile({ content }: MenuMobileProps) {
         className={`${styles.wrapper} ${isMenuOpen ? styles.open : ""}`}
       >
         <Hamburger isMenuOpen={isMenuOpen} hamburgerRef={hamburgerRef} onClick={handleMenuToggle} initialLoad={initialLoad} />
-        <MenuContent {...{content, isMenuOpen, setIsMenuOpen, isMenuOpening, menuRef}} />
+        <MenuContent {...{content, isMenuOpen, setIsMenuOpen, isMenuOpening, menuRef, mainMenuIndex, setMainMenuIndex, handleMenuClick}} />
       </div>
     </div>
   );

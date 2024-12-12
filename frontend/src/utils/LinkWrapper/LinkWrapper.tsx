@@ -6,7 +6,7 @@ interface LinkWrapperProps {
   target?: string;
   children: ReactNode;
   className?: string;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   style?: CSSProperties;
 }
 
