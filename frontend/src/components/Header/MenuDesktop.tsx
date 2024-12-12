@@ -2,7 +2,7 @@ import React from 'react';
 import Link from '@/utils/LinkWrapper/LinkWrapper';
 import Image from 'next/image';
 import { BsChevronCompactDown } from 'react-icons/bs';
-import styles from './Header.module.scss'; // Adjust the path as needed
+import styles from './MenuDesktop.module.scss'; // Adjust the path as needed
 
 interface MenuDesktopProps {
   content: any;

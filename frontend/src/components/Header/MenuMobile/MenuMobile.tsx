@@ -2,7 +2,7 @@
 
 import styles from './MenuMobile.module.scss';
 import React, { useState, useEffect, useRef } from "react";
-import Link from 'next/link';
+import Link from '@/utils/LinkWrapper/LinkWrapper';
 import Image from 'next/image';
 
 interface MenuMobileProps {
@@ -10,20 +10,26 @@ interface MenuMobileProps {
   onClick?: () => void; // Define the onClick prop
 }
 
-function Hamburger({ isMenuOpen, hamburgerRef, onClick }: { isMenuOpen: boolean, hamburgerRef: React.RefObject<HTMLDivElement>, onClick?: () => void }) {
+function Hamburger({ isMenuOpen, hamburgerRef, onClick, initialLoad }: { isMenuOpen: boolean, hamburgerRef: React.RefObject<HTMLDivElement>, onClick?: () => void, initialLoad: boolean }) {
   return (
     <div
       ref={hamburgerRef}
-      className={`${styles.hamburger_wrapper} ${isMenuOpen ? styles.open : ""}`}
+      className={`${styles.hamburger_wrapper} ${isMenuOpen ? styles.open : ""} ${initialLoad ? styles.initialLoad : ""}`}
       onClick={() => {
         if (onClick) {
           onClick();
         }
       }}
     >
-      <div className={styles.hamburger_first} />
-      <div className={styles.hamburger_second} />
-      <div className={styles.hamburger_third} />
+      <div 
+        className={styles.hamburger_first}
+      />
+      <div 
+        className={styles.hamburger_second} 
+      />
+      <div 
+        className={styles.hamburger_third}
+      />
     </div>
   );
 }
@@ -31,11 +37,18 @@ function Hamburger({ isMenuOpen, hamburgerRef, onClick }: { isMenuOpen: boolean,
 function MenuContent({ content, isMenuOpen, setIsMenuOpen, isMenuOpening, menuRef }: { content: any, isMenuOpen: boolean, setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>, isMenuOpening: boolean, menuRef: React.RefObject<HTMLUListElement> }) {
   return (
     <div className={isMenuOpen ? styles.inner : styles.inner_close}>
-      {/* <ul className={styles.content} ref={menuRef}>
+      <ul className={styles.content} ref={menuRef}>
         <Link href="/" className={styles.logo_main}>
-          <Image src="/Logo_New.svg" alt="Logo" width={150} height={90} style={{objectPosition: "left", objectFit: "cover", padding: "15px"}} />
+          <Image 
+            src="/Logo_Menu.png" 
+            alt="Logo" 
+            width={120} 
+            height={120} 
+            priority={true}
+            style={{objectPosition: "center"}} 
+          />
         </Link>          
-        {content?.main_menu?.map((item: any, index: number) => (
+        {content?.menu_list?.map((item: any, index: number) => (
           <li 
             className={`${styles.link} ${isMenuOpen === true ? styles.open : ""}`} 
             key={index} 
@@ -44,19 +57,23 @@ function MenuContent({ content, isMenuOpen, setIsMenuOpen, isMenuOpening, menuRe
               setIsMenuOpen(false);
             }}
           >
-            <Link href={item.menu_url}>{item.menu_title}</Link>
+            <Link href={item.url}>{item.title}</Link>
           </li>
         ))}
         <li 
-          className={`${styles.link} ${isMenuOpen === true ? styles.open : ""}`} 
-          style={{ transitionDelay: isMenuOpening ? `${(content.main_menu.length + 1) * 100}ms` : "0ms" }}
+          className={styles.menuButton_wrapper} 
+          style={{ 
+            transitionDelay: isMenuOpening ? `${(content.menu_list?.length + 4) * 100}ms` : "0ms",
+            transform: isMenuOpen ? "translateY(0px)" : "translateY(20px)",
+            opacity: isMenuOpen ? 1 : 0
+          }}
           onClick={() => {
             setIsMenuOpen(false);
           }}
         >
-          <Link href="https://www.ebay.com/usr/krupaul" target='_blank'>Store</Link>
+          <Link className={styles.menuButton} href="https://nonprofit.resilia.com/donate?id=afe31c5e3ed8590474ff96dc2dddb0d649119097fef6cc228cd15ed695ec956f" target='_blank'>Donate</Link>
         </li>
-      </ul> */}
+      </ul>
     </div>
   );
 }
@@ -65,6 +82,7 @@ export default function MenuMobile({ content }: MenuMobileProps) {
   console.log("MenuContent", content);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuOpening, setIsMenuOpening] = useState(false);
+  const [initialLoad, setInitialLoad] = useState(true);
   const menuRef = useRef<HTMLUListElement>(null);
   const hamburgerRef = useRef<HTMLDivElement>(null);
 
@@ -85,6 +103,10 @@ export default function MenuMobile({ content }: MenuMobileProps) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [menuRef, hamburgerRef]);
+
+  useEffect(() => {
+    setInitialLoad(false);
+  }, []);
 
   const menuListNumber = content?.footer_links?.length || 0;
 
@@ -107,8 +129,8 @@ export default function MenuMobile({ content }: MenuMobileProps) {
       <div 
         className={`${styles.wrapper} ${isMenuOpen ? styles.open : ""}`}
       >
-        <Hamburger isMenuOpen={isMenuOpen} hamburgerRef={hamburgerRef} onClick={handleMenuToggle} />
-        {/* <MenuContent {...{content, isMenuOpen, setIsMenuOpen, isMenuOpening, menuRef}} /> */}
+        <Hamburger isMenuOpen={isMenuOpen} hamburgerRef={hamburgerRef} onClick={handleMenuToggle} initialLoad={initialLoad} />
+        <MenuContent {...{content, isMenuOpen, setIsMenuOpen, isMenuOpening, menuRef}} />
       </div>
     </div>
   );
