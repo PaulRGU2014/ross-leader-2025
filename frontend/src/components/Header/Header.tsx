@@ -15,6 +15,7 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
   const [scrollTimeout, setScrollTimeout] = useState<NodeJS.Timeout | null>(null);
   const [mainMenuIndex, setMainMenuIndex] = useState(-1);
   const [hoveredMenuIndex, setHoveredMenuIndex] = useState<number | null>(null);
+  const [screenWidth, setScreenWidth] = useState<number | undefined>(undefined);
 
   const controlHeader = useCallback(() => {
     if (typeof window !== 'undefined') {
@@ -48,6 +49,13 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
   };
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {setScreenWidth(window.outerWidth)}
+    const handleResize = () => setScreenWidth(window.outerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
     if (typeof window !== 'undefined') {
       window.addEventListener('scroll', controlHeader);
       window.addEventListener('mousemove', handleMouseMove);
@@ -62,18 +70,19 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
     }
   }, [controlHeader, scrollTimeout]);
 
-  const handleMenuClick = (event: React.MouseEvent, index: number, url: string) => {
-    if (hoveredMenuIndex === index) {
-      window.location.href = url;
-    } else {
+  const handleMenuClick = (event: React.MouseEvent, index: number, url: string, hasSubMenus: boolean) => {
+    if (hasSubMenus && mainMenuIndex !== index) {
       event.preventDefault();
-      setHoveredMenuIndex(index);
+      setMainMenuIndex(index);
+    } else if (!hasSubMenus || mainMenuIndex === index) {
+      window.location.href = url;
     }
   };
 
   return (
     <>
-      <MenuDesktop
+      {screenWidth !== undefined && screenWidth > 920 ? 
+        <MenuDesktop
         {...{
           content,
           isVisible,
@@ -84,11 +93,12 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
           handleMenuClick
         }}
       />
+      :
       <MenuMobile 
         {...{
           content
         }}
-      />
+      />}
     </>
   );
 };

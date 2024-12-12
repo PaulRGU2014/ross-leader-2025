@@ -11,7 +11,7 @@ interface MenuDesktopProps {
   setMainMenuIndex: (index: number) => void;
   hoveredMenuIndex: number | null;
   setHoveredMenuIndex: (index: number | null) => void;
-  handleMenuClick: (event: React.MouseEvent<HTMLLIElement>, index: number, url: string) => void;
+  handleMenuClick: (event: React.MouseEvent<HTMLLIElement>, index: number, url: string, hasSubMenus: boolean) => void;
 }
 
 const MenuDesktop: React.FC<MenuDesktopProps> = ({
@@ -45,11 +45,12 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
               className={styles.menuLink}
               onMouseEnter={() => setMainMenuIndex(index)}
               onMouseLeave={() => setMainMenuIndex(-1)}
-              onClick={(event) => handleMenuClick(event, index, menu.url)}
+              onClick={(event) => handleMenuClick(event, index, menu.url, !!menu.sub_menus_1)}
             >
               <Link 
                 href={menu.url} 
                 className={styles.menuLink_link}
+                onClick={(event) => handleMenuClick(event, index, menu.url, !!menu.sub_menus_1)}
               >
                 {menu.title}
                 {menu.sub_menus_1 && menu.sub_menus_1.length > 0 && <div className={`${styles.dropdown} ${mainMenuIndex === index ? styles.active : ''}`}><BsChevronCompactDown /></div>}
