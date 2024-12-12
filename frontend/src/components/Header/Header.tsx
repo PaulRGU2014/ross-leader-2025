@@ -6,7 +6,7 @@ import Image from 'next/image';
 import styles from './Header.module.scss';
 import { BsChevronCompactDown } from "react-icons/bs";
 
-const Header = ({ content }: { content: any }) => {
+export default function Header ({ content }: { content: any }) {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrollTimeout, setScrollTimeout] = useState<NodeJS.Timeout | null>(null);
@@ -120,5 +120,3 @@ const Header = ({ content }: { content: any }) => {
     </header>
   );
 };
-
-export default Header;
