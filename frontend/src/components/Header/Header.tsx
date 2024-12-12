@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Header.module.scss';
@@ -13,7 +13,7 @@ const Header = ({ content }: { content: any }) => {
   const [mainMenuIndex, setMainMenuIndex] = useState(-1);
   const [hoveredMenuIndex, setHoveredMenuIndex] = useState<number | null>(null);
 
-  const controlHeader = () => {
+  const controlHeader = useCallback(() => {
     if (typeof window !== 'undefined') {
       if (window.scrollY > lastScrollY) {
         // Scroll down
@@ -36,7 +36,7 @@ const Header = ({ content }: { content: any }) => {
 
       setScrollTimeout(timeout);
     }
-  };
+  }, [lastScrollY, scrollTimeout]);
 
   const handleMouseMove = (event: MouseEvent) => {
     if (event.clientY < 50) {
@@ -57,7 +57,7 @@ const Header = ({ content }: { content: any }) => {
         }
       };
     }
-  }, [lastScrollY, scrollTimeout]);
+  }, [controlHeader, scrollTimeout]);
 
   const handleMenuClick = (event: React.MouseEvent, index: number, url: string) => {
     if (hoveredMenuIndex === index) {
