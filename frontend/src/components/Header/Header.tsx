@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState, useCallback } from 'react';
-import Link from 'next/link';
+import Link from '@/utils/LinkWrapper/LinkWrapper';
 import Image from 'next/image';
 import styles from './Header.module.scss';
 import { BsChevronCompactDown } from "react-icons/bs";
