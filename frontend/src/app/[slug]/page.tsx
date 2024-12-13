@@ -44,7 +44,7 @@ export default async function Page() {
     <>
       <Header content={(menuData as any)[0]} />
       <ComponentLoader components={(data as any[])[0]?.components} />
-      <Footer content={(footerData as any)[0]} pathname={pathname} />
+      <Footer content={(footerData as any)[0]} />
       {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
     </>
   );
