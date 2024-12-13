@@ -17,7 +17,7 @@ export default function Footer({ content }: { content?: any }) {
   return (
     <InViewAnim><div className={styles.component}>
       <div className={styles.wrapper}>
-        <section className={styles.column}>
+        <section className={styles.contact}>
           <h6>Contact</h6>
           <div className={styles.info}><BsTelephone /><Link href='/'>{content.contact_phone}</Link></div>
           <div className={styles.info}><BsEnvelope /><Link href='/'>{content.contact_email}</Link></div>
@@ -28,9 +28,9 @@ export default function Footer({ content }: { content?: any }) {
             <Link className={styles.social} href='/'><img src='/socials/linkedin.svg' alt='linkedin icon' /></Link>
           </div>
         </section>
-        <section className={styles.links}>
+        <section className={styles.link_wrapper}>
           <h6>Links</h6>
-          <ul>
+          <ul className={styles.links}>
             {content?.footer_links?.map((link: any, index: number) => (
               <li key={index}><Link className={styles.link} href={link.link_url}>{link.link_title}</Link></li>
             ))}
