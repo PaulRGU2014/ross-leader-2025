@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "SANITY_API_READ_TOKEN=skiaE4FO71nSojNJh4UYDGf6dch0gl9Px42okM2TBveeBMDnyyC6vUFAgmxre4BsKWnpqaBP2x7uFDmzLY3VQaKohNYidEpBvo2nVu83ceLEprLIj1PD02uRALa9tSLYAzqZ8OJrWxoSbjW3hTCqcWdrJTUjJYOsczUQoVXAoiWaYdxZ7QHz NEXT_PUBLIC_SANITY_DATASET=production NEXT_PUBLIC_SANITY_PROJECT_ID=hvv30l4k next dev",
-    "stage": "NEXT_PUBLIC_SANITY_PROJECT_ID=hvv30l4k NEXT_PUBLIC_SANITY_DATASET=develop HTTP_BASIC_AUTH=R0S5:R0S5 SANITY_API_READ_TOKEN=skknLR7Bpg6rk37kh3qBDSl3KlqGC94M7pBW6HktL615mynDpNsldzvvP67QRQwfanBgzeBfNIwAoUzpdURxt3N4iHojjiksrEz0Cq0ykWgahNBahNDLGbztJpATcxL5pB4XtM9CJ2RcYLQ9YTkSo6jbBkM9UqgZV7Qvc9lpOKgo7aYapTX3 npm run dev",
+    "stage": "NEXT_PUBLIC_SANITY_PROJECT_ID=hvv30l4k NEXT_PUBLIC_SANITY_DATASET=develop HTTP_BASIC_AUTH=R0S5:R0S5 SANITY_API_READ_TOKEN=skknLR7Bpg6rk37kh3qBDSl3KlqGC94M7pBW6HktL615mynDpNsldzvvP67QRQwfanBgzeBfNIwAoUzpdURxt3N4iHojjiksrEz0Cq0ykWgahNBahNDLGbztJpATcxL5pB4XtM9CJ2RcYLQ9YTkSo6jbBkM9UqgZV7Qvc9lpOKgo7aYapTX3 next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

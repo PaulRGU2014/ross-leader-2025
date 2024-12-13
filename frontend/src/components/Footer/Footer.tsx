@@ -19,9 +19,9 @@ export default function Footer({ content }: { content?: any }) {
       <div className={styles.wrapper}>
         <section className={styles.column}>
           <h6>Contact</h6>
-          <div className={styles.info}><BsTelephone /><Link href='/'>(402)943-9070</Link></div>
-          <div className={styles.info}><BsEnvelope /><Link href='/'>info@rossleaders.com</Link></div>
-          <div className={styles.info}><BsFillPinMapFill /><Link href='/'>1901 Howard St. Suite 230 Omaha, NE 68102</Link></div>
+          <div className={styles.info}><BsTelephone /><Link href='/'>{content.contact_phone}</Link></div>
+          <div className={styles.info}><BsEnvelope /><Link href='/'>{content.contact_email}</Link></div>
+          <div className={styles.info}><BsFillPinMapFill /><Link href='/'>{content.contact_address}</Link></div>
           <div className={styles.social_wrapper}>
             <Link className={styles.social} href='/'><img src='/socials/facebook.svg' alt='facebook icon' /></Link>
             <Link className={styles.social} href='/'><img src='/socials/instagram.svg' alt='instagram icon' /></Link>
@@ -31,9 +31,9 @@ export default function Footer({ content }: { content?: any }) {
         <section className={styles.links}>
           <h6>Links</h6>
           <ul>
-            <li><Link  className={styles.link} href="/about">About</Link></li>
-            <li><Link href="/contact">Contact</Link></li>
-            <li><Link href="/privacy">Privacy</Link></li>
+            {content?.footer_links?.map((link: any, index: number) => (
+              <li key={index}><Link className={styles.link} href={link.link_url}>{link.link_title}</Link></li>
+            ))}
           </ul>
         </section>
         <div className={styles.disclaimer}>
