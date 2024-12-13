@@ -14,11 +14,15 @@
 
 .wrapper {
   @include centered($max-width);
-  margin: 60px 0;
+  margin: {
+    top: 30px;
+    bottom: 20px;
+  };
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: auto auto;
   column-gap: 20px;
+  row-gap: 30px;
 }
 
 .disclaimer {
@@ -29,6 +33,7 @@
   color: $white;
   display: flex;
   flex-direction: column;
+  margin-top: auto;
   & p {
     @extend %eyebrow;
     margin: 0 0 10px 0;
@@ -48,15 +53,36 @@
 //     }
 // }
 
-// .link{
-//     display: block;
-//     text-align: left;
-//     text-decoration: none;
-//     text-transform: uppercase;
-//     font-weight: 700;
-//     // color: $dk-navy;
-//     padding: 10px 0;
-// }
+.link{
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $white;
+    padding: 10px 0;
+}
+
+.column {
+  h6 {
+    color: $white;
+  }
+}
+
+.info {
+  a{
+    color: $white;
+    text-decoration: none;
+    &:hover {
+      color: $yellow-300;
+    }
+  }
+  color: $white;
+  svg {
+    fill: $white;
+    width: 40px;
+    height: 40px;
+  }
+}
 
 .social {
   display: block;
