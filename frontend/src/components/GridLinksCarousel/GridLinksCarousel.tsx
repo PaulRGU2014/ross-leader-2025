@@ -41,8 +41,8 @@ export default function GridLinksCarousel({ content }: GridLinksCarouselProps) {
           <div className={styles.carousel_wrapper}>
             <Slider {...settings}>
             {content.links?.map((link: any, index: number) => (
-              <div>
-                <Link className={styles.link} href={link.url} key={index}>
+              <div  key={index}>
+                <Link className={styles.link} href={link.url}>
                   <Image
                     className={styles.image}
                     src={link.image.asset._ref}
