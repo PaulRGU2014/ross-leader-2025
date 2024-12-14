@@ -5,15 +5,11 @@ import styles from './GridLinksCarousel.module.scss';
 import InViewAnim from './../../utils/InViewAnim/InViewAnim'
 import Image from '@/utils/ImageLoader/ImageLoader';
 import Link from '@/utils/LinkWrapper/LinkWrapper';
-import dynamic from 'next/dynamic';
-
-const Slider = dynamic(() => import("react-slick"), { ssr: false });
+import Slider from 'react-slick';
 
 interface GridLinksCarouselProps {
   content: any; // Replace 'any' with the appropriate type
 }
-
-
 
 export default function GridLinksCarousel({ content }: GridLinksCarouselProps) {
   const [isBrowser, setIsBrowser] = useState(false);
@@ -43,19 +39,21 @@ export default function GridLinksCarousel({ content }: GridLinksCarouselProps) {
           <div className={styles.carousel_wrapper}>
             <Slider {...settings}>
             {content.links?.map((link: any, index: number) => (
-              <Link className={styles.link} href={link.url} key={index}>
-                <Image
-                  className={styles.image}
-                  src={link.image.asset._ref}
-                  alt={link.image.alt}
-                  objectFit="cover"
-                  objectPosition="left center"
-                />
-                <div className={styles.text}>
-                  <h4>{link.title}</h4>
-                  <p>{link.description}</p>
-                </div>
-              </Link>
+              <div>
+                <Link className={styles.link} href={link.url} key={index}>
+                  <Image
+                    className={styles.image}
+                    src={link.image.asset._ref}
+                    alt={link.image.alt}
+                    objectFit="cover"
+                    objectPosition="left center"
+                  />
+                  <div className={styles.text}>
+                    <h4>{link.title}</h4>
+                    <p>{link.description}</p>
+                  </div>
+                </Link>
+              </div>
             ))}
           </Slider>
           </div>
