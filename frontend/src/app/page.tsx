@@ -5,6 +5,8 @@ import Footer from '@/components/Footer/Footer'
 import { headers } from 'next/headers'
 import Header from '@/components/Header/Header'
 import type { Metadata } from 'next'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 type FooterDataType = {
   title: string;

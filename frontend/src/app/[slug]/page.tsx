@@ -6,6 +6,8 @@ import Footer from '@/components/Footer/Footer'
 import { headers } from 'next/headers'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import type { Metadata } from 'next'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
