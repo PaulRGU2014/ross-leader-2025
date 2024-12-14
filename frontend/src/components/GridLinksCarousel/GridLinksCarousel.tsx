@@ -23,42 +23,42 @@ export default function GridLinksCarousel({ content }: GridLinksCarouselProps) {
   const settings = {
     className: styles.carousel,
     dots: false,
-    arrows: false,
+    arrows: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3
+    slidesToShow: 4,
+    slidesToScroll: 1
   };
 
   if (!isBrowser) {
     return null; // Don't render on server-side
   }
-  
+
   return (
     <InViewAnim><div className={styles.component}>
       <div className={styles.wrapper}>
         <h3>{content.title}</h3>
-          <div className={styles.carousel_wrapper}>
-            <Slider {...settings}>
+        <div className={styles.carousel_wrapper}>
+          <Slider {...settings}>
             {content.links?.map((link: any, index: number) => (
-              <div  key={index}>
-                <Link className={styles.link} href={link.url}>
-                  <Image
-                    className={styles.image}
-                    src={link.image.asset._ref}
-                    alt={link.image.alt}
-                    objectFit="cover"
-                    objectPosition="left center"
-                  />
-                  <div className={styles.text}>
-                    <h4>{link.title}</h4>
-                    <p>{link.description}</p>
+                <Link key={index} className={styles.link} href={link.url}>
+                  <div className={`${styles.card} ${index % 2 === 0 ? styles.even : styles.odd}`}>
+                    <Image
+                      className={styles.image}
+                      src={link.image.asset._ref}
+                      alt={link.image.alt}
+                      objectFit="cover"
+                      objectPosition="left center"
+                    />
+                    <div className={styles.text}>
+                      <h4>{link.title}</h4>
+                      <p>{link.description}</p>
+                    </div>
                   </div>
                 </Link>
-              </div>
             ))}
           </Slider>
-          </div>
+        </div>
       </div>
     </div></InViewAnim>
   );
