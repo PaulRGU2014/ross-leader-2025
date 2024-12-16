@@ -29,7 +29,7 @@ export default function GridLinksCarousel({ content }: GridLinksCarouselProps) {
     speed: 750,
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 4000,
     responsive: [
       {

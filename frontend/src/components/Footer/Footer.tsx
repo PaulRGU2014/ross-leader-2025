@@ -4,6 +4,7 @@ import Link from '@/utils/LinkWrapper/LinkWrapper';
 import styles from './Footer.module.scss';
 import InViewAnim from './../../utils/InViewAnim/InViewAnim'
 import { BsTelephone, BsEnvelope, BsFillPinMapFill  } from "react-icons/bs";
+import Image from 'next/image';
 
 
 // get the content from sanity and pass it as props
@@ -23,9 +24,9 @@ export default function Footer({ content }: { content?: any }) {
           {content.contact_email && <div className={styles.info}><BsEnvelope /><Link href={`mailto:${content.contact_email}`}>{content.contact_email}</Link></div>}
           {content.contact_address && <div className={styles.info}><BsFillPinMapFill /><p>{content.contact_address}</p></div>}
           <div className={styles.social_wrapper}>
-            <Link className={styles.social} href='/'><img src='/socials/facebook.svg' alt='facebook icon' /></Link>
-            <Link className={styles.social} href='/'><img src='/socials/instagram.svg' alt='instagram icon' /></Link>
-            <Link className={styles.social} href='/'><img src='/socials/linkedin.svg' alt='linkedin icon' /></Link>
+            <Link className={styles.social} href='/'><Image src='/socials/facebook.svg' fill alt='facebook icon' /></Link>
+            <Link className={styles.social} href='/'><Image src='/socials/instagram.svg' fill alt='instagram icon' /></Link>
+            <Link className={styles.social} href='/'><Image src='/socials/linkedin.svg' fill alt='linkedin icon' /></Link>
           </div>
         </section>
         <section className={styles.link_wrapper}>

@@ -17,7 +17,7 @@
   }
 
   :global(.slick-slide) {
-    display: flex;
+    display: flex !important;
     height: auto;
     overflow: visible;
     padding: 0 15px;
