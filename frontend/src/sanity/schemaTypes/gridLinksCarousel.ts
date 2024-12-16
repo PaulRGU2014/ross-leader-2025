@@ -43,6 +43,12 @@ export const gridLinksCarousel = defineType({
           ],
         },
       ],
+      validation: Rule => Rule.custom(links => {
+        if (links && links.length % 2 !== 0) {
+          return 'Number of links must be even';
+        }
+        return true;
+      }),
     }),
   ],
 })

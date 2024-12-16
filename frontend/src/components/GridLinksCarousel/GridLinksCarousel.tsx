@@ -24,11 +24,33 @@ export default function GridLinksCarousel({ content }: GridLinksCarouselProps) {
   const settings = {
     className: styles.carousel,
     dots: false,
-    arrows: true,
+    arrows: false,
     infinite: true,
-    speed: 500,
+    speed: 750,
     slidesToShow: 4,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    responsive: [
+      {
+        breakpoint: 920,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        }
+      }
+    ]
   };
 
   const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, index: number) => {
@@ -52,11 +74,11 @@ export default function GridLinksCarousel({ content }: GridLinksCarouselProps) {
               {content.links?.map((link: any, index: number) => (
                 <Link 
                   key={index} 
-                  className={styles.link} 
+                  className={`${styles.link} ${index % 2 === 0 ? styles.even : styles.odd}`} 
                   href={link.link}
                   onClick={(event) => handleLinkClick(event, index)}
                 >
-                  <div className={`${styles.card} ${index % 2 === 0 ? styles.even : styles.odd}`}>
+                  <div className={`${styles.card}`}>
                     <Image
                       className={styles.image}
                       src={link.image.asset._ref}
@@ -65,7 +87,7 @@ export default function GridLinksCarousel({ content }: GridLinksCarouselProps) {
                       objectPosition="left center"
                     />
                     <div className={styles.text}>
-                      <h4>{link.title}</h4>
+                        <h5>{link.title}</h5>
                       <p>{link.description}</p>
                     </div>
                   </div>
