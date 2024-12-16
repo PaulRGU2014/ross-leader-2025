@@ -40,15 +40,14 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
         </div>
         <ul className={styles.menuLink_wrapper}>
           {content?.menu_list?.map((menu: any, index: number) => (
-            <li 
+            <li className={styles.menuLink}
               key={index} 
-              className={styles.menuLink}
               onMouseEnter={() => setMainMenuIndex(index)}
               onMouseLeave={() => setMainMenuIndex(-1)}
               onClick={(event) => handleMenuClick(event, index, menu.url, !!menu.sub_menus_1)}
               style={{
                 animationDelay: `${(index * 150) + 500}ms`,
-                zIndex: 10000 - index,
+                zIndex: 1000 - index,
               }}
             >
               <Link 
@@ -72,8 +71,40 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
                       className={`${styles.subMenu}`}
                       onMouseEnter={() => setHoveredMenuIndex(index)}
                       onMouseLeave={() => setHoveredMenuIndex(null)}
+                      onClick={(event) => handleMenuClick(event, index, subMenus1.url, !!subMenus1.sub_menus_2)}
+                      style={{
+                        zIndex: 5000 - subIndex,
+                      }}
                     >
-                      <Link href={subMenus1.url} className={styles.subMenu_link}>{subMenus1.title}</Link>
+                      <Link 
+                        href={subMenus1.url} 
+                        className={styles.subMenu_link}
+                      >
+                        {subMenus1.title}
+                        {subMenus1.sub_menus_2 && subMenus1.sub_menus_2.length > 0 && <div className={`${styles.dropdown} ${hoveredMenuIndex === index ? styles.active : ''}`}><BsChevronCompactDown /></div>}
+                      </Link>
+                      {subMenus1?.sub_menus_2 && (
+                        <ul 
+                          className={`${styles.subMenu_wrapper} ${styles.subMenu2_wrapper} ${hoveredMenuIndex === index ? styles.active : ''}`}
+                          style={{
+                            height: subMenus1.sub_menus_2.length * 40 + 'px',
+                          }}
+                        >
+                          {subMenus1?.sub_menus_2?.map((subMenus2: any, subIndex2: number) => (
+                            <li 
+                              key={subIndex2} 
+                              className={styles.subMenu}
+                            >
+                              <Link 
+                                href={subMenus2.url} 
+                                className={styles.subMenu_link}
+                              >
+                                {subMenus2.title}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </li>
                   ))}
                 </ul>
