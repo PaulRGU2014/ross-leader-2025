@@ -47,7 +47,8 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
               onMouseLeave={() => setMainMenuIndex(-1)}
               onClick={(event) => handleMenuClick(event, index, menu.url, !!menu.sub_menus_1)}
               style={{
-                animationDelay: `${(index * 150) + 500}ms`
+                animationDelay: `${(index * 150) + 500}ms`,
+                zIndex: 10000 - index,
               }}
             >
               <Link 
