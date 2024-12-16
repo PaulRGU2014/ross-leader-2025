@@ -48,11 +48,6 @@
     display: flex;
     margin: 0;
   }
-  h5 {
-    margin: 0;
-    // color: $lt-black;
-    animation: textIn 1000ms 600ms $ease-out-quint both;
-  }
 }
 
 .dropdown{
@@ -73,6 +68,7 @@
   margin: 0 ;
   padding: 0;
   position: relative;
+  animation: menuIn 500ms $ease-out-quint both;
   &_wrapper{
     display: flex;
     flex-wrap: wrap;
@@ -83,7 +79,6 @@
     padding: 0 20px;
     margin: 0;
     max-width: 768px;
-
   }
   &_link{
     display: flex;
@@ -132,6 +127,7 @@
   @extend %button;
   min-width: 120px;
   width: fit-content;
+  animation: buttonIn 500ms $ease-out-quint both;
 }
 
 @keyframes iconGrow {
@@ -156,13 +152,13 @@
   }
 }
 
-@keyframes textIn {
+@keyframes menuIn {
   0% {
-    transform: translateX(-20px);
+    transform: translateY(-20px);
     opacity: 0;
   }
   100% {
-    transform: translateX(0px);
+    transform: translateY(0px);
     opacity: 1;
   }
 }
@@ -174,6 +170,17 @@
   }
   100% {
     transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes buttonIn {
+  0% {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
     opacity: 1;
   }
 }

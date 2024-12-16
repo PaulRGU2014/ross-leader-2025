@@ -46,6 +46,9 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
               onMouseEnter={() => setMainMenuIndex(index)}
               onMouseLeave={() => setMainMenuIndex(-1)}
               onClick={(event) => handleMenuClick(event, index, menu.url, !!menu.sub_menus_1)}
+              style={{
+                animationDelay: `${(index * 150) + 500}ms`
+              }}
             >
               <Link 
                 href={menu.url} 
@@ -77,7 +80,14 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
             </li>
           ))}
         </ul>
-        <Link className={styles.menuButton} href="https://nonprofit.resilia.com/donate?id=afe31c5e3ed8590474ff96dc2dddb0d649119097fef6cc228cd15ed695ec956f" target='_blank'>Donate</Link>
+        <Link 
+          className={styles.menuButton} 
+          href="https://nonprofit.resilia.com/donate?id=afe31c5e3ed8590474ff96dc2dddb0d649119097fef6cc228cd15ed695ec956f" 
+          target='_blank'
+          style={{animationDelay: `${(content?.menu_list?.length * 150) + 750}ms`}}
+        >
+          Donate
+        </Link>
       </div>
     </header>
   );
