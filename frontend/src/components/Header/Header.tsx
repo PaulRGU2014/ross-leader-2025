@@ -1,12 +1,12 @@
 "use client"
 
-import React, { useEffect, useState, useCallback } from 'react';
-import MenuDesktop from './MenuDesktop'; 
+import React, { useEffect, useState, useCallback, useRef } from 'react';
+import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile/MenuMobile'
 
 
 interface HeaderProps {
-  content: any; 
+  content: any;
 }
 
 const Header: React.FC<HeaderProps> = ({ content }) => {
@@ -16,6 +16,10 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
   const [mainMenuIndex, setMainMenuIndex] = useState(-1);
   const [subMenuIndex, setSubMenuIndex] = useState(-1);
   const [screenWidth, setScreenWidth] = useState<number | undefined>(undefined);
+  //mobile states
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpening, setIsMenuOpening] = useState(false);
+  const [initialLoad, setInitialLoad] = useState(true);
 
   const controlHeader = useCallback(() => {
     if (typeof window !== 'undefined') {
@@ -49,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {setScreenWidth(window.outerWidth)}
+    if (typeof window !== 'undefined') { setScreenWidth(window.outerWidth) }
     const handleResize = () => setScreenWidth(window.outerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -70,14 +74,46 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
     }
   }, [controlHeader, scrollTimeout]);
 
-  // const handleMenuClick = (event: React.MouseEvent, index: number, url: string, hasSubMenus: boolean) => {
-  //   if (hasSubMenus && mainMenuIndex !== index) {
-  //     event.preventDefault();
-  //     setMainMenuIndex(index);
-  //   } else if (!hasSubMenus) {
-  //     window.location.href = url;
-  //   }
-  // };
+  const menuRef = useRef<HTMLUListElement>(null);
+  const hamburgerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        hamburgerRef.current &&
+        !hamburgerRef.current.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuRef, hamburgerRef]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setInitialLoad(false);
+    }, 750);
+  }, []);
+
+  const menuListNumber = content?.footer_links?.length || 0;
+
+  function handleMenuToggle() {
+    if (!isMenuOpen) {
+      setIsMenuOpening(true);
+      setIsMenuOpen(true);
+      setTimeout(() => {
+        setIsMenuOpening(false);
+      }, menuListNumber * 100 + 100);
+    } else {
+      setIsMenuOpen(false);
+    }
+  };
+
   const handleMenuClick = (event: React.MouseEvent, mainIndex: number, subIndex: number, url: string, hasSubMenus: boolean) => {
     if (hasSubMenus && mainMenuIndex !== mainIndex) {
       event.preventDefault();
@@ -91,29 +127,42 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
     }
   }
 
+  console.log('mainMenuIndex', mainMenuIndex);
+  console.log('subMenuIndex', subMenuIndex);
+
   return (
     <>
-      {screenWidth !== undefined && screenWidth > 920 ? 
+      {screenWidth !== undefined && screenWidth > 920 ?
         <MenuDesktop
-        {...{
-          content,
-          isVisible,
-          mainMenuIndex,
-          setMainMenuIndex,
-          subMenuIndex,
-          setSubMenuIndex,
-          handleMenuClick
-        }}
-      />
-      :
-      <MenuMobile 
-        {...{
-          content,
-          mainMenuIndex,
-          setMainMenuIndex,
-          handleMenuClick
-        }}
-      />}
+          {...{
+            content,
+            isVisible,
+            mainMenuIndex,
+            setMainMenuIndex,
+            subMenuIndex,
+            setSubMenuIndex,
+            handleMenuClick
+          }}
+        />
+        :
+        <MenuMobile
+          {...{
+            content,  
+            mainMenuIndex, 
+            setMainMenuIndex, 
+            subMenuIndex, 
+            setSubMenuIndex, 
+            handleMenuClick,
+            isMenuOpen,
+            setIsMenuOpen,
+            isMenuOpening,
+            initialLoad,
+            setInitialLoad,
+            hamburgerRef,
+            menuRef,
+            handleMenuToggle
+          }}
+        />}
     </>
   );
 };

@@ -9,9 +9,9 @@ interface MenuDesktopProps {
   isVisible: boolean;
   mainMenuIndex: number;
   setMainMenuIndex: (index: number) => void;
-  subMenuIndex: number | null;
-  setSubMenuIndex: (index: number | null) => void;
-  handleMenuClick: (event: React.MouseEvent<HTMLLIElement | HTMLAnchorElement>, mainIndex: number, subIndex: number, url: string, hasSubMenus: boolean) => void;
+  subMenuIndex: number;
+  setSubMenuIndex: React.Dispatch<React.SetStateAction<number>>;
+  handleMenuClick: (event: React.MouseEvent, mainIndex: number, subIndex: number, url: string, hasSubMenus: boolean) => void;
 }
 
 const MenuDesktop: React.FC<MenuDesktopProps> = ({
@@ -23,8 +23,7 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
   setSubMenuIndex,
   handleMenuClick,
 }) => {
-  console.log('mainMenuIndex', mainMenuIndex);
-  console.log('subMenuIndex', subMenuIndex);
+
   return (
     <header className={`${styles.header} ${isVisible ? styles.visible : styles.hidden}`}>
       <div className={styles.wrapper}>
@@ -46,7 +45,6 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
               key={index}
               onMouseEnter={() => setMainMenuIndex(index)}
               onMouseLeave={() => setMainMenuIndex(-1)}
-              // onClick={(event) => handleMenuClick(event, index, -1,  menu.url, !!menu.sub_menus_1)}
               style={{
                 animationDelay: `${(index * 150) + 500}ms`,
                 zIndex: 1000 - index,
