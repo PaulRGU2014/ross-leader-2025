@@ -8,7 +8,7 @@ import { BsChevronCompactDown } from 'react-icons/bs';
 
 interface MenuMobileProps {
   content: any;
-  handleMenuClick: (event: React.MouseEvent, index: number, url: string, hasSubMenus: boolean) => void;
+  handleMenuClick: (event: React.MouseEvent<HTMLLIElement | HTMLAnchorElement>, index: number, url: string, hasSubMenus: boolean) => void;
 }
 
 function Hamburger({ isMenuOpen, hamburgerRef, onClick, initialLoad }: { isMenuOpen: boolean, hamburgerRef: React.RefObject<HTMLDivElement>, onClick?: () => void, initialLoad: boolean }) {
@@ -88,11 +88,12 @@ function MenuContent({
                     className={`${styles.subMenu}`}
                     onMouseEnter={() => setHoveredMenuIndex(index)}
                     onMouseLeave={() => setHoveredMenuIndex(null)}
-                    onClick={(event) => handleMenuClick(event, index, subMenus1.url, !!subMenus1.sub_menus_2)}
+                    onClick={(event) => handleMenuClick(event, subIndex, subMenus1.url, !!subMenus1.sub_menus_2)}
                   >
                     <Link 
                       href={subMenus1.url} 
                       className={styles.subMenu_link}
+                      onClick={(event) => handleMenuClick(event, subIndex, subMenus1.url, !!subMenus1.sub_menus_2)}
                     >
                       {subMenus1.title}
                       {subMenus1.sub_menus_2 && subMenus1.sub_menus_2.length > 0 && <div className={`${styles.dropdown} ${hoveredMenuIndex === index ? styles.active : ''}`}><BsChevronCompactDown /></div>}
@@ -103,10 +104,12 @@ function MenuContent({
                           <li 
                             key={subIndex2} 
                             className={styles.subMenu}
+                            onClick={(event) => handleMenuClick(event, subIndex2, subMenus2.url, false)}
                           >
                             <Link 
                               href={subMenus2.url} 
                               className={styles.subMenu_link}
+                              onClick={(event) => handleMenuClick(event, subIndex2, subMenus2.url, false)}
                             >
                               {subMenus2.title}
                             </Link>
