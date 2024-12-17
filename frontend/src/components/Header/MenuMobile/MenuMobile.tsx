@@ -134,7 +134,7 @@ function MenuContent({
             setIsMenuOpen(false);
           }}
         >
-          <Link className={styles.menuButton} href="https://nonprofit.resilia.com/donate?id=afe31c5e3ed8590474ff96dc2dddb0d649119097fef6cc228cd15ed695ec956f" target='_blank'>Donate</Link>
+          <Link className={styles.menuButton} href={content?.menu_btn?.btn_url} target={content?.menu_btn?.is_external === true ? "_blank" : "_self"}>{content?.menu_btn?.btn_text}</Link>
         </li>
       </ul>
     </div>

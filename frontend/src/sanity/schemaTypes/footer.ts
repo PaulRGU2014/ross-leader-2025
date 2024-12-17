@@ -23,6 +23,7 @@ export const footer = defineType({
       name: 'contact_address',
       type: 'text',
       title: 'Address',
+      rows: 3,
     }),
     defineField({
       name: 'footer_links',

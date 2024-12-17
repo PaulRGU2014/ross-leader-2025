@@ -70,5 +70,30 @@ export const header = defineType({
         }
       ],
     }),
+    defineField({
+      name: 'menu_btn',
+      title: 'Menu Button',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'btn_text',
+          title: 'Button Text',
+          type: 'string',
+          validation: Rule => Rule.required(),
+        }),
+        defineField({
+          name: 'btn_url',
+          title: 'Button URL',
+          type: 'string',
+        }),
+        defineField({
+          name: 'is_external',
+          title: 'External Link?',
+          type: 'boolean',
+          initialValue: false,
+          hidden: ({parent}) => !parent?.btn_url,
+        })
+      ],
+    }),
   ],
 })

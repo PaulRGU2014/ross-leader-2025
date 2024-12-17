@@ -39,5 +39,32 @@ export const pages = defineType({
       type: 'reference',
       to: [{type: 'footer'}]
     }),
+    defineField({
+      name: 'has_sideButton',
+      type: 'boolean',
+      initialValue: true,
+    }),
+    defineField({
+      name: 'sideButton',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'button_text',
+          type: 'string',
+          initialValue: 'Donation',
+        }),
+        defineField({
+          name: 'button_url',
+          type: 'url',
+          initialValue: 'https://donorbox.org/website-donations-362?default_interval=o',
+        }),
+        defineField({
+          name: 'is_external',
+          type: 'boolean',
+          initialValue: true,
+        }),
+      ],
+      hidden: ({parent}) => !parent.has_sideButton,
+    }),
   ],
 })

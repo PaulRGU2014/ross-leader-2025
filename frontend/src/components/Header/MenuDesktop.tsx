@@ -23,25 +23,27 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
   setHoveredMenuIndex,
   handleMenuClick,
 }) => {
+  console.log('mainMenuIndex', mainMenuIndex);
+  console.log('hoveredMenuIndex', hoveredMenuIndex);
   return (
     <header className={`${styles.header} ${isVisible ? styles.visible : styles.hidden}`}>
       <div className={styles.wrapper}>
         <div className={styles.logo}>
           <Link href="/" className={styles.logo_main}>
-            <Image 
-              src="/Logo_Menu.png" 
-              alt="Logo" 
-              width={80} 
-              height={80} 
+            <Image
+              src="/Logo_Menu.png"
+              alt="Logo"
+              width={80}
+              height={80}
               priority={true}
-              style={{objectPosition: "center"}} 
+              style={{ objectPosition: "center" }}
             />
           </Link>
         </div>
         <ul className={styles.menuLink_wrapper}>
           {content?.menu_list?.map((menu: any, index: number) => (
             <li className={styles.menuLink}
-              key={index} 
+              key={index}
               onMouseEnter={() => setMainMenuIndex(index)}
               onMouseLeave={() => setMainMenuIndex(-1)}
               onClick={(event) => handleMenuClick(event, index, menu.url, !!menu.sub_menus_1)}
@@ -50,8 +52,8 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
                 zIndex: 1000 - index,
               }}
             >
-              <Link 
-                href={menu.url} 
+              <Link
+                href={menu.url}
                 className={styles.menuLink_link}
                 onClick={(event) => handleMenuClick(event, index, menu.url, !!menu.sub_menus_1)}
               >
@@ -59,44 +61,44 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
                 {menu.sub_menus_1 && menu.sub_menus_1.length > 0 && <div className={`${styles.dropdown} ${mainMenuIndex === index ? styles.active : ''}`}><BsChevronCompactDown /></div>}
               </Link>
               {menu?.sub_menus_1 && (
-                <ul 
+                <ul
                   className={`${styles.subMenu_wrapper}  ${mainMenuIndex === index ? styles.active : ''}`}
                   style={{
                     height: menu.sub_menus_1.length * 40 + 'px',
                   }}
                 >
                   {menu?.sub_menus_1?.map((subMenus1: any, subIndex: number) => (
-                    <li 
-                      key={subIndex} 
+                    <li
+                      key={subIndex}
                       className={`${styles.subMenu}`}
-                      onMouseEnter={() => setHoveredMenuIndex(index)}
+                      onMouseEnter={() => setHoveredMenuIndex(subIndex)}
                       onMouseLeave={() => setHoveredMenuIndex(null)}
-                      onClick={(event) => handleMenuClick(event, index, subMenus1.url, !!subMenus1.sub_menus_2)}
+                      onClick={(event) => handleMenuClick(event, subIndex, subMenus1.url, !!subMenus1.sub_menus_2)}
                       style={{
                         zIndex: 5000 - subIndex,
                       }}
                     >
-                      <Link 
-                        href={subMenus1.url} 
+                      <Link
+                        href={subMenus1.url}
                         className={styles.subMenu_link}
                       >
                         {subMenus1.title}
-                        {subMenus1.sub_menus_2 && subMenus1.sub_menus_2.length > 0 && <div className={`${styles.dropdown} ${hoveredMenuIndex === index ? styles.active : ''}`}><BsChevronCompactDown /></div>}
+                        {subMenus1.sub_menus_2 && subMenus1.sub_menus_2.length > 0 && <div className={`${styles.dropdown} ${hoveredMenuIndex === subIndex ? styles.active : ''}`}><BsChevronCompactDown /></div>}
                       </Link>
                       {subMenus1?.sub_menus_2 && (
-                        <ul 
-                          className={`${styles.subMenu_wrapper} ${styles.subMenu2_wrapper} ${hoveredMenuIndex === index ? styles.active : ''}`}
+                        <ul
+                          className={`${styles.subMenu2_wrapper} ${hoveredMenuIndex === subIndex ? styles.active : ''}`}
                           style={{
                             height: subMenus1.sub_menus_2.length * 40 + 'px',
                           }}
                         >
                           {subMenus1?.sub_menus_2?.map((subMenus2: any, subIndex2: number) => (
-                            <li 
-                              key={subIndex2} 
+                            <li
+                              key={subIndex2}
                               className={styles.subMenu}
                             >
-                              <Link 
-                                href={subMenus2.url} 
+                              <Link
+                                href={subMenus2.url}
                                 className={styles.subMenu_link}
                               >
                                 {subMenus2.title}
@@ -112,13 +114,13 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
             </li>
           ))}
         </ul>
-        <Link 
-          className={styles.menuButton} 
-          href="https://nonprofit.resilia.com/donate?id=afe31c5e3ed8590474ff96dc2dddb0d649119097fef6cc228cd15ed695ec956f" 
-          target='_blank'
-          style={{animationDelay: `${(content?.menu_list?.length * 150) + 750}ms`}}
+        <Link
+          className={styles.menuButton}
+          href={content?.menu_btn?.btn_url}
+          target={content?.menu_btn?.is_external === true ? "_blank" : "_self"}
+          style={{ animationDelay: `${(content?.menu_list?.length * 150) + 750}ms` }}
         >
-          Donate
+          {content?.menu_btn?.btn_text}
         </Link>
       </div>
     </header>
