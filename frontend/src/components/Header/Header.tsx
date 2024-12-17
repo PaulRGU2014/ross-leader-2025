@@ -74,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
     if (hasSubMenus && mainMenuIndex !== index) {
       event.preventDefault();
       setMainMenuIndex(index);
-    } else if (!hasSubMenus || mainMenuIndex === index) {
+    } else if (!hasSubMenus) {
       window.location.href = url;
     }
   };

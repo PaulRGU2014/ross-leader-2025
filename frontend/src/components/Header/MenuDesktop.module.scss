@@ -114,6 +114,7 @@
     &.active {
       opacity: 1;
       visibility: visible;
+      z-index: 8000;
     }
   }
   &_link{
