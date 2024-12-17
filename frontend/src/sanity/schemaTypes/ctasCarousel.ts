@@ -63,14 +63,25 @@ export const ctasCarousel = defineType({
             defineField({
               name: 'link',
               title: 'Link',
-              type: 'string',
-            }),
-            defineField({
-              name: 'newTab',
-              title: 'Open in new tab ?',
-              type: 'boolean',
-              initialValue: false,
-              hidden: ({ parent }) => !parent?.link,
+              type: 'object',
+              fields: [
+                defineField({
+                  name: 'title',
+                  title: 'Title',
+                  type: 'string',
+                }),
+                defineField({
+                  name: 'url',
+                  title: 'URL',
+                  type: 'string',
+                }),
+                defineField({
+                  name: 'newTab',
+                  title: 'Open in new tab ?',
+                  type: 'boolean',
+                  initialValue: false,
+                }),
+              ],
             }),
           ],
         },
