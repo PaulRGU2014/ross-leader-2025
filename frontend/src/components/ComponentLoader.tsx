@@ -17,12 +17,12 @@ const hardcodedComponents = {
   contactForm: ContactForm,
 };
 
-function HardcodedComponent ({ block_title, ...props }: { block_title: keyof typeof hardcodedComponents, content?: any }) {
+function HardcodedComponent ({ block_title, ...props }: { block_title: keyof typeof hardcodedComponents }) {
   const Component = hardcodedComponents[block_title];
   if (!Component) {
     return <div>Component not found</div>;
   }
-  return <Component {...props} content={props.content} />
+  return <Component {...props} />
 }
 
 const componentMap: { [key: string]: React.ComponentType<any> } = {
