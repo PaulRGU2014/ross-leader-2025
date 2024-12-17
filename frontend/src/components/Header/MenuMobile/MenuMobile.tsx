@@ -50,7 +50,7 @@ function MenuContent({
   setMainMenuIndex,
   handleMenuClick
 }: MenuContentProps) {
-  const [hoveredMenuIndex, setHoveredMenuIndex] = useState<number | null>(null);
+  const [subMenuIndex, setSubMenuIndex] = useState<number | null>(null);
 
   return (
     <div className={isMenuOpen ? styles.inner : styles.inner_close}>
@@ -86,8 +86,8 @@ function MenuContent({
                   <li 
                     key={subIndex} 
                     className={`${styles.subMenu}`}
-                    onMouseEnter={() => setHoveredMenuIndex(index)}
-                    onMouseLeave={() => setHoveredMenuIndex(null)}
+                    onMouseEnter={() => setSubMenuIndex(index)}
+                    onMouseLeave={() => setSubMenuIndex(null)}
                     onClick={(event) => handleMenuClick(event, subIndex, subMenus1.url, !!subMenus1.sub_menus_2)}
                   >
                     <Link 
@@ -96,10 +96,10 @@ function MenuContent({
                       onClick={(event) => handleMenuClick(event, subIndex, subMenus1.url, !!subMenus1.sub_menus_2)}
                     >
                       {subMenus1.title}
-                      {subMenus1.sub_menus_2 && subMenus1.sub_menus_2.length > 0 && <div className={`${styles.dropdown} ${hoveredMenuIndex === index ? styles.active : ''}`}><BsChevronCompactDown /></div>}
+                      {subMenus1.sub_menus_2 && subMenus1.sub_menus_2.length > 0 && <div className={`${styles.dropdown} ${subMenuIndex === index ? styles.active : ''}`}><BsChevronCompactDown /></div>}
                     </Link>
                     {subMenus1?.sub_menus_2 && (
-                      <ul className={`${styles.subMenu_wrapper} ${hoveredMenuIndex === index ? styles.active : ''}`}>
+                      <ul className={`${styles.subMenu_wrapper} ${subMenuIndex === index ? styles.active : ''}`}>
                         {subMenus1?.sub_menus_2?.map((subMenus2: any, subIndex2: number) => (
                           <li 
                             key={subIndex2} 

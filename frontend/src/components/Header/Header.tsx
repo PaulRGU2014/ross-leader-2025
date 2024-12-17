@@ -14,7 +14,7 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrollTimeout, setScrollTimeout] = useState<NodeJS.Timeout | null>(null);
   const [mainMenuIndex, setMainMenuIndex] = useState(-1);
-  const [hoveredMenuIndex, setHoveredMenuIndex] = useState<number | null>(null);
+  const [subMenuIndex, setSubMenuIndex] = useState(-1);
   const [screenWidth, setScreenWidth] = useState<number | undefined>(undefined);
 
   const controlHeader = useCallback(() => {
@@ -70,14 +70,26 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
     }
   }, [controlHeader, scrollTimeout]);
 
-  const handleMenuClick = (event: React.MouseEvent, index: number, url: string, hasSubMenus: boolean) => {
-    if (hasSubMenus && mainMenuIndex !== index) {
+  // const handleMenuClick = (event: React.MouseEvent, index: number, url: string, hasSubMenus: boolean) => {
+  //   if (hasSubMenus && mainMenuIndex !== index) {
+  //     event.preventDefault();
+  //     setMainMenuIndex(index);
+  //   } else if (!hasSubMenus) {
+  //     window.location.href = url;
+  //   }
+  // };
+  const handleMenuClick = (event: React.MouseEvent, mainIndex: number, subIndex: number, url: string, hasSubMenus: boolean) => {
+    if (hasSubMenus && mainMenuIndex !== mainIndex) {
       event.preventDefault();
-      setMainMenuIndex(index);
-    } else if (!hasSubMenus) {
+      setMainMenuIndex(mainIndex);
+    } else if (hasSubMenus && mainMenuIndex === mainIndex && subMenuIndex !== subIndex) {
+      event.preventDefault();
+      setSubMenuIndex(-1);
+    }
+    else if (!hasSubMenus) {
       window.location.href = url;
     }
-  };
+  }
 
   return (
     <>
@@ -88,8 +100,8 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
           isVisible,
           mainMenuIndex,
           setMainMenuIndex,
-          hoveredMenuIndex,
-          setHoveredMenuIndex,
+          subMenuIndex,
+          setSubMenuIndex,
           handleMenuClick
         }}
       />

@@ -9,9 +9,9 @@ interface MenuDesktopProps {
   isVisible: boolean;
   mainMenuIndex: number;
   setMainMenuIndex: (index: number) => void;
-  hoveredMenuIndex: number | null;
-  setHoveredMenuIndex: (index: number | null) => void;
-  handleMenuClick: (event: React.MouseEvent<HTMLLIElement | HTMLAnchorElement>, index: number, url: string, hasSubMenus: boolean) => void;
+  subMenuIndex: number | null;
+  setSubMenuIndex: (index: number | null) => void;
+  handleMenuClick: (event: React.MouseEvent<HTMLLIElement | HTMLAnchorElement>, mainIndex: number, subIndex: number, url: string, hasSubMenus: boolean) => void;
 }
 
 const MenuDesktop: React.FC<MenuDesktopProps> = ({
@@ -19,12 +19,12 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
   isVisible,
   mainMenuIndex,
   setMainMenuIndex,
-  hoveredMenuIndex,
-  setHoveredMenuIndex,
+  subMenuIndex,
+  setSubMenuIndex,
   handleMenuClick,
 }) => {
   console.log('mainMenuIndex', mainMenuIndex);
-  console.log('hoveredMenuIndex', hoveredMenuIndex);
+  console.log('subMenuIndex', subMenuIndex);
   return (
     <header className={`${styles.header} ${isVisible ? styles.visible : styles.hidden}`}>
       <div className={styles.wrapper}>
@@ -46,7 +46,7 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
               key={index}
               onMouseEnter={() => setMainMenuIndex(index)}
               onMouseLeave={() => setMainMenuIndex(-1)}
-              onClick={(event) => handleMenuClick(event, index, menu.url, !!menu.sub_menus_1)}
+              // onClick={(event) => handleMenuClick(event, index, -1,  menu.url, !!menu.sub_menus_1)}
               style={{
                 animationDelay: `${(index * 150) + 500}ms`,
                 zIndex: 1000 - index,
@@ -55,7 +55,7 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
               <Link
                 href={menu.url}
                 className={styles.menuLink_link}
-                onClick={(event) => handleMenuClick(event, index, menu.url, !!menu.sub_menus_1)}
+                onClick={(event) => handleMenuClick(event, index, -1, menu.url, !!menu.sub_menus_1)}
               >
                 {menu.title}
                 {menu.sub_menus_1 && menu.sub_menus_1.length > 0 && <div className={`${styles.dropdown} ${mainMenuIndex === index ? styles.active : ''}`}><BsChevronCompactDown /></div>}
@@ -71,9 +71,9 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
                     <li
                       key={subIndex}
                       className={`${styles.subMenu}`}
-                      onMouseEnter={() => setHoveredMenuIndex(subIndex)}
-                      onMouseLeave={() => setHoveredMenuIndex(null)}
-                      onClick={(event) => handleMenuClick(event, subIndex, subMenus1.url, !!subMenus1.sub_menus_2)}
+                      onMouseEnter={() => setSubMenuIndex(subIndex)}
+                      onMouseLeave={() => setSubMenuIndex(-1)}
+                      onClick={() => setSubMenuIndex(subIndex)}
                       style={{
                         zIndex: 5000 - subIndex,
                       }}
@@ -81,13 +81,14 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
                       <Link
                         href={subMenus1.url}
                         className={styles.subMenu_link}
+                        onClick={(event) => handleMenuClick(event, index, subIndex, subMenus1.url, !!subMenus1.sub_menus_2)}
                       >
                         {subMenus1.title}
-                        {subMenus1.sub_menus_2 && subMenus1.sub_menus_2.length > 0 && <div className={`${styles.dropdown} ${hoveredMenuIndex === subIndex ? styles.active : ''}`}><BsChevronCompactDown /></div>}
+                        {subMenus1.sub_menus_2 && subMenus1.sub_menus_2.length > 0 && <div className={`${styles.dropdown} ${subMenuIndex === subIndex ? styles.active : ''}`}><BsChevronCompactDown /></div>}
                       </Link>
                       {subMenus1?.sub_menus_2 && (
                         <ul
-                          className={`${styles.subMenu2_wrapper} ${hoveredMenuIndex === subIndex ? styles.active : ''}`}
+                          className={`${styles.subMenu2_wrapper} ${subMenuIndex === subIndex ? styles.active : ''}`}
                           style={{
                             height: subMenus1.sub_menus_2.length * 40 + 'px',
                           }}
