@@ -21,6 +21,7 @@ export const pages = defineType({
           type: 'reference',
           to: [
           //associateHere
+	{ type : 'ctasCarousel' },
   { type : 'gridLinksCarousel' },
 	{ type : 'richTextComp' },
 	{ type : 'textTwoImages' },

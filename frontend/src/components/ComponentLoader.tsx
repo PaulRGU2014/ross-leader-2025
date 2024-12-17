@@ -1,6 +1,7 @@
 "use client"
 
 //importHere
+	import CtasCarousel from './CtasCarousel/CtasCarousel';
 	import RichTextComp from './RichTextComp/RichTextComp';
 	import TextTwoImages from './TextTwoImages/TextTwoImages';
 	import FullPageHero from './FullPageHero/FullPageHero';
@@ -24,6 +25,7 @@ function HardcodedComponent ({ block_title, ...props }: { block_title: keyof typ
 
 const componentMap: { [key: string]: React.ComponentType<any> } = {
 //associateHere
+	ctasCarousel: CtasCarousel,
   gridLinksCarousel: GridLinksCarousel,
 	richTextComp: RichTextComp,
 	textTwoImages: TextTwoImages,
