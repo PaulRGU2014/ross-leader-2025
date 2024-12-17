@@ -1,6 +1,7 @@
 "use client"
 
 //importHere
+	import Shopify from './Shopify/Shopify';
 	import CtasCarousel from './CtasCarousel/CtasCarousel';
 	import RichTextComp from './RichTextComp/RichTextComp';
 	import TextTwoImages from './TextTwoImages/TextTwoImages';
@@ -12,15 +13,16 @@
 
 const hardcodedComponents = {
 //hardCodedHere
+	shopify: Shopify,
   contactForm: ContactForm,
 };
 
-function HardcodedComponent ({ block_title, ...props }: { block_title: keyof typeof hardcodedComponents }) {
+function HardcodedComponent ({ block_title, ...props }: { block_title: keyof typeof hardcodedComponents, content?: any }) {
   const Component = hardcodedComponents[block_title];
   if (!Component) {
     return <div>Component not found</div>;
   }
-  return <Component {...props} />
+  return <Component {...props} content={props.content} />
 }
 
 const componentMap: { [key: string]: React.ComponentType<any> } = {

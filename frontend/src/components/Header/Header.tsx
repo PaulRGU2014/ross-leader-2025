@@ -127,9 +127,6 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
     }
   }
 
-  console.log('mainMenuIndex', mainMenuIndex);
-  console.log('subMenuIndex', subMenuIndex);
-
   return (
     <>
       {screenWidth !== undefined && screenWidth > 920 ?

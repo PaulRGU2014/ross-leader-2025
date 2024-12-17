@@ -1,0 +1,29 @@
+@use '../../scss/helpers/import' as *;
+
+.component {
+    min-height: 500px 
+}
+.wrapper {
+  @include centered($max-width);
+  & {
+    margin: {
+      top: $standard-vertical-spacing;
+      bottom: $standard-vertical-spacing;
+    };
+  }
+}
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.product {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: calc(33.333% - 20px);
+  box-sizing: border-box;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
