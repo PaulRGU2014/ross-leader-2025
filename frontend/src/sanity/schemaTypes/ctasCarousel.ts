@@ -11,7 +11,7 @@ export const ctasCarousel = defineType({
       type: 'text',
       rows: 3,
       readOnly: true,
-      initialValue: 'This component is used to create a carousel of CTAs (Call to Actions) with a title, description, link, and image.',
+      initialValue: 'This component is used to create a carousel of CTAs (Call to Actions) with a title, description, and link.',
     }),
     defineField({
       name: 'title',
