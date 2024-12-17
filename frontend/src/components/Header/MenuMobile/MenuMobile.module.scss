@@ -44,8 +44,8 @@
   justify-content: flex-start;
   width: calc(100% - 40px);
   max-width: 440px;
-  height: calc(100% - 120px);
-  padding: 60px 20px;
+  height: calc(100% - 140px);
+  padding: 60px 20px 80px 20px;
   overflow: auto;
   background-color: $white;
   transition: all 0.5s $ease-out-quint;
@@ -83,7 +83,9 @@
 
 .link {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
   list-style: none;
   text-align: center;
@@ -103,6 +105,7 @@
     justify-content: center;
     gap: 10px;
     position: relative;
+    margin: 0;
   }
 }
 
@@ -113,6 +116,31 @@
   &.active{
     transform: rotateX(180deg);
     transition: transform 0.3s $ease-out-quint;
+  }
+}
+
+.subMenu {
+  list-style: none;
+  & > a {
+    @extend %nav;
+    text-transform: none;
+    padding: 10px 0;
+    width: fit-content;
+    display: inline-flex;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    margin: 0;
+  }
+  &_wrapper {
+    padding: 0;
+    margin: 0;
+    height: 0;
+    overflow: hidden;
+    &.active {
+      height: auto;
+      transition: height 0.3s $ease-out-quint;
+    }
   }
 }
 
