@@ -14,10 +14,6 @@ interface ImageLoaderProps extends React.HTMLProps<HTMLDivElement> {
   alt: string;
 }
 
-type Props = Omit<ImageProps, "src" > & {
-  src: SanityImageSource;
-};
-
 const ImageLoader = React.forwardRef<HTMLDivElement, ImageLoaderProps>(
   ({ className, style, src, alt, objectFit="cover", objectPosition, ...rest }, ref) => {
     return (

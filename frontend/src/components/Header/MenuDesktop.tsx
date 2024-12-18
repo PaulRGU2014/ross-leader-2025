@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '@/utils/LinkWrapper/LinkWrapper';
 import Image from 'next/image';
-import { BsChevronCompactDown } from 'react-icons/bs';
+import { BsChevronCompactDown, BsCart3  } from 'react-icons/bs';
 import styles from './MenuDesktop.module.scss'; // Adjust the path as needed
 
 interface MenuDesktopProps {
@@ -121,6 +121,11 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
         >
           {content?.menu_btn?.btn_text}
         </Link>
+        <div className={styles.cart}
+          style={{ animationDelay: `${(content?.menu_list?.length * 150) + 900}ms` }}
+        >
+          <BsCart3 />
+        </div>
       </div>
     </header>
   );

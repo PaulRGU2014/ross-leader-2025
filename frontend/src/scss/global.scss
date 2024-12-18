@@ -180,6 +180,24 @@ p {
   }
 }
 
+button {
+  font-family: "Lato", sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+  cursor: pointer;
+  // get rid of default button styles
+  border: none;
+  background: none;
+  padding: 0;
+  &:hover {
+    color: $yellow-300;
+  }
+  @include responsive(lg) {
+    font-size: 16px;
+  }
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);

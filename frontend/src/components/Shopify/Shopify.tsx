@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './Shopify.module.scss';
 import InViewAnim from './../../utils/InViewAnim/InViewAnim';
 import Client from 'shopify-buy';
-import Image from '@/utils/ImageLoader/ImageLoader';
+import Image from 'next/image';
 import Link from '@/utils/LinkWrapper/LinkWrapper';
 import { useCart } from '@/utils/CartContext/CartContext';
 
@@ -31,15 +31,28 @@ export default function Shopify() {
     <InViewAnim>
       <div className={styles.component}>
         <div className={styles.wrapper}>
-          <h5>Shopify Products</h5>
+          <h5 className={styles.title}>latest collection</h5>
           <div className={styles.products}>
             {products.map((product) => (
               <div key={product.id} className={styles.product}>
-                <img src={product.images[0].src} alt={product.title} />
-                <h6>{product.title}</h6>
-                <p>{product.description}</p>
-                <p>{product.variants[0].price.currencyCode}{product.variants[0].price.amount}</p>
-                <button onClick={() => addToCart(product)}>Add to Cart</button>
+                <div className={styles.product_image}>
+                  <Image 
+                    src={product.images[0].src} 
+                    alt={product.title}
+                    fill={true}
+                    sizes="100%"
+                    style={{
+                      objectFit: 'contain',
+                      objectPosition: 'center'
+                    }}
+                  />
+                </div>
+                <h6 className={styles.product_title}>{product.title}</h6>
+                {/* <p>{product.description}</p> */}
+                <p className={styles.product_price}>
+                  {product.variants[0].price.currencyCode} {product.variants[0].price.amount}
+                </p>
+                <button className={styles.product_buy} onClick={() => addToCart(product)}>Add to Cart</button>
               </div>
             ))}
           </div>
