@@ -27,6 +27,7 @@ export const pages = defineType({
           type: 'reference',
           to: [
           //associateHere
+	{ type : 'heroBannerImg' },
 	{ type : 'ctasCarousel' },
   { type : 'gridLinksCarousel' },
 	{ type : 'richTextComp' },

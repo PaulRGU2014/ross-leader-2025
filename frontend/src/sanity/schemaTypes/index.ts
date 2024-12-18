@@ -1,5 +1,6 @@
 import { type SchemaTypeDefinition } from "sanity";
 //importHere
+	import { heroBannerImg } from './heroBannerImg';
 	import { ctasCarousel } from './ctasCarousel';
 	import { richTextComp } from './richTextComp';
 	import { textTwoImages } from './textTwoImages';
@@ -14,6 +15,7 @@ import { gridLinksCarousel } from "./gridLinksCarousel";
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
   //associateHere
+heroBannerImg,
 pages,
 header,
 fullPageHero,

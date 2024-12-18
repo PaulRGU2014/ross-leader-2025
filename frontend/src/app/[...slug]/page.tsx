@@ -30,9 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
   const headersList = await headers();
   const pathname = headersList.get('x-pathname') || '';
-  
   const query = `*[_type=="pages"&& page_url.current=="${pathname}"]{...,components[]->}`;
-  // const footerQuery = `*[_type=="footer"]{...}`;
   const footerQuery = `*[_type=="pages"&& page_url.current=="${pathname}"]{footer->}`;
   const data = await client.fetch(query);
   const footerData = await client.fetch(footerQuery);
