@@ -19,9 +19,9 @@ export default function Footer({ content }: { content?: any }) {
       <div className={styles.wrapper}>
         <section className={styles.contact}>
           <h6>Contact</h6>
-          {content.contact_phone && <div className={styles.info}><BsTelephone /><Link href={`tel:${content.contact_phone}`}>{content.contact_phone}</Link></div>}
-          {content.contact_email && <div className={styles.info}><BsEnvelope /><Link href={`mailto:${content.contact_email}`}>{content.contact_email}</Link></div>}
-          {content.contact_address && <div className={styles.info}><BsFillPinMapFill /><p>{content.contact_address}</p></div>}
+          {content?.contact_phone && <div className={styles.info}><BsTelephone /><Link href={`tel:${content.contact_phone}`}>{content.contact_phone}</Link></div>}
+          {content?.contact_email && <div className={styles.info}><BsEnvelope /><Link href={`mailto:${content.contact_email}`}>{content.contact_email}</Link></div>}
+          {content?.contact_address && <div className={styles.info}><BsFillPinMapFill /><p>{content.contact_address}</p></div>}
           <div className={styles.social_wrapper}>
             <Link className={styles.social} href='/'><Image src='/socials/facebook.svg' fill alt='facebook icon' /></Link>
             <Link className={styles.social} href='/'><Image src='/socials/instagram.svg' fill alt='instagram icon' /></Link>

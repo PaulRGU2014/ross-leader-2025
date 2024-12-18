@@ -2,7 +2,6 @@
 
 //importHere
 	import HeroBannerImg from './HeroBannerImg/HeroBannerImg';
-	import Shopify from './Shopify/Shopify';
 	import CtasCarousel from './CtasCarousel/CtasCarousel';
 	import RichTextComp from './RichTextComp/RichTextComp';
 	import TextTwoImages from './TextTwoImages/TextTwoImages';

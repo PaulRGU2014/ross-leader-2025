@@ -11,7 +11,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <Head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </Head>
-      <body>
+      <body suppressHydrationWarning={true}>
         {children}
       </body>
       {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
