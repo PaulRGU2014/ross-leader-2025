@@ -3,6 +3,7 @@ import client from "../../../../client"
 import ComponentLoader from '@/components/ComponentLoader'
 import Header from '@/components/Header/Header'
 import Footer from '@/components/Footer/Footer'
+import { headers } from 'next/headers'
 import type { Metadata } from 'next'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -25,26 +26,26 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const query = `*[_type=="pages"&& page_url.current=="/shop"]{...,components[]->}`;
+  const headersList = await headers();
+  const pathname = headersList.get('x-pathname') || '';
+  const query = `*[_type=="pages"&& page_url.current=="${pathname}"]{...,components[]->}`;
+  const footerQuery = `*[_type=="pages"&& page_url.current=="${pathname}"]{footer->}`;
   const data = await client.fetch(query);
-  const footerQuery = `*[_type=="pages"&& page_url.current=="/shop"]{footer->}`;
   const footerData = await client.fetch(footerQuery);
-  const menuData = await client.fetch(`*[_type=="pages"&& page_url.current=="/shop"]{menu->}`);
-
+  const menuData = await client.fetch(`*[_type=="pages"&& page_url.current=="${pathname}"]{menu->}`);
+  
   if (!data) {
     return <div className='loading'>Loading...</div>;
   }
 
-  console.log(data);
-
   return (
     <>
-      <Header content={(menuData as any)[0].menu} />
+      <Header content={(menuData as any)[0]?.menu} />
       <ComponentLoader components={(data as any[])[0]?.components} />
       <div className={styles.component}>
         The shop here
       </div>
-      <Footer content={(footerData as any)[0].footer} />
+      <Footer content={(footerData as any)[0]?.footer} />
       {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
     </>
   );

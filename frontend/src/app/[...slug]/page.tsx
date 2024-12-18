@@ -36,7 +36,6 @@ export default async function Page() {
   const footerData = await client.fetch(footerQuery);
   const menuData = await client.fetch(`*[_type=="pages"&& page_url.current=="${pathname}"]{menu->}`);
   
-
   if (!data) {
     return <div className='loading'>Loading...</div>;
   }
