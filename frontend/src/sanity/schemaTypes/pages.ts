@@ -14,6 +14,12 @@ export const pages = defineType({
       type: 'slug',
     }),
     defineField({
+      name: 'menu',
+      title: 'Menu',
+      type: 'reference',
+      to: [{type: 'header'}]
+    }),
+    defineField({
       name: 'components',
       type: 'array',
       of: [

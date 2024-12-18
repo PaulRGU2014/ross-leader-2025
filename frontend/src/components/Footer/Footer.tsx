@@ -14,8 +14,6 @@ export default function Footer({ content }: { content?: any }) {
 
   const currentYear = new Date().getFullYear()
 
-  console.log(content)
-
   return (
     <InViewAnim><div className={styles.component}>
       <div className={styles.wrapper}>

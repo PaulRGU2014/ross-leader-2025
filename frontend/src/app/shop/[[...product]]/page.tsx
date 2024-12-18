@@ -25,13 +25,13 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
   const footerQuery = `*[_type=="pages"&& page_url.current=="/shop"]{footer->}`;
   const footerData = await client.fetch(footerQuery);
-  const menuData = await client.fetch(`*[_type=="header"]{...}`);
-  console.log('footerData', footerData);
+  const menuData = await client.fetch(`*[_type=="pages"&& page_url.current=="/shop"]{menu->}`);
+  console.log('menuData', menuData);
   return (
     <>
-      <Header content={(menuData as any)[0]} />
+      <Header content={(menuData as any)[0].menu} />
       This is the shop
-      <Footer content={(footerData as any)[0]} />
+      <Footer content={(footerData as any)[0].footer} />
       {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
     </>
   );

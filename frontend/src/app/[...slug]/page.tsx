@@ -36,7 +36,7 @@ export default async function Page() {
   const footerQuery = `*[_type=="pages"&& page_url.current=="${pathname}"]{footer->}`;
   const data = await client.fetch(query);
   const footerData = await client.fetch(footerQuery);
-  const menuData = await client.fetch(`*[_type=="header"]{...}`);
+  const menuData = await client.fetch(`*[_type=="pages"&& page_url.current=="${pathname}"]{menu->}`);
   
 
   if (!data) {
@@ -45,7 +45,7 @@ export default async function Page() {
 
   return (
     <>
-      <Header content={(menuData as any)[0]} />
+      <Header content={(menuData as any)[0]?.menu} />
       <ComponentLoader components={(data as any[])[0]?.components} />
       <Footer content={(footerData as any)[0]?.footer} />
       {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
