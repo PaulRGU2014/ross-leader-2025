@@ -8,6 +8,7 @@ import type { Metadata } from 'next'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from './product.module.scss';
+import Shopify from '@/components/Shopify/Shopify';
 
 export async function generateMetadata(): Promise<Metadata> {
   
@@ -42,6 +43,7 @@ export default async function Page() {
     <>
       <Header content={(menuData as any)[0]?.menu} />
       <ComponentLoader components={(data as any[])[0]?.components} />
+      <Shopify />
       <Footer content={(footerData as any)[0]?.footer} />
       {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
     </>

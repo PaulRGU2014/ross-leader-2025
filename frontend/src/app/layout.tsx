@@ -3,6 +3,7 @@
 import Head from "next/head"
 import '../scss/global.scss'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { CartProvider } from './../utils/CartContext/CartContext';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 
@@ -12,7 +13,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </Head>
       <body suppressHydrationWarning={true}>
-        {children}
+        <CartProvider>
+          {children}
+        </CartProvider>
       </body>
       {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
     </html>

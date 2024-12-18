@@ -88,7 +88,7 @@ module.exports = (plop) => {
       },
     ],
   });
-  plop.setGenerator('util', {
+  plop.setGenerator('utils', {
     prompts: [
       {
         type: 'input',
@@ -99,12 +99,12 @@ module.exports = (plop) => {
     actions: [
       {
         type: 'add',
-        path: '../src/util/{{pascalCase name}}/{{pascalCase name}}.tsx',
+        path: '../src/utils/{{pascalCase name}}/{{pascalCase name}}.tsx',
         templateFile: './utilJs.hbs',
       },
       {
         type: 'add',
-        path: '../src/util/{{pascalCase name}}/{{pascalCase name}}.module.scss',
+        path: '../src/utils/{{pascalCase name}}/{{pascalCase name}}.module.scss',
         templateFile: './utilScss.hbs',
       },
     ],

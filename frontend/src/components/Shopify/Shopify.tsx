@@ -6,6 +6,7 @@ import InViewAnim from './../../utils/InViewAnim/InViewAnim';
 import Client from 'shopify-buy';
 import Image from '@/utils/ImageLoader/ImageLoader';
 import Link from '@/utils/LinkWrapper/LinkWrapper';
+import { useCart } from '@/utils/CartContext/CartContext';
 
 const client = Client.buildClient({
   domain: process.env.SHOPIFY_STORE_DOMAIN || 'cae2c1-6e.myshopify.com',
@@ -15,6 +16,7 @@ const client = Client.buildClient({
 
 export default function Shopify() {
   const [products, setProducts] = useState<any[]>([]);
+  const { cart, addToCart } = useCart();
 
   useEffect(() => {
     client.product.fetchAll().then((fetchedProducts) => {
@@ -23,6 +25,7 @@ export default function Shopify() {
   }, []);
 
   console.log(products);
+  console.log(cart);
 
   return (
     <InViewAnim>
@@ -36,6 +39,7 @@ export default function Shopify() {
                 <h6>{product.title}</h6>
                 <p>{product.description}</p>
                 <p>{product.variants[0].price.currencyCode}{product.variants[0].price.amount}</p>
+                <button onClick={() => addToCart(product)}>Add to Cart</button>
               </div>
             ))}
           </div>
