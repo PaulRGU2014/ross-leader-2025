@@ -13,7 +13,6 @@
 
 const hardcodedComponents = {
 //hardCodedHere
-	shopify: Shopify,
   contactForm: ContactForm,
 };
 

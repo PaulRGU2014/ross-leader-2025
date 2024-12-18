@@ -32,7 +32,8 @@ export default async function Page() {
   const pathname = headersList.get('x-pathname') || '';
   
   const query = `*[_type=="pages"&& page_url.current=="${pathname}"]{...,components[]->}`;
-  const footerQuery = `*[_type=="footer"]{...}`;
+  // const footerQuery = `*[_type=="footer"]{...}`;
+  const footerQuery = `*[_type=="pages"&& page_url.current=="${pathname}"]{footer->}`;
   const data = await client.fetch(query);
   const footerData = await client.fetch(footerQuery);
   const menuData = await client.fetch(`*[_type=="header"]{...}`);
@@ -46,7 +47,7 @@ export default async function Page() {
     <>
       <Header content={(menuData as any)[0]} />
       <ComponentLoader components={(data as any[])[0]?.components} />
-      <Footer content={(footerData as any)[0]} />
+      <Footer content={(footerData as any)[0]?.footer} />
       {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
     </>
   );

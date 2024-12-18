@@ -1,17 +1,11 @@
-import '../scss/global.scss'
-import client from "../../client"
-import ComponentLoader from '@/components/ComponentLoader'
-import Footer from '@/components/Footer/Footer'
+import '../../../scss/global.scss'
+import client from "../../../../client"
 import { headers } from 'next/headers'
 import Header from '@/components/Header/Header'
+import Footer from '@/components/Footer/Footer'
 import type { Metadata } from 'next'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-type FooterDataType = {
-  title: string;
-  links: { title: string; url: string }[];
-};
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
@@ -34,23 +28,16 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
   const headersList = await headers();
   const pathname = headersList.get('x-pathname') || '';
-  
-  const query = `*[_type=="pages"&& page_url.current=="${pathname}"]{...,components[]->}`;
-  const footerQuery = `*[_type=="pages"&& page_url.current=="${pathname}"]{footer->}`;
-  const data = await client.fetch(query);
+  const footerQuery = `*[_type=="footer"]{...}`;
   const footerData = await client.fetch(footerQuery);
-
-  if (!data) {
-    return <div className='loading'>Loading...</div>;
-  }
-
   const menuData = await client.fetch(`*[_type=="header"]{...}`);
-
+  console.log('footerData', footerData);
   return (
     <>
       <Header content={(menuData as any)[0]} />
-      <ComponentLoader components={(data as any[])[0]?.components} />     
-      <Footer content={(footerData as any)[0]?.footer} />
+      This is the shop
+      <Footer content={(footerData as any)[0]} />
+      {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
     </>
   );
 }
