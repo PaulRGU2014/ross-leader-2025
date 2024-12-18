@@ -42,9 +42,6 @@ export default async function Page() {
     <>
       <Header content={(menuData as any)[0]?.menu} />
       <ComponentLoader components={(data as any[])[0]?.components} />
-      <div className={styles.component}>
-        The shop here
-      </div>
       <Footer content={(footerData as any)[0]?.footer} />
       {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
     </>
