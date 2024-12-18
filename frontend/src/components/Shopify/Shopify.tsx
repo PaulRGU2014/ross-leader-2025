@@ -24,8 +24,8 @@ export default function Shopify() {
     });
   }, []);
 
-  console.log(products);
-  console.log(cart);
+  console.log('Products:', products);
+  console.log('Cart:', cart);
 
   return (
     <InViewAnim>
@@ -43,6 +43,9 @@ export default function Shopify() {
               </div>
             ))}
           </div>
+          <Link href="/shop/checkout">
+            <button className={styles.checkoutButton}>Go to Checkout</button>
+          </Link>
         </div>
       </div>
     </InViewAnim>

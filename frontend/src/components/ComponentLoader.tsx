@@ -1,6 +1,7 @@
 "use client"
 
 //importHere
+	import Checkout from './Checkout/Checkout';
 	import HeroBannerImg from './HeroBannerImg/HeroBannerImg';
   import Shopify from './Shopify/Shopify';
 	import CtasCarousel from './CtasCarousel/CtasCarousel';
@@ -14,6 +15,7 @@
 
 const hardcodedComponents = {
 //hardCodedHere
+	checkout: Checkout,
   shopify: Shopify,
   contactForm: ContactForm,
 };
