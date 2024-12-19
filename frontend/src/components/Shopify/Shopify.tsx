@@ -5,7 +5,7 @@ import styles from './Shopify.module.scss';
 import InViewAnim from './../../utils/InViewAnim/InViewAnim';
 import Client from 'shopify-buy';
 import Image from 'next/image';
-import Link from '@/utils/LinkWrapper/LinkWrapper';
+import Link from 'next/link';
 import { useCart } from '@/utils/CartContext/CartContext';
 
 const client = Client.buildClient({
@@ -34,7 +34,9 @@ export default function Shopify() {
           <h5 className={styles.title}>latest collection</h5>
           <div className={styles.products}>
             {products.map((product) => (
-              <div key={product.id} className={styles.product}>
+              <Link key={product.id} className={styles.product}
+                href={`/shop/product/${product.id}`}
+              >
                 <div className={styles.product_image}>
                   <Image 
                     src={product.images[0].src} 
@@ -48,12 +50,10 @@ export default function Shopify() {
                   />
                 </div>
                 <h6 className={styles.product_title}>{product.title}</h6>
-                {/* <p>{product.description}</p> */}
                 <p className={styles.product_price}>
                   {product.variants[0].price.currencyCode} {product.variants[0].price.amount}
                 </p>
-                <button className={styles.product_buy} onClick={() => addToCart(product)}>Add to Cart</button>
-              </div>
+              </Link>
             ))}
           </div>
           <Link className={styles.checkout} href="/shop/checkout">
