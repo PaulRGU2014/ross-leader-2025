@@ -57,7 +57,7 @@ export default function Shopify() {
               </Link>
             ))}
           </div>
-          <Link className={styles.checkout} href="/shop/checkout">
+          <Link className={styles.checkout} href="/store/checkout">
             Go to Checkout
           </Link>
         </div>

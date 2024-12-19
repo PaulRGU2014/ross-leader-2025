@@ -1,6 +1,7 @@
 "use client"
 
 //importHere
+	import HeroHalfPage from './HeroHalfPage/HeroHalfPage';
 	import Checkout from './Checkout/Checkout';
 	import HeroBannerImg from './HeroBannerImg/HeroBannerImg';
   import Shopify from './Shopify/Shopify';
@@ -30,6 +31,7 @@ function HardcodedComponent ({ block_title, ...props }: { block_title: keyof typ
 
 const componentMap: { [key: string]: React.ComponentType<any> } = {
 //associateHere
+	heroHalfPage: HeroHalfPage,
 	heroBannerImg: HeroBannerImg,
 	ctasCarousel: CtasCarousel,
   gridLinksCarousel: GridLinksCarousel,

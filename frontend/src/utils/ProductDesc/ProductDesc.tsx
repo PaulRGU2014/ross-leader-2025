@@ -5,6 +5,7 @@ import Client from 'shopify-buy';
 import Image from 'next/image';
 import { useCart } from '@/utils/CartContext/CartContext';
 import styles from './ProductDesc.module.scss';
+import Link from '@/utils/LinkWrapper/LinkWrapper';
 
 const client = Client.buildClient({
   domain: process.env.SHOPIFY_STORE_DOMAIN || 'cae2c1-6e.myshopify.com',
@@ -81,6 +82,9 @@ export default function ProductPage({ prodId }: { prodId: string }) {
           </div>
           <button onClick={() => addToCart(product, selectedOptions)}>Add to Cart</button>
         </div>
+        <Link className={styles.checkout} href="/store/checkout">
+            Go to Checkout
+        </Link>
       </div>
     </div>
   );
