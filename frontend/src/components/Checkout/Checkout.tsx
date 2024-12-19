@@ -12,7 +12,7 @@ const client = Client.buildClient({
 });
 
 export default function Checkout() {
-  const { cart, clearCart } = useCart();
+  const { cart, clearCart, updateCartItemQuantity, removeFromCart } = useCart();
   const [customerInfo, setCustomerInfo] = useState({
     name: '',
     email: '',
@@ -26,6 +26,14 @@ export default function Checkout() {
     setCustomerInfo((prevInfo) => ({ ...prevInfo, [name]: value }));
   };
 
+  const handleQuantityChange = (productId: string, quantity: number) => {
+    updateCartItemQuantity(productId, quantity);
+  };
+
+  const handleRemoveItem = (productId: string) => {
+    removeFromCart(productId);
+  };
+
   const handleCheckout = async () => {
     setIsProcessing(true);
     setError('');
@@ -33,7 +41,7 @@ export default function Checkout() {
     try {
       const lineItems = cart.map((item) => ({
         variantId: item.variants[0].id,
-        quantity: 1, // Adjust quantity as needed
+        quantity: item.quantity, // Use the updated quantity
       }));
 
       const checkout = await client.checkout.create({ lineItems });
@@ -61,6 +69,13 @@ export default function Checkout() {
               <div>
                 <h4>{item.title}</h4>
                 <p>{item.variants[0].price.currencyCode}{item.variants[0].price.amount}</p>
+                <input
+                  type="number"
+                  value={item.quantity}
+                  onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))}
+                  min="1"
+                />
+                <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
               </div>
             </div>
           ))}
