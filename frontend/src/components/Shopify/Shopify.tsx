@@ -35,7 +35,7 @@ export default function Shopify() {
           <div className={styles.products}>
             {products.map((product) => (
               <Link key={product.id} className={styles.product}
-                href={`/shop/product/${product.id}`}
+                href={`/shop/product/${product.id.split('/').pop()}`} // Extract the actual product ID
               >
                 <div className={styles.product_image}>
                   <Image 

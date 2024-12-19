@@ -22,6 +22,7 @@ export default function ProductPage() {
   useEffect(() => {
     if (id) {
       const productId = id.toString().split('/').pop(); // Extract the actual product ID
+      console.log('Fetching product:', productId);
       client.product.fetch(productId).then((fetchedProduct) => {
         setProduct(fetchedProduct);
       });

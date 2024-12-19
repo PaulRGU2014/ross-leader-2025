@@ -7,8 +7,6 @@ import { headers } from 'next/headers'
 import type { Metadata } from 'next'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styles from './product.module.scss';
-import Shopify from '@/components/Shopify/Shopify';
 
 export async function generateMetadata(): Promise<Metadata> {
   
