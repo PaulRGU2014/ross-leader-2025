@@ -53,6 +53,7 @@ export default function Shopify() {
                 <p className={styles.product_price}>
                   {product.variants[0].price.currencyCode} {product.variants[0].price.amount}
                 </p>
+                {/* <button className={styles.product_buy} onClick={() => addToCart(product)}>Add to Cart</button> */}
               </Link>
             ))}
           </div>

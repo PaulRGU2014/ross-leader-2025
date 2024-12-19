@@ -1,4 +1,6 @@
-@use "../../../components/../scss/helpers/import.scss" as *;
+@use '../../scss/helpers/import' as *;
+
+.component{}
 
 .productPage {
   @include centered ($max-width);
