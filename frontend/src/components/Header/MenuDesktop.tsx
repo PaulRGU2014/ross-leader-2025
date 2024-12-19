@@ -126,12 +126,12 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
           {content?.menu_btn?.btn_text}
         </Link>
         <Link className={styles.cart}
-          href="/shop/checkout"
+          href="/store/checkout"
           style={{ animationDelay: `${(content?.menu_list?.length * 150) + 900}ms` }}
         >
           <BsCart3 />
           {totalQuantity > 0 && (
-            <span className={styles.cartCount}>{totalQuantity}</span>
+            <div className={styles.cartCount}>{totalQuantity}</div>
           )}
         </Link>
       </div>

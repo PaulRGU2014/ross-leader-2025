@@ -1,6 +1,14 @@
 @use '../../scss/helpers/import' as *;
 
-.component{}
+.component{
+    height: 50vh;
+    padding: 60px 0;
+}
+
+.image{
+    position: relative
+}
+
 .wrapper{
     @include centered($max-width);
     & {

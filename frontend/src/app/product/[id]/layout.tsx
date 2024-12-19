@@ -12,7 +12,7 @@ import "slick-carousel/slick/slick-theme.css";
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const pathname = headersList.get('x-pathname') || '';
-  
+
   const query = `*[_type=="pages"&& page_url.current=="${pathname}"]{...,components[]->}`;
   const data = await client.fetch(query);
 
@@ -32,14 +32,13 @@ export default async function ProductIdLayout({
 }: {
   children: React.ReactNode
 }) {
-  const headersList = await headers();
-  const pathname = headersList.get('x-pathname') || '';
+
   const query = `*[_type=="pages"&& page_url.current=="/product"]{...,components[]->}`;
   const footerQuery = `*[_type=="pages"&& page_url.current=="/product"]{footer->}`;
   const data = await client.fetch(query);
   const footerData = await client.fetch(footerQuery);
   const menuData = await client.fetch(`*[_type=="pages"&& page_url.current=="/product"]{menu->}`);
-  
+
   if (!data) {
     return <div className='loading'>Loading...</div>;
   }
@@ -48,7 +47,7 @@ export default async function ProductIdLayout({
     <>
       <Header content={(menuData as any)[0]?.menu} />
       <ComponentLoader components={(data as any[])[0]?.components} />
-        {children}
+      {children}
       <Footer content={(footerData as any)[0]?.footer} />
       {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
     </>

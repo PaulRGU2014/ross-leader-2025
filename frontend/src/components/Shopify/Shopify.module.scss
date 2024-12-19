@@ -35,6 +35,7 @@
   width: calc((100% - 60px) / 4);
   box-sizing: border-box;
   cursor: pointer;
+  background-color: $white;
   &_image {
     width: 100%;
     height: 250px;
@@ -46,11 +47,11 @@
     // background-color: $yellow-100;
   }
   &_title {
-    color: $yellow-300;
+    color: $yellow-200;
     margin: 0;
   }
   &_price {
-    color: $red-100;
+    color: $blue;
     margin: 0 0 15px 0;
   }
   &_buy {
