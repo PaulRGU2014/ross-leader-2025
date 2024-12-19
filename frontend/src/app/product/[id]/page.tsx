@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useParams } from 'next/navigation';
 import Client from 'shopify-buy';
 import Image from 'next/image';
 import { useCart } from '@/utils/CartContext/CartContext';
@@ -14,17 +14,16 @@ const client = Client.buildClient({
 });
 
 export default function ProductPage() {
-  const router = useRouter();
-  const { id } = router.query;
+  const { id } = useParams();
   const [product, setProduct] = useState<any>(null);
   const { addToCart } = useCart();
 
   useEffect(() => {
     if (id) {
-      const productId = id.toString().split('/').pop(); // Extract the actual product ID
-      console.log('Fetching product:', productId);
-      client.product.fetch(productId).then((fetchedProduct) => {
+      const productId = `gid://shopify/Product/${id}`.toString(); // Extract the actual product ID
+      client.product.fetch(productId as string).then((fetchedProduct) => {
         setProduct(fetchedProduct);
+        console.log(fetchedProduct);
       });
     }
   }, [id]);
