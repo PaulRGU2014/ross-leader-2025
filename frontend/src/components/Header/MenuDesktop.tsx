@@ -1,8 +1,9 @@
 import React from 'react';
 import Link from '@/utils/LinkWrapper/LinkWrapper';
 import Image from 'next/image';
-import { BsChevronCompactDown, BsCart3  } from 'react-icons/bs';
+import { BsChevronCompactDown, BsCart3 } from 'react-icons/bs';
 import styles from './MenuDesktop.module.scss'; // Adjust the path as needed
+import { useCart } from '@/utils/CartContext/CartContext';
 
 interface MenuDesktopProps {
   content: any;
@@ -23,6 +24,9 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
   setSubMenuIndex,
   handleMenuClick,
 }) => {
+
+  const { cart } = useCart();
+  const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <header className={`${styles.header} ${isVisible ? styles.visible : styles.hidden}`}>
@@ -121,11 +125,15 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
         >
           {content?.menu_btn?.btn_text}
         </Link>
-        <div className={styles.cart}
+        <Link className={styles.cart}
+          href="/shop/checkout"
           style={{ animationDelay: `${(content?.menu_list?.length * 150) + 900}ms` }}
         >
           <BsCart3 />
-        </div>
+          {totalQuantity > 0 && (
+            <span className={styles.cartCount}>{totalQuantity}</span>
+          )}
+        </Link>
       </div>
     </header>
   );

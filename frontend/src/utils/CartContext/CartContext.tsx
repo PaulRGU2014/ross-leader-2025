@@ -27,7 +27,16 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const addToCart = (product: any) => {
     console.log('Adding to cart:', product);
-    setCart((prevCart) => [...prevCart, product]);
+    setCart((prevCart) => {
+      const existingProductIndex = prevCart.findIndex((item) => item.id === product.id);
+      if (existingProductIndex !== -1) {
+        const updatedCart = [...prevCart];
+        updatedCart[existingProductIndex].quantity += 1;
+        return updatedCart;
+      } else {
+        return [...prevCart, { ...product, quantity: 1 }];
+      }
+    });
   };
 
   const clearCart = () => {
