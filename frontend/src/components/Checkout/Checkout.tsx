@@ -42,6 +42,10 @@ export default function Checkout() {
       const lineItems = cart.map((item) => ({
         variantId: item.variants[0].id,
         quantity: item.quantity, // Use the updated quantity
+        customAttributes: Object.entries(item.options).map(([key, value]) => ({
+          key,
+          value: value as string,
+        })),
       }));
 
       const checkout = await client.checkout.create({ lineItems });
@@ -76,6 +80,13 @@ export default function Checkout() {
                   min="1"
                 />
                 <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
+                <div className={styles.selectedOptions}>
+                  {Object.entries(item.options).map(([key, value]) => (
+                    <p key={key}>
+                      {key}: {typeof value === 'object' ? JSON.stringify(value) : String(value)}
+                    </p>
+                  ))}
+                </div>
               </div>
             </div>
           ))}

@@ -32,7 +32,8 @@ export default async function ProductIdLayout({
 }: {
   children: React.ReactNode
 }) {
-
+  const headersList = await headers();
+  const pathname = headersList.get('x-pathname') || '';
   const query = `*[_type=="pages"&& page_url.current=="/product"]{...,components[]->}`;
   const footerQuery = `*[_type=="pages"&& page_url.current=="/product"]{footer->}`;
   const data = await client.fetch(query);

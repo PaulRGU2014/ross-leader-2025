@@ -1,6 +1,8 @@
 @use '../../scss/helpers/import' as *;
 
-.component{}
+.component{
+  padding: 60px 0;
+}
 
 .productPage {
   @include centered ($max-width);

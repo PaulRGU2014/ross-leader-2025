@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 
 interface CartContextType {
   cart: any[];
-  addToCart: (product: any) => void;
+  addToCart: (product: any, options: any) => void;
   clearCart: () => void;
   updateCartItemQuantity: (productId: string, quantity: number) => void;
   removeFromCart: (productId: string) => void;
@@ -25,16 +25,16 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (product: any) => {
-    console.log('Adding to cart:', product);
+  const addToCart = (product: any, options: any) => {
+    console.log('Adding to cart:', product, options);
     setCart((prevCart) => {
-      const existingProductIndex = prevCart.findIndex((item) => item.id === product.id);
+      const existingProductIndex = prevCart.findIndex((item) => item.id === product.id && JSON.stringify(item.options) === JSON.stringify(options));
       if (existingProductIndex !== -1) {
         const updatedCart = [...prevCart];
         updatedCart[existingProductIndex].quantity += 1;
         return updatedCart;
       } else {
-        return [...prevCart, { ...product, quantity: 1 }];
+        return [...prevCart, { ...product, quantity: 1, options }];
       }
     });
   };

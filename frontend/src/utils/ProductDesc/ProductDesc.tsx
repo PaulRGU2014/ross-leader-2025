@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
 import Client from 'shopify-buy';
 import Image from 'next/image';
 import { useCart } from '@/utils/CartContext/CartContext';
@@ -13,10 +12,9 @@ const client = Client.buildClient({
   apiVersion: '2024-10', // Add the appropriate API version
 });
 
-
-export default function ProductPage({prodId}: {prodId: string}) {
-  // const { id } = useParams();
+export default function ProductPage({ prodId }: { prodId: string }) {
   const [product, setProduct] = useState<any>(null);
+  const [selectedOptions, setSelectedOptions] = useState<any>({});
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -29,31 +27,60 @@ export default function ProductPage({prodId}: {prodId: string}) {
     }
   }, [prodId]);
 
+  const handleOptionChange = (optionName: string, value: string) => {
+    setSelectedOptions((prevOptions: any) => ({
+      ...prevOptions,
+      [optionName]: value,
+    }));
+  };
+
   if (!product) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className={styles.productPage}>
-      <div className={styles.productImage}>
-        {product.images[0].src && <Image
-          src={product.images[0].src}
-          alt={product.title}
-          fill={true}
-          sizes="100%"
-          style={{
-            objectFit: 'contain',
-            objectPosition: 'center'
-          }}
-        />}
-      </div>
-      <div className={styles.productDetails}>
-        <h1>{product.title}</h1>
-        <p>{product.description}</p>
-        <p className={styles.productPrice}>
-          {product.variants[0].price.currencyCode} {product.variants[0].price.amount}
-        </p>
-        <button onClick={() => addToCart(product)}>Add to Cart</button>
+    <div className={styles.component}>
+      <div className={styles.productPage}>
+        <div className={styles.productImage}>
+          {product.images[0].src && (
+            <Image
+              src={product.images[0].src}
+              alt={product.title}
+              fill={true}
+              sizes="100%"
+              style={{
+                objectFit: 'contain',
+                objectPosition: 'center',
+              }}
+            />
+          )}
+        </div>
+        <div className={styles.productDetails}>
+          <h1>{product.title}</h1>
+          <p>{product.description}</p>
+          <p className={styles.productPrice}>
+            {product.variants[0].price.currencyCode} {product.variants[0].price.amount.toString()}
+          </p>
+          <div className={styles.productOptions}>
+            {product?.options?.map((option: any) => (
+              <div key={option.name}>
+                <label htmlFor={option.name}>{option.name}</label>
+                <select
+                  name={option.name}
+                  id={option.name}
+                  onChange={(e) => handleOptionChange(option.name, e.target.value)}
+                >
+                  {option.values.map((value: any) => (
+                    <option key={value.value} value={value.value}>
+                      {value.value}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ))}
+          </div>
+          <button onClick={() => addToCart(product, selectedOptions)}>Add to Cart</button>
+        </div>
       </div>
     </div>
   );
