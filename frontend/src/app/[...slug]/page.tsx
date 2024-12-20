@@ -3,6 +3,7 @@ import client from "../../../client"
 import ComponentLoader from '@/components/ComponentLoader'
 import Header from '@/components/Header/Header'
 import Footer from '@/components/Footer/Footer'
+import ErrorComponent from '@/utils/ErrorComponent/ErrorComponent'
 import { headers } from 'next/headers'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import type { Metadata } from 'next'
@@ -35,10 +36,17 @@ export default async function Page() {
   const data = await client.fetch(query);
   const footerData = await client.fetch(footerQuery);
   const menuData = await client.fetch(`*[_type=="pages"&& page_url.current=="${pathname}"]{menu->}`);
+  const defaultMenuData = await client.fetch(`*[_type=="header"]{...}`);
+  const defaultFooterData = await client.fetch(`*[_type=="footer"]{...}`);
   
-  if (!data) {
-    return <div className='loading'>Loading...</div>;
-  }
+  if (!data || data.length === 0) {
+    return (
+    <>
+      <Header content={(defaultMenuData as any)[0]} />
+      <ErrorComponent status={404} />
+      <Footer content={(defaultFooterData as any)[0]} />
+    </>
+  )}
 
   return (
     <>
