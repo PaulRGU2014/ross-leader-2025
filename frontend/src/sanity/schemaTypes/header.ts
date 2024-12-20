@@ -23,8 +23,23 @@ export const header = defineType({
               type: 'string',
             }),
             defineField({
-              name: 'url',
-              type: 'string',
+              name: 'link',
+              title: 'Link',
+              type: 'object',
+              fields: [
+                defineField({
+                  name: 'url',
+                  title: 'URL',
+                  type: 'string',
+                }),
+                defineField({
+                  name: 'is_external',
+                  title: 'External Link?',
+                  type: 'boolean',
+                  initialValue: false,
+                  hidden: ({parent}) => !parent?.url,
+                }),
+              ],
             }),
             defineField({
               name: 'sub_menus_1',
@@ -39,8 +54,23 @@ export const header = defineType({
                       type: 'string',
                     }),
                     defineField({
-                      name: 'url',
-                      type: 'string',
+                      name: 'link',
+                      title: 'Link',
+                      type: 'object',
+                      fields: [
+                        defineField({
+                          name: 'url',
+                          title: 'URL',
+                          type: 'string',
+                        }),
+                        defineField({
+                          name: 'is_external',
+                          title: 'External Link?',
+                          type: 'boolean',
+                          initialValue: false,
+                          hidden: ({parent}) => !parent?.url,
+                        }),
+                      ],
                     }),
                     defineField({
                       name: 'sub_menus_2',
@@ -55,8 +85,23 @@ export const header = defineType({
                               type: 'string',
                             }),
                             defineField({
-                              name: 'url',
-                              type: 'string',
+                              name: 'link',
+                              title: 'Link',
+                              type: 'object',
+                              fields: [
+                                defineField({
+                                  name: 'url',
+                                  title: 'URL',
+                                  type: 'string',
+                                }),
+                                defineField({
+                                  name: 'is_external',
+                                  title: 'External Link?',
+                                  type: 'boolean',
+                                  initialValue: false,
+                                  hidden: ({parent}) => !parent?.url,
+                                }),
+                              ],
                             }),
                           ],
                         },

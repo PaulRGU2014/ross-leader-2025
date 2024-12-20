@@ -127,6 +127,8 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
     }
   }
 
+  console.log('Header content:', content);
+
   return (
     <>
       {screenWidth !== undefined && screenWidth > 920 ?

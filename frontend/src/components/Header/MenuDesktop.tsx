@@ -55,7 +55,8 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
               }}
             >
               <Link
-                href={menu.url}
+                href={menu?.link?.url}
+                target={menu?.link?.is_external === true ? "_blank" : "_self"}
                 className={styles.menuLink_link}
                 onClick={(event) => handleMenuClick(event, index, -1, menu.url, !!menu.sub_menus_1)}
               >
@@ -81,7 +82,8 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
                       }}
                     >
                       <Link
-                        href={subMenus1.url}
+                        href={subMenus1?.link?.url}
+                        target={subMenus1?.link?.is_external === true ? "_blank" : "_self"}
                         className={styles.subMenu_link}
                         onClick={(event) => handleMenuClick(event, index, subIndex, subMenus1.url, !!subMenus1.sub_menus_2)}
                       >
@@ -101,7 +103,8 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
                               className={styles.subMenu}
                             >
                               <Link
-                                href={subMenus2.url}
+                                href={subMenus2?.link?.url}
+                                target={subMenus2?.link?.is_external === true ? "_blank" : "_self"}
                                 className={styles.subMenu_link}
                               >
                                 {subMenus2.title}
@@ -125,7 +128,8 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
         >
           {content?.menu_btn?.btn_text}
         </Link>
-        <Link className={styles.cart}
+        {/* Reactivate this when store page is done */}
+        {/* <Link className={styles.cart}
           href="/store/checkout"
           style={{ animationDelay: `${(content?.menu_list?.length * 150) + 900}ms` }}
         >
@@ -133,7 +137,7 @@ const MenuDesktop: React.FC<MenuDesktopProps> = ({
           {totalQuantity > 0 && (
             <div className={styles.cartCount}>{totalQuantity}</div>
           )}
-        </Link>
+        </Link> */}
       </div>
     </header>
   );
