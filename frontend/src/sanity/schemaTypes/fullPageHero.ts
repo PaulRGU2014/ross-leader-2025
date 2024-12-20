@@ -48,7 +48,7 @@ export const fullPageHero = defineType({
       })
     }),
     defineField({
-      name: 'image_file',
+      name: 'image',
       title: 'Image File',
       type: 'image',
       description: 'For the best experience, use an image with a 16:9 aspect ratio',
@@ -57,7 +57,8 @@ export const fullPageHero = defineType({
           name: 'alt',
           title: 'Image Alt Text',
           type: 'string',
-          validation: Rule => Rule.required()
+          validation: Rule => Rule.required(),
+          initialValue: 'Image alt text',
         },
       ],
       hidden: ({ parent }) => parent?.media_source !== 'file',

@@ -34,6 +34,7 @@ export const textTwoImages = defineType({
           type: 'string',
           title: 'Alt Text',
           validation: (Rule) => Rule.required(),
+          initialValue: 'Image alt text',
         },
       ],
     }),

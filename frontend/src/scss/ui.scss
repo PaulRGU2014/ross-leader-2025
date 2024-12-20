@@ -18,14 +18,14 @@
 
 %button {
   display: block;
-  background-color: $blue;
+  background-color: $red-100;
   color: $white;
   padding: 15px 30px;
   text-align: center;
   @extend %nav;
   &:hover {
-    color: $white;
-    background-color: $red-100;
+    color: $black;
+    background-color: $yellow-100;
     transition: all 0.3s $ease-out-quint;
   }
   &:not(:hover) {
@@ -35,14 +35,14 @@
 
 %button-round {
   display: block;
-  background-color: $blue;
   color: $white;
+  background-color: $red-100;
   padding: 10px 20px;
   text-align: center;
   border-radius: 8px;
   &:hover {
-    color: $white;
-    background-color: $red-100;
+    color: $black;
+    background-color: $yellow-100;
     transition: all 0.3s $ease-out-quint;
   }
   &:not(:hover) {

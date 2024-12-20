@@ -29,7 +29,8 @@ export const heroBannerImg = defineType({
           name: 'alt',
           title: 'Image Alt Text',
           type: 'string',
-          validation: Rule => Rule.required()
+          validation: Rule => Rule.required(),
+          initialValue: 'Image alt text',
         },
       ],
     }),

@@ -70,6 +70,7 @@ export const heroHalfPage = defineType({
           title: "Image Alt Text",
           type: "string",
           validation: (Rule) => Rule.required(),
+          initialValue: 'Image alt text',
         },
       ],
       hidden: ({ parent }) => parent?.media_source !== "file",

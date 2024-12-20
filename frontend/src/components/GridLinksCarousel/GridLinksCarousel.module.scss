@@ -3,7 +3,7 @@
 .component {
   display: block;
   position: relative;
-  background-color: rgba($color: $yellow-100, $alpha: 0.3);
+  background-color: $gray-200;
   padding: 60px 0;
 
   :global(.slick-track) {
