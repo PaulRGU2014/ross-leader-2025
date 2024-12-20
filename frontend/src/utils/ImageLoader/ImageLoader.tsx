@@ -10,12 +10,13 @@ interface ImageLoaderProps extends React.HTMLProps<HTMLDivElement> {
   style?: object;
   objectFit?: string;
   objectPosition?: string;
+  priority?: boolean;
   src: string;
   alt: string;
 }
 
 const ImageLoader = React.forwardRef<HTMLDivElement, ImageLoaderProps>(
-  ({ className, style, src, alt, objectFit="cover", objectPosition, ...rest }, ref) => {
+  ({ className, style, src, alt, objectFit="cover", objectPosition, priority, ...rest }, ref) => {
     return (
       <div className={className} 
         style={style}
@@ -34,6 +35,7 @@ const ImageLoader = React.forwardRef<HTMLDivElement, ImageLoaderProps>(
           loader={({ width, quality = 100 }) =>
             urlForImage(src).width(width).quality(quality).url()
           }
+          priority={priority ? priority : false}
         />
       </div>
     );

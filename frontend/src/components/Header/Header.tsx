@@ -127,7 +127,7 @@ const Header: React.FC<HeaderProps> = ({ content }) => {
     }
   }
 
-  console.log('Header content:', content);
+  // console.log('Header content:', content);
 
   return (
     <>

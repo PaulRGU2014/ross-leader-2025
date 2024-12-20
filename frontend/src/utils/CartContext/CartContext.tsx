@@ -55,7 +55,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
   };
 
-  console.log('Cart state:', cart);
+  // console.log('Cart state:', cart);
 
   return (
     <CartContext.Provider value={{ cart, addToCart, clearCart, updateCartItemQuantity, removeFromCart }}>
