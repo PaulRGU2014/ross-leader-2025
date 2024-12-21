@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    title: data[0].page_title,
+    title: `${data[0].page_title} | ROSS Leaders`,
   };
 }
 
