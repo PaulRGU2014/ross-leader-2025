@@ -61,7 +61,7 @@ export default defineConfig({
                     S.documentTypeListItem("heroBannerImg"),
                     S.documentTypeListItem("heroGallery"),
                     S.documentTypeListItem("heroHalfPage"),
-                    // Add more page types here
+                    //addHere
                   ])
               ),
             S.listItem()
@@ -71,7 +71,7 @@ export default defineConfig({
                   .title("Carousel Components")
                   .items([
                     S.documentTypeListItem("gridLinksCarousel"),
-                    // Add more blog types here
+                    //associateHere
                   ])
               ),
             // S.listItem()
