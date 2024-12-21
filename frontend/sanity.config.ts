@@ -74,18 +74,16 @@ export default defineConfig({
                     //associateHere
                   ])
               ),
-            // S.listItem()
-            //   .title('Media')
-            //   .child(
-            //     S.list()
-            //       .title('Media')
-            //       .items([
-            //         S.documentTypeListItem('image').title('Images'),
-            //         S.documentTypeListItem('video').title('Videos'),
-            //         // Add more media types here
-            //       ])
-            //   ),
-            // Add more groups here
+            S.listItem()
+              .title("Other Components")
+              .child(
+                S.list()
+                  .title("Other Components")
+                  .items([
+                    
+                    //appendHere
+                  ])
+              ),
           ]),
     }),
     // Vision is for querying with GROQ from inside the Studio
