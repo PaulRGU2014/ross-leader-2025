@@ -75,12 +75,21 @@ export default defineConfig({
                   ])
               ),
             S.listItem()
+            .title("CTA Components")
+            .child(
+              S.list()
+                .title("CTA Components")
+                .items([
+                  //assignHere
+	S.documentTypeListItem("ctaTitleImg")
+                ])
+            ),
+            S.listItem()
               .title("Other Components")
               .child(
                 S.list()
                   .title("Other Components")
                   .items([
-                    
                     //appendHere
                   ])
               ),

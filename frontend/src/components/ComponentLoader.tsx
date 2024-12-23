@@ -1,6 +1,7 @@
 "use client"
 
 //importHere
+	import CtaTitleImg from './CtaTitleImg/CtaTitleImg';
 	import FullPageZoom from './FullPageZoom/FullPageZoom';
 	import HeroGallery from './HeroGallery/HeroGallery';
 	import HeroHalfPage from './HeroHalfPage/HeroHalfPage';
@@ -33,6 +34,7 @@ function HardcodedComponent ({ block_title, ...props }: { block_title: keyof typ
 
 const componentMap: { [key: string]: React.ComponentType<any> } = {
 //associateHere
+	ctaTitleImg: CTATitleImg,
 	fullPageZoom: FullPageZoom,
 	heroGallery: HeroGallery,
 	heroHalfPage: HeroHalfPage,

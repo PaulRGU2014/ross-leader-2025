@@ -27,6 +27,7 @@ export const pages = defineType({
           type: 'reference',
           to: [
           //associateHere
+	{ type : 'ctaTitleImg' },
 	{ type : 'fullPageZoom' },
 	{ type : 'heroGallery' },
 	{ type : 'heroHalfPage' },

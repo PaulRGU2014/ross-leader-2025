@@ -1,5 +1,6 @@
 import { type SchemaTypeDefinition } from "sanity";
 //importHere
+	import { ctaTitleImg } from './ctaTitleImg';
 	import { fullPageZoom } from './fullPageZoom';
 	import { heroGallery } from './heroGallery';
 	import { heroHalfPage } from './heroHalfPage';
@@ -18,6 +19,7 @@ import { gridLinksCarousel } from "./gridLinksCarousel";
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
   //associateHere
+ctaTitleImg,
 fullPageZoom,
 heroGallery,
 heroHalfPage,
