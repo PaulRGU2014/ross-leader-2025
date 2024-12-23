@@ -1,3 +1,4 @@
+import { debugPort } from 'process'
 import {defineField, defineType} from 'sanity'
 
 export const heroBannerImg = defineType({
@@ -33,6 +34,12 @@ export const heroBannerImg = defineType({
           initialValue: 'Image alt text',
         },
       ],
+    }),
+    defineField({
+      name: 'is_curved',
+      type: 'boolean',
+      title: 'Is the banner curved?',
+      description: 'Check to curve the image.',
     }),
     // defineField({
     //   name: 'theme',

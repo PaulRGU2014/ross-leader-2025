@@ -11,7 +11,8 @@ export default function HeroBannerImg({content}: HeroBannerImgProps) {
   return(
     <InViewAnim><div className={styles.component}>
       <div className={styles.wrapper}>
-        <h5>HeroBannerImg</h5>
+        <h3>{content.title}</h3>
+        <h5>{content.subtitle}</h5>
       </div>
     </div></InViewAnim>
   );

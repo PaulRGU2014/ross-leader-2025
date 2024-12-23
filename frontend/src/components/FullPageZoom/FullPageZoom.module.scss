@@ -5,7 +5,13 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
-  &:after{
+  @include scroll-animation(
+    $anim: fromTop,
+    $sequence: 100ms,
+    $speed: 1000ms,
+    $delay: 350ms
+  );
+  &::before {
     content: "";
     position: absolute;
     top: 0;
@@ -14,6 +20,20 @@
     height: 100%;
     background-color: $black;
     z-index: -2;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100%);
+    height: calc(100%);
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0 ,0, 1) 0%,
+      rgba(0, 0 ,0, 0) 50%
+    );
+    z-index: 1;
   }
 }
 
@@ -37,16 +57,6 @@
     height: 100%;
     object-fit: cover;
   }
-  // &::before {
-  //   content: "";
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   width: calc(100%);
-  //   height: calc(100%);
-  //   background: radial-gradient(ellipse, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 67%);
-  //   z-index: 1;
-  // }
 }
 .reactPlayer {
   position: absolute;

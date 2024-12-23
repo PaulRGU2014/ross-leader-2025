@@ -19,19 +19,28 @@ export default function FullPageZoom({ content }: { content: any }) {
 
   useEffect(() => {
     if (isClient && mediaRef.current) {
-      gsap.fromTo(
-        mediaRef.current,
+      const mediaElement = mediaRef.current;
+
+      const animation = gsap.fromTo(
+        mediaElement,
         { scale: 0.3 },
         {
           scale: 1,
           scrollTrigger: {
-            trigger: mediaRef.current,
+            trigger: mediaElement,
             start: 'top+=50% bottom',
             end: 'top top',
             scrub: true,
           },
         }
       );
+
+      return () => {
+        if (animation.scrollTrigger) {
+          animation.scrollTrigger.kill();
+        }
+        animation.kill();
+      };
     }
   }, [isClient]);
 
