@@ -18,7 +18,9 @@ export default function HeroBannerImg({ content }: HeroBannerImgProps) {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    setTimeout(() => {
+      setIsClient(true);
+    }, 150);
   }, []);
 
   useEffect(() => {
