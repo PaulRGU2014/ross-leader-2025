@@ -46,5 +46,17 @@
   @include centered($max-width);
   & {
     margin: 0 auto;
+    padding: 120px 0 60px 0;
+  }
+}
+
+.title, .subtitle {
+  text-align: center;
+  transition: all 0.3s $ease-out-quint;
+  opacity: 0;
+  transform: translateY(20px);
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
