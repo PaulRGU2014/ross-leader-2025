@@ -1,11 +1,14 @@
 @use "../../scss/helpers/import" as *;
 
 .component {
-
-
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .overlay{
+  width: 100%;
   background-color: $black;
   padding-top: 240px;
   position: relative;
@@ -23,6 +26,19 @@
     &::before {
       clip-path: ellipse(55% 50% at 50% 110%);
     }
+  }
+}
+
+.image {
+  position: absolute;
+  align-self: center;
+  z-index: 1;
+  width: 300px;
+  height: 400px;
+  margin: 0 auto;
+  img {
+    width: 100%;
+    height: auto;
   }
 }
 

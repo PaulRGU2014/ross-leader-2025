@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ReactPlayer from 'react-player';
@@ -10,7 +10,6 @@ import styles from './FullPageZoom.module.scss';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function FullPageZoom({ content }: { content: any }) {
-  const mediaRef = useRef<HTMLDivElement>(null);
   const [isClient, setIsClient] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
@@ -19,29 +18,20 @@ export default function FullPageZoom({ content }: { content: any }) {
   }, []);
 
   useEffect(() => {
-    if (isClient && mediaRef.current && videoLoaded) {
-      const mediaElement = mediaRef.current;
-
-      const animation = gsap.fromTo(
-        mediaElement,
+    if (isClient && videoLoaded) {
+      gsap.fromTo(
+        `.${styles.media}`,
         { scale: 0.4 },
         {
           scale: 1,
           scrollTrigger: {
-            trigger: mediaElement,
-            start: 'top+=50% bottom',
+            trigger: `.${styles.media}`,
+            start: 'top top+=50%',
             end: 'top top',
             scrub: true,
           },
         }
       );
-
-      return () => {
-        if (animation.scrollTrigger) {
-          animation.scrollTrigger.kill();
-        }
-        animation.kill();
-      };
     }
   }, [isClient, videoLoaded]);
 
@@ -52,7 +42,7 @@ export default function FullPageZoom({ content }: { content: any }) {
   return (
     <InViewAnim>
       <div className={styles.component}>
-        <div className={styles.media} ref={mediaRef}>
+        <div className={styles.media}>
           <ReactPlayer
             className={styles.reactPlayer}
             url={content.media_url}

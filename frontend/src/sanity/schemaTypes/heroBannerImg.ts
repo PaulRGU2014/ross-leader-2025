@@ -25,6 +25,10 @@ export const heroBannerImg = defineType({
     defineField({
       name: 'image',
       type: 'image',
+      options: {
+        accept: 'image/webp',
+      },
+      description: 'Accept only .webp format image.',
       fields: [
         {
           name: 'alt',
