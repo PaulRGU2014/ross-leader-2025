@@ -34,7 +34,7 @@ function HardcodedComponent ({ block_title, ...props }: { block_title: keyof typ
 
 const componentMap: { [key: string]: React.ComponentType<any> } = {
 //associateHere
-	ctaTitleImg: CTATitleImg,
+	ctaTitleImg: CtaTitleImg,
 	fullPageZoom: FullPageZoom,
 	heroGallery: HeroGallery,
 	heroHalfPage: HeroHalfPage,
