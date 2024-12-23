@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './HeroBannerImg.module.scss';
@@ -14,30 +14,26 @@ interface HeroBannerImgProps {
 }
 
 export default function HeroBannerImg({ content }: HeroBannerImgProps) {
-  const componentRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    if (componentRef.current) {
-      gsap.fromTo(
-        `.${styles.image}`,
-        { y: 300, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          scrollTrigger: {
-            trigger: componentRef.current,
-            start: 'top 50%',
-            end: 'top top',
-            scrub: true,
-          },
-        }
-      );
-    }
+    gsap.fromTo(
+      `.${styles.image}`,
+      { y: 300, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: `.${styles.component}`,
+          start: 'top 50%',
+          end: 'top top',
+          scrub: true,
+        },
+      }
+    );
   }, []);
 
   return (
     <InViewAnim>
-      <div className={styles.component} ref={componentRef}>
+      <div className={styles.component}>
         <div className={styles.overlay}></div>
         <Image
           className={styles.image}
