@@ -25,7 +25,7 @@ export default function HeroBannerImg({ content }: HeroBannerImgProps) {
 
   useEffect(() => {
     if (isClient) {
-      gsap.fromTo(
+      const scrollTriggerInstance = gsap.fromTo(
         `.${styles.image}`,
         { y: 300, opacity: 0 },
         {
@@ -33,16 +33,25 @@ export default function HeroBannerImg({ content }: HeroBannerImgProps) {
           opacity: 1,
           scrollTrigger: {
             trigger: `.${styles.component}`,
-            start: 'top top+=60%',
-            end: 'top top+=10%',
+            start: 'top 50%',
+            end: 'top top',
             scrub: true,
-            onEnter: () => setIsActive(false),
-            onLeave: () => setIsActive(true),
-            onEnterBack: () => setIsActive(false),
-            onLeaveBack: () => setIsActive(true),
+            onUpdate: (self) => {
+              if (self.progress === 1) {
+                setIsActive(true);
+              } else {
+                setIsActive(false);
+              }
+            },
           },
         }
-      );
+      ).scrollTrigger;
+
+      return () => {
+        if (scrollTriggerInstance) {
+          scrollTriggerInstance.kill();
+        }
+      };
     }
   }, [isClient]);
 
@@ -50,6 +59,7 @@ export default function HeroBannerImg({ content }: HeroBannerImgProps) {
     return null;
   }
 
+  console.log('isActive', isActive);
   return (
     <InViewAnim>
       <div className={styles.component}>
@@ -63,8 +73,8 @@ export default function HeroBannerImg({ content }: HeroBannerImgProps) {
           priority={true}
         />
         <div className={styles.wrapper}>
-          {content.title && <h3 className={`${styles.title} ${!!isActive ? styles.active : ""}`}>{content.title}</h3>}
-          {content.subtitle && <h5 className={`${styles.subtitle} ${!!isActive ? styles.active : ""}`}>{content.subtitle}</h5>}
+          {content.title && <h3 className={`${styles.title} ${isActive ? styles.active : ""}`}>{content.title}</h3>}
+          {content.subtitle && <h5 className={`${styles.subtitle} ${isActive ? styles.active : ""}`}>{content.subtitle}</h5>}
         </div>
       </div>
     </InViewAnim>
