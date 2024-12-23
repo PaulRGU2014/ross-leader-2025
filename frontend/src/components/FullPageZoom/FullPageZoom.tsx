@@ -12,18 +12,19 @@ gsap.registerPlugin(ScrollTrigger);
 export default function FullPageZoom({ content }: { content: any }) {
   const mediaRef = useRef<HTMLDivElement>(null);
   const [isClient, setIsClient] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
   useEffect(() => {
-    if (isClient && mediaRef.current) {
+    if (isClient && mediaRef.current && videoLoaded) {
       const mediaElement = mediaRef.current;
 
       const animation = gsap.fromTo(
         mediaElement,
-        { scale: 0.3 },
+        { scale: 0.4 },
         {
           scale: 1,
           scrollTrigger: {
@@ -42,7 +43,7 @@ export default function FullPageZoom({ content }: { content: any }) {
         animation.kill();
       };
     }
-  }, [isClient]);
+  }, [isClient, videoLoaded]);
 
   if (!isClient) {
     return null;
@@ -61,6 +62,7 @@ export default function FullPageZoom({ content }: { content: any }) {
             playsinline={true}
             width='177vh'
             height='100%'
+            onReady={() => setVideoLoaded(true)}
           />
         </div>
       </div>

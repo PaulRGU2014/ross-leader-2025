@@ -5,6 +5,7 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
+  margin: -1px 0;
   @include scroll-animation(
     $anim: fromTop,
     $sequence: 100ms,
