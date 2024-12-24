@@ -45,13 +45,13 @@ export default function DonateButton({ content }: DonateButtonProps) {
   }, []);
 
   console.log('DonateButton', content);
-    
+
   return (
     <div
       ref={buttonRef}
       className={styles.donateButton}
       style={{
-        top: `calc((50% - ${buttonWidth / 2}px))`,
+        top: `calc((50% - ${buttonWidth}px))`,
         transform: isHidden ? 'translateX(-100%) rotate(90deg)' : 'translateX(0) rotate(90deg)',
         transition: 'transform 0.3s ease-in-out'
       }}
