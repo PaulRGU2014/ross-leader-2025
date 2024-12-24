@@ -12,19 +12,44 @@ interface DonateButtonProps {
 export default function DonateButton({ content }: DonateButtonProps) {
   const buttonRef = useRef<HTMLDivElement>(null);
   const [buttonWidth, setButtonWidth] = useState(0);
+  const [isHidden, setIsHidden] = useState(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (buttonRef.current) {
       setButtonWidth(buttonRef.current.offsetWidth);
     }
+
+    const handleScroll = () => {
+      setIsHidden(true);
+
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+
+      scrollTimeoutRef.current = setTimeout(() => {
+        setIsHidden(false);
+      }, 200);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
-    <div 
-      ref={buttonRef}         
+    <div
+      ref={buttonRef}
       className={styles.donateButton}
       style={{
-        top: `calc((50% - ${buttonWidth / 2}px))`
+        top: `calc((50% - ${buttonWidth / 2}px))`,
+        transform: isHidden ? 'translateX(-100%) rotate(90deg)' : 'translateX(0) rotate(90deg)',
+        transition: 'transform 0.3s ease-in-out'
       }}
     >
       <Link
