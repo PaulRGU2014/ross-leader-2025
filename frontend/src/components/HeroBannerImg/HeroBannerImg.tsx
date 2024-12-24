@@ -59,7 +59,7 @@ export default function HeroBannerImg({ content }: HeroBannerImgProps) {
     return null;
   }
 
-  console.log('isActive', isActive);
+  // console.log('isActive', isActive);
   return (
     <InViewAnim>
       <div className={styles.component}>
