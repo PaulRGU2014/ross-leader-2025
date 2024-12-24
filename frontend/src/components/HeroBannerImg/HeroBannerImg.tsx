@@ -73,8 +73,8 @@ export default function HeroBannerImg({ content }: HeroBannerImgProps) {
           priority={true}
         />
         <div className={styles.wrapper}>
-          {content.title && <h3 className={`${styles.title} ${isActive ? styles.active : ""}`}>{content.title}</h3>}
-          {content.subtitle && <h5 className={`${styles.subtitle} ${isActive ? styles.active : ""}`}>{content.subtitle}</h5>}
+          {content.title && <h2 className={`${styles.title} ${isActive ? styles.active : ""}`}>{content.title}</h2>}
+          {content.subtitle && <h4 className={`${styles.subtitle} ${isActive ? styles.active : ""}`}>{content.subtitle}</h4>}
         </div>
       </div>
     </InViewAnim>
