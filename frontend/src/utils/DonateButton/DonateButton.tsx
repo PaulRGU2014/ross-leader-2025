@@ -44,6 +44,8 @@ export default function DonateButton({ content }: DonateButtonProps) {
     };
   }, []);
 
+  console.log('DonateButton', content);
+    
   return (
     <div
       ref={buttonRef}

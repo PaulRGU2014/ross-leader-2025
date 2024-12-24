@@ -52,7 +52,7 @@ export default async function Page() {
   return (
     <>
       <Header content={(menuData as any)[0]?.menu} />
-      <DonateButton content={(data as any)[0]} />
+      <DonateButton content={(data as any)[0]?.sideButton} />
       <ComponentLoader components={(data as any[])[0]?.components} />
       <Footer content={(footerData as any)[0]?.footer} />
       {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
