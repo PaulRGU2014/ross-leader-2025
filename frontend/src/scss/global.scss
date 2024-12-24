@@ -138,7 +138,7 @@ a {
   margin: 0 0 20px 0;
   cursor: pointer;
   &:hover {
-    color: $yellow-300;
+    color: $yellow-200;
   }
   @include responsive(md) {
     font-size: 16px;

@@ -66,3 +66,16 @@
   align-items: center;
   justify-content: center;
 }
+
+%link-white {
+  font-family: "Lato", sans-serif;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 1.5;
+  cursor: pointer;
+  color: $white;
+  text-decoration: none;
+  &:hover {
+    color: $yellow-200;
+  }
+}

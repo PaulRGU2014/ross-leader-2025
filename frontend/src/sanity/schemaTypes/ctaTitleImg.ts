@@ -25,6 +25,19 @@ export const ctaTitleImg = defineType({
     defineField({
       name: 'image',
       type: 'image',
+      options: {
+        accept: 'image/webp',
+      },
+      description: 'Accept only .webp format image.',
+      fields: [
+        {
+          name: 'alt',
+          title: 'Image Alt Text',
+          type: 'string',
+          validation: Rule => Rule.required(),
+          initialValue: 'Image alt text',
+        },
+      ],
     }),
     defineField({
       name: 'hasCode',
@@ -43,6 +56,11 @@ export const ctaTitleImg = defineType({
         ],
       },
       hidden: ({document}) => !(document?.hasCode),
+    }),
+    defineField({
+      name: 'has_link',
+      type: 'boolean',
+      initialValue: false,
     }),
     defineField({
       name: 'link',
@@ -66,6 +84,7 @@ export const ctaTitleImg = defineType({
           initialValue: false,
         }),
       ],
+      hidden: ({document}) => !(document?.has_link),
     }),
     // defineField({
     //   name: 'theme',

@@ -25,7 +25,7 @@ const ImageLoader = React.forwardRef<HTMLDivElement, ImageLoaderProps>(
       >
         <Image 
           src="src"
-          alt={alt} 
+          alt={alt ? alt : 'image'} 
           fill={true}
           sizes="100%"
           style={{

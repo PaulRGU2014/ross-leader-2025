@@ -6,6 +6,7 @@ import Footer from '@/components/Footer/Footer'
 import ErrorComponent from '@/utils/ErrorComponent/ErrorComponent'
 import { headers } from 'next/headers'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import DonateButton from '@/utils/DonateButton/DonateButton'
 import type { Metadata } from 'next'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -51,6 +52,7 @@ export default async function Page() {
   return (
     <>
       <Header content={(menuData as any)[0]?.menu} />
+      <DonateButton content={(data as any)[0]} />
       <ComponentLoader components={(data as any[])[0]?.components} />
       <Footer content={(footerData as any)[0]?.footer} />
       {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}

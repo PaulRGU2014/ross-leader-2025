@@ -1,0 +1,20 @@
+@use '../../scss/helpers/import' as *;
+
+.donateButton {
+  position: fixed;
+  z-index: 10000;
+
+  padding: 10px;
+  background-color: $red-100;
+  margin: 0;
+  transform-origin: bottom left;
+  transform: rotate(90deg);
+  a {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    @extend %link-white;
+  }
+}
