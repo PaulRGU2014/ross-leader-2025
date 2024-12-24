@@ -21,15 +21,17 @@ export default function DonateButton({ content }: DonateButtonProps) {
     }
 
     const handleScroll = () => {
-      setIsHidden(true);
+      if (window.innerWidth < 768) {
+        setIsHidden(true);
 
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
+
+        scrollTimeoutRef.current = setTimeout(() => {
+          setIsHidden(false);
+        }, 500);
       }
-
-      scrollTimeoutRef.current = setTimeout(() => {
-        setIsHidden(false);
-      }, 200);
     };
 
     window.addEventListener("scroll", handleScroll);

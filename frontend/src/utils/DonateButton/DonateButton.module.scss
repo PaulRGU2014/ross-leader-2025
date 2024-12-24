@@ -3,11 +3,13 @@
 .donateButton {
   position: fixed;
   z-index: 10000;
-
   padding: 10px;
   background-color: $red-100;
   margin: 0;
   transform-origin: bottom left;
+  transition: all 0.5s $ease-out-quint;
+  // transform: rotate(90deg);
+  cursor: pointer;
   a {
     margin: 0;
     display: flex;
@@ -15,5 +17,11 @@
     align-items: center;
     position: relative;
     @extend %link-white;
+  }
+  &:hover {
+    background-color: $yellow-100;
+    a {
+      color: $black;
+    }
   }
 }

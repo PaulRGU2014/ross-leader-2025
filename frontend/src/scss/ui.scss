@@ -76,6 +76,10 @@
   color: $white;
   text-decoration: none;
   &:hover {
-    color: $yellow-200;
+    color: $black;
+    transition: all 0.3s $ease-out-quint;
+  }
+  &:not(:hover) {
+    transition: all 0.3s $ease-out-quint;
   }
 }
