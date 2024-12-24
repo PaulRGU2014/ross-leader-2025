@@ -13,6 +13,7 @@ import { media } from "sanity-plugin-media";
 import { apiVersion, dataset, projectId } from "./src/sanity/env";
 import { schema } from "./src/sanity/schemaTypes";
 import { structure } from "./src/sanity/structure";
+import {codeInput} from '@sanity/code-input'
 
 export default defineConfig({
   basePath: "/admin",
@@ -99,5 +100,6 @@ export default defineConfig({
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
     media(),
+    codeInput()
   ],
 });
