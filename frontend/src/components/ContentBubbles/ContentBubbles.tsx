@@ -31,22 +31,62 @@ export default function ContentBubbles({ content }: ContentBubblesProps) {
     
     if (!container) return;
 
-    const sections = gsap.utils.toArray(`.${styles.bubbles_wrapper}`);
+    const slides = gsap.utils.toArray(`.${styles.bubbles_wrapper}`);
+    const captions = gsap.utils.toArray(`.${styles.bubble}`);
+    const bubbleImgs = gsap.utils.toArray(`.${styles.image}`);
+    const bubbleTitles = gsap.utils.toArray(`.${styles.bubble_title}`);
+    const bubbleContents = gsap.utils.toArray(`.${styles.bubble_content}`);
 
-    gsap.fromTo(sections, 
-      { xPercent: 0 }, 
-      {
-      xPercent: -100 * (sections.length - 1),
+    gsap.set(bubbleTitles,{ opacity: 0, y: -100, transformOrigin: "top" });
+    gsap.set(bubbleContents,{ opacity: 0, y: 100, transformOrigin: "bottom" });
+    gsap.set(bubbleImgs,{ opacity: 0, scale: 0.8, transformOrigin: "center" });
+
+    const tween = gsap.to(`.${styles.bubbles_wrapper}`, {
       ease: "none",
-      scrollTrigger: {
-        trigger: trigger,
-        pin: true,
-        scrub: 1,
-        start: 'top top',
-        end: () => `+=${container.scrollWidth - container.clientWidth}`
-      }
-      }
-    );
+      xPercent: -100 * (slides.length - 1),
+    });
+
+
+    // gsap.fromTo(slides, 
+    //   { xPercent: 0 }, 
+    //   {
+    //   xPercent: -100 * (slides.length - 1),
+    //   ease: "none",
+    //   scrollTrigger: {
+    //     trigger: trigger,
+    //     pin: true,
+    //     scrub: 1,
+    //     start: 'top top',
+    //     end: () => `+=${container.scrollWidth - container.clientWidth}`
+    //   }
+    //   }
+    // );
+
+    ScrollTrigger.create({
+      trigger: trigger,
+      start: "top top",
+      end: () => `+=${container.scrollWidth - container.clientWidth}`,
+      animation: tween,
+      scrub: true,
+      pin: true
+    });
+
+    captions.forEach((caption, index) => {
+      const items = (caption as HTMLElement).querySelectorAll("*");
+      gsap.to(items, {
+        opacity: 1,
+        y: 0,
+        duration: 1.5,
+        scrollTrigger: {
+          trigger: caption as Element,
+          start: "left right-=20%",
+          end: "left left+=20%",
+          scrub: true,
+          containerAnimation: tween
+        }
+      });
+    });
+
 
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
