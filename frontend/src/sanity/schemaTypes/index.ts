@@ -1,5 +1,6 @@
 import { type SchemaTypeDefinition } from "sanity";
 //importHere
+	import { contentBubbles } from './contentBubbles';
 	import { ctaTitleImg } from './ctaTitleImg';
 	import { fullPageZoom } from './fullPageZoom';
 	import { heroGallery } from './heroGallery';
@@ -19,6 +20,7 @@ import { gridLinksCarousel } from "./gridLinksCarousel";
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
   //associateHere
+contentBubbles,
 ctaTitleImg,
 fullPageZoom,
 heroGallery,

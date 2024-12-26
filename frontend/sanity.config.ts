@@ -92,6 +92,7 @@ export default defineConfig({
                   .title("Other Components")
                   .items([
                     //appendHere
+	S.documentTypeListItem("contentBubbles")
                   ])
               ),
           ]),

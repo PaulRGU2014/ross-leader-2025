@@ -1,0 +1,58 @@
+@use "../../scss/helpers/import" as *;
+
+.component {
+}
+
+.wrapper {
+  @include centered($max-width);
+  & {
+    margin: {
+      top: $standard-vertical-spacing;
+      bottom: $standard-vertical-spacing;
+    }
+  }
+}
+
+.bubbles_wrapper {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 30px;
+  position: relative;
+}
+
+.bubble {
+  width: 100%;
+  padding: 50% 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  grid-row: 1/4;
+  position: relative;
+  &_title {
+    text-align: center;
+  }
+  &:nth-last-of-type(2n) {
+    padding: 0;
+    grid-column: 2/3;
+    grid-row: 3/4;
+  }
+}
+
+.image {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.title {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 auto;
+  width: 100%;
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
