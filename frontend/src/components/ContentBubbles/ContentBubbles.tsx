@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './ContentBubbles.module.scss';
 import InViewAnim from './../../utils/InViewAnim/InViewAnim';
 import Image from '@/utils/ImageLoader/ImageLoader';
@@ -15,20 +15,8 @@ interface ContentBubblesProps {
 
 export default function ContentBubbles({ content }: ContentBubblesProps) {
   const [isClient, setIsClient] = useState(false);
-  const [screenHeight, setScreenHeight] = useState(0);
-
-  useEffect(() => {
-    const updateScreenHeight = () => {
-      setScreenHeight(window.innerHeight);
-    };
-
-    updateScreenHeight();
-    window.addEventListener('resize', updateScreenHeight);
-
-    return () => {
-      window.removeEventListener('resize', updateScreenHeight);
-    };
-  }, []);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setTimeout(() => {
@@ -38,22 +26,27 @@ export default function ContentBubbles({ content }: ContentBubblesProps) {
 
   useEffect(() => {
     if (!isClient) return;
-    const bubblesWrappers = gsap.utils.toArray(`.${styles.bubbles_wrapper}`);
-    bubblesWrappers.forEach((wrapper: any, i: number) => {
-      gsap.fromTo(wrapper, 
-        { y: i * screenHeight, opacity: 1 }, 
-        { 
-          y: (i + 1) * screenHeight,
-          opacity: 0, 
-          scrollTrigger: {
-            trigger: wrapper,
-            start: 'top 0%',
-            end: `+=${screenHeight}`,
-            scrub: true,
-          }
-        }
-      );
-    });
+    const container = containerRef.current;
+    const trigger = triggerRef.current;
+    
+    if (!container) return;
+
+    const sections = gsap.utils.toArray(`.${styles.bubbles_wrapper}`);
+
+    gsap.fromTo(sections, 
+      { xPercent: 0 }, 
+      {
+      xPercent: -100 * (sections.length - 1),
+      ease: "none",
+      scrollTrigger: {
+        trigger: trigger,
+        pin: true,
+        scrub: 1,
+        start: 'top top',
+        end: () => `+=${container.scrollWidth - container.clientWidth}`
+      }
+      }
+    );
 
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
@@ -66,34 +59,28 @@ export default function ContentBubbles({ content }: ContentBubblesProps) {
 
   return (
     <InViewAnim>
-      <div className={styles.component}>
-        <div className={styles.wrapper}
-          style={{
-            height: `calc(${content.content.length * screenHeight * 2}px)`,
-          }}
-        >
-          {content.content.map((item: any, index: number) => (
-            <div key={index} className={styles.bubbles_wrapper}
-              style={{
-                zIndex: 100 - index,
-              }}
-            >
-              <h4 className={styles.title}>{item.title}</h4>
-              {item.array.map((bubble: any, index: number) => (
-                <div key={index} className={styles.bubble}>
-                  <h5 className={styles.bubble_title}>{bubble.title}</h5>
-                  <Image
-                    className={styles.image}
-                    src={bubble.image?.asset?._ref}
-                    alt={bubble.image?.alt}
-                    objectFit="cover"
-                    objectPosition="center"
-                  />
-                  <p className={styles.bubble_content}>{bubble.content}</p>
-                </div>
-              ))}
-            </div>
-          ))}
+      <div className={styles.component} ref={triggerRef}>
+        <div className={styles.wrapper}>
+          <div className={styles.bubbles_scroller} ref={containerRef}>
+            {content.content.map((item: any, index: number) => (
+              <div key={index} className={styles.bubbles_wrapper}>
+                <h4 className={styles.title}>{item.title}</h4>
+                {item.array.map((bubble: any, index: number) => (
+                  <div key={index} className={styles.bubble}>
+                    <h6 className={styles.bubble_title}>{bubble.title}</h6>
+                    <Image
+                      className={styles.image}
+                      src={bubble.image?.asset?._ref}
+                      alt={bubble.image?.alt}
+                      objectFit="cover"
+                      objectPosition="center"
+                    />
+                    <p className={styles.bubble_content}>{bubble.content}</p>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </InViewAnim>

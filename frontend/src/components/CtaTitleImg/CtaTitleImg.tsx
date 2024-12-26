@@ -21,7 +21,7 @@ export default function CtaTitleImg({content}: CtaTitleImgProps) {
           <h3>{content.title}</h3>
           <p>{content.content}</p>
         </section>
-        {content?.code?.code && (
+        {content.hasCode && content.content?.code?.code && (
         <section className={styles.cta} dangerouslySetInnerHTML={{ __html: content.code.code }} />
         )}
       </div>
