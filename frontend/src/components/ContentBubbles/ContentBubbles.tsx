@@ -37,30 +37,14 @@ export default function ContentBubbles({ content }: ContentBubblesProps) {
     const bubbleTitles = gsap.utils.toArray(`.${styles.bubble_title}`);
     const bubbleContents = gsap.utils.toArray(`.${styles.bubble_content}`);
 
-    gsap.set(bubbleTitles,{ opacity: 0, y: -100, transformOrigin: "top" });
-    gsap.set(bubbleContents,{ opacity: 0, y: 100, transformOrigin: "bottom" });
+    gsap.set(bubbleTitles,{ opacity: 0, y: -50, transformOrigin: "top" });
+    gsap.set(bubbleContents,{ opacity: 0, y: 50, transformOrigin: "top" });
     gsap.set(bubbleImgs,{ opacity: 0, scale: 0.8, transformOrigin: "center" });
 
     const tween = gsap.to(`.${styles.bubbles_wrapper}`, {
       ease: "none",
       xPercent: -100 * (slides.length - 1),
     });
-
-
-    // gsap.fromTo(slides, 
-    //   { xPercent: 0 }, 
-    //   {
-    //   xPercent: -100 * (slides.length - 1),
-    //   ease: "none",
-    //   scrollTrigger: {
-    //     trigger: trigger,
-    //     pin: true,
-    //     scrub: 1,
-    //     start: 'top top',
-    //     end: () => `+=${container.scrollWidth - container.clientWidth}`
-    //   }
-    //   }
-    // );
 
     ScrollTrigger.create({
       trigger: trigger,
@@ -71,16 +55,18 @@ export default function ContentBubbles({ content }: ContentBubblesProps) {
       pin: true
     });
 
-    captions.forEach((caption, index) => {
+    captions.forEach((caption) => {
       const items = (caption as HTMLElement).querySelectorAll("*");
       gsap.to(items, {
         opacity: 1,
+        x: 0,
         y: 0,
+        scale: 1,
         duration: 1.5,
         scrollTrigger: {
           trigger: caption as Element,
-          start: "left right-=20%",
-          end: "left left+=20%",
+          start: "left right-=40%",
+          end: "left left+=10%",
           scrub: true,
           containerAnimation: tween
         }
@@ -102,7 +88,23 @@ export default function ContentBubbles({ content }: ContentBubblesProps) {
       <div className={styles.component} ref={triggerRef}>
         <div className={styles.wrapper}>
           <div className={styles.bubbles_scroller} ref={containerRef}>
-            {content.content.map((item: any, index: number) => (
+            <div className={styles.bubbles_wrapper}>
+                <h4 className={styles.title_first}>{content.content[0].title}</h4>
+                {content.content[0].array.map((bubble: any, index: number) => (
+                  <div key={index} className={styles.bubble_first}>
+                    <h6 className={styles.bubble_title_first}>{bubble.title}</h6>
+                    <Image
+                      className={styles.image_first}
+                      src={bubble.image?.asset?._ref}
+                      alt={bubble.image?.alt}
+                      objectFit="cover"
+                      objectPosition="center"
+                    />
+                    <p className={styles.bubble_content_first}>{bubble.content}</p>
+                  </div>
+                ))}
+              </div>
+            {content.content?.slice(1).map((item: any, index: number) => (
               <div key={index} className={styles.bubbles_wrapper}>
                 <h4 className={styles.title}>{item.title}</h4>
                 {item.array.map((bubble: any, index: number) => (
