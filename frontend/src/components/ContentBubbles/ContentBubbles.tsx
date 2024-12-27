@@ -28,7 +28,7 @@ export default function ContentBubbles({ content }: ContentBubblesProps) {
     if (!isClient) return;
     const container = containerRef.current;
     const trigger = triggerRef.current;
-    
+
     if (!container) return;
 
     const slides = gsap.utils.toArray(`.${styles.bubbles_wrapper}`);
@@ -37,9 +37,9 @@ export default function ContentBubbles({ content }: ContentBubblesProps) {
     const bubbleTitles = gsap.utils.toArray(`.${styles.bubble_title}`);
     const bubbleContents = gsap.utils.toArray(`.${styles.bubble_content}`);
 
-    gsap.set(bubbleTitles,{ opacity: 0, y: -50, transformOrigin: "top" });
-    gsap.set(bubbleContents,{ opacity: 0, y: 50, transformOrigin: "top" });
-    gsap.set(bubbleImgs,{ opacity: 0, scale: 0.8, transformOrigin: "center" });
+    gsap.set(bubbleTitles, { opacity: 0, y: -50, transformOrigin: "top" });
+    gsap.set(bubbleContents, { opacity: 0, y: 50, transformOrigin: "top" });
+    gsap.set(bubbleImgs, { opacity: 0, scale: 0.8, transformOrigin: "center" });
 
     const tween = gsap.to(`.${styles.bubbles_wrapper}`, {
       ease: "none",
@@ -88,39 +88,26 @@ export default function ContentBubbles({ content }: ContentBubblesProps) {
       <div className={styles.component} ref={triggerRef}>
         <div className={styles.wrapper}>
           <div className={styles.bubbles_scroller} ref={containerRef}>
-            <div className={styles.bubbles_wrapper}>
-                <h4 className={styles.title_first}>{content.content[0].title}</h4>
-                {/* TODO at the end, merge the array together and just use conditional classname */}
-                {content.content[0].array.map((bubble: any, index: number) => (
-                  <div key={index} className={styles.bubble_first}>
-                    <h6 className={styles.bubble_title_first}>{bubble.title}</h6>
-                    <Image
-                      className={styles.image_first}
-                      src={bubble.image?.asset?._ref}
-                      alt={bubble.image?.alt}
-                      objectFit="cover"
-                      objectPosition="center"
-                    />
-                    <p className={styles.bubble_content_first}>{bubble.content}</p>
-                  </div>
-                ))}
-              </div>
-            {content.content?.slice(1).map((item: any, index: number) => (
-              <div key={index} className={styles.bubbles_wrapper}>
-                <h4 className={styles.title}>{item.title}</h4>
-                {item.array.map((bubble: any, index: number) => (
-                  <div key={index} className={styles.bubble}>
-                    <h6 className={styles.bubble_title}>{bubble.title}</h6>
-                    <Image
-                      className={styles.image}
-                      src={bubble.image?.asset?._ref}
-                      alt={bubble.image?.alt}
-                      objectFit="cover"
-                      objectPosition="center"
-                    />
-                    <p className={styles.bubble_content}>{bubble.content}</p>
-                  </div>
-                ))}
+            {content.content?.map((item: any, index: number) => (
+              <div key={index} 
+                className={styles.bubbles_wrapper}
+              >
+                <div className={index!==0 ? styles.bubbles_inner : styles.bubbles_inner_first}>
+                  <h4 className={index!==0 ? styles.title : styles.title_first}>{item.title}</h4>
+                  {item.array.map((bubble: any, bubbleIndex: number) => (
+                    <div key={bubbleIndex} className={index!==0 ? styles.bubble : styles.bubble_first}>
+                      <h6 className={index!==0 ? styles.bubble_title :  styles.bubble_title_first}>{bubble.title}</h6>
+                      <Image
+                        className={index!==0 ? styles.image : styles.image_first}
+                        src={bubble.image?.asset?._ref}
+                        alt={bubble.image?.alt}
+                        objectFit="cover"
+                        objectPosition="center"
+                      />
+                      <p className={index!==0 ? styles.bubble_content : styles.bubble_content_first}>{bubble.content}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
