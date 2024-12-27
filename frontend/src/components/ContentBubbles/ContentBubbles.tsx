@@ -65,8 +65,8 @@ export default function ContentBubbles({ content }: ContentBubblesProps) {
         duration: 1.5,
         scrollTrigger: {
           trigger: caption as Element,
-          start: "left right-=40%",
-          end: "left left+=10%",
+          start: "left right-=0%",
+          end: "left left+=50%",
           scrub: true,
           containerAnimation: tween
         }
@@ -90,6 +90,7 @@ export default function ContentBubbles({ content }: ContentBubblesProps) {
           <div className={styles.bubbles_scroller} ref={containerRef}>
             <div className={styles.bubbles_wrapper}>
                 <h4 className={styles.title_first}>{content.content[0].title}</h4>
+                {/* TODO at the end, merge the array together and just use conditional classname */}
                 {content.content[0].array.map((bubble: any, index: number) => (
                   <div key={index} className={styles.bubble_first}>
                     <h6 className={styles.bubble_title_first}>{bubble.title}</h6>
