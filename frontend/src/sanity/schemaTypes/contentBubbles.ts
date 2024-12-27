@@ -11,11 +11,12 @@ export const contentBubbles = defineType({
       type: 'text',
       rows: 3,
       readOnly: true,
-      initialValue: 'Component Information Description',
+      initialValue: 'This component is used to display content bubbles. There are slides that works with horizontal scroll. Each slide contains a title, content, and an image. The image can be in .webp format. The content can be nested with another array of objects.',
     }),
     defineField({
       name: 'title',
       type: 'string',
+      description: 'The title is for refernce only. It will not be displayed on the frontend.',
     }),
     defineField({
       name: 'content',
