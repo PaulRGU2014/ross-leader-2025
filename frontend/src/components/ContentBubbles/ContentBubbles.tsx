@@ -3,9 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import ContentBubblesDesktop from './ContentBubblesDesktop';
 import ContentBubblesMobile from './ContentBubblesMobile';
-import styles from './ContentBubbles.module.scss';
-import InViewAnim from './../../utils/InViewAnim/InViewAnim';
-import Image from '@/utils/ImageLoader/ImageLoader';
 
 interface ContentBubblesProps {
   content: any; // Replace 'any' with the appropriate type
@@ -13,23 +10,21 @@ interface ContentBubblesProps {
 
 export default function ContentBubbles({ content }: ContentBubblesProps) {
   const [isClient, setIsClient] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  // const [isDesktop, setIsDesktop] = useState(false);
+  const [screenWidth, setScreenWidth] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') { setScreenWidth(window.outerWidth) }
+    const handleResize = () => setScreenWidth(window.outerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
 
   useEffect(() => {
     setTimeout(() => {
       setIsClient(true);
     }, 150);
-
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 921);
-    };
-
-    window.addEventListener('resize', handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
   }, []);
 
   if (!isClient) {
@@ -37,10 +32,10 @@ export default function ContentBubbles({ content }: ContentBubblesProps) {
   }
 
   return (
-    <InViewAnim>
-      {isDesktop ? (
+    <>
+      {screenWidth !== undefined && screenWidth > 920 ? (
         <ContentBubblesDesktop content={content} />
       ) : <ContentBubblesMobile content={content} />}
-    </InViewAnim>
+    </>
   );
 }

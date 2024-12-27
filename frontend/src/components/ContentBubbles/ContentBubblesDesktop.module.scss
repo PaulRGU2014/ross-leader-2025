@@ -1,8 +1,10 @@
 @use "../../scss/helpers/import" as *;
 
 .component {
-  display: block
-  // @include scroll-animation($anim: fromTop, $speed: 1000ms, $delay: 250ms);
+  display: block;
+  @include responsive (lg) {
+    display: none;
+  }
 }
 
 .wrapper {
@@ -59,8 +61,10 @@
   grid-row: 1/4;
   position: relative;
   &_title {
+    text-transform: uppercase;
     text-align: center;
     margin: 0;
+    font-weight: bold;
     &_first {
       @extend .bubble_title;
       transform: translateY(-50px);
@@ -74,7 +78,9 @@
   }
   &_content{
     display: block;
+    text-align: center;
     &_first {
+      @extend .bubble_content;
       opacity: 0;
       transform: translateY(50px);
       transition: all 0.5s $ease-out-quint 500ms;
@@ -119,6 +125,7 @@
   width: 100%;
   grid-column: 2/3;
   grid-row: 2/3;
+  font-weight: bold;
   &_first {
     @extend .title;
     transform: translateY(50px);

@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
-import styles from './ContentBubbles.module.scss';
+import styles from './ContentBubblesDesktop.module.scss';
 import InViewAnim from './../../utils/InViewAnim/InViewAnim';
 import Image from '@/utils/ImageLoader/ImageLoader';
 import { gsap } from 'gsap';
