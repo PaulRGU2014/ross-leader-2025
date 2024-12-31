@@ -68,21 +68,21 @@ module.exports = (plop) => {
           type: 'append',
           path: '../sanity.config.ts',
           pattern: /\/\/addHere/,
-          template: '\tS.documentTypeListItem("{{camelCase name}}")',
+          template: '\tS.documentTypeListItem("{{camelCase name}}"),',
         });
       } else if (data.type === 'Carousel component') {
         actions.push({
           type: 'append',
           path: '../sanity.config.ts',
           pattern: /\/\/associateHere/,
-          template: '\tS.documentTypeListItem("{{camelCase name}}")',
+          template: '\tS.documentTypeListItem("{{camelCase name}}"),',
         });
       } else if (data.type === 'CTA component') {
         actions.push({
           type: 'append',
           path: '../sanity.config.ts',
           pattern: /\/\/assignHere/,
-          template: '\tS.documentTypeListItem("{{camelCase name}}")',
+          template: '\tS.documentTypeListItem("{{camelCase name}}"),',
         });
       }
       else if (data.type === 'Other component') {
@@ -90,7 +90,7 @@ module.exports = (plop) => {
           type: 'append',
           path: '../sanity.config.ts',
           pattern: /\/\/appendHere/,
-          template: '\tS.documentTypeListItem("{{camelCase name}}")',
+          template: '\tS.documentTypeListItem("{{camelCase name}}"),',
         });
       }
       return actions;

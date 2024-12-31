@@ -1,6 +1,7 @@
 "use client"
 
 //importHere
+	import TwoColumnSlider from './TwoColumnSlider/TwoColumnSlider';
 	import ContentBubbles from './ContentBubbles/ContentBubbles';
 	import CtaTitleImg from './CtaTitleImg/CtaTitleImg';
 	import FullPageZoom from './FullPageZoom/FullPageZoom';
@@ -35,6 +36,7 @@ function HardcodedComponent ({ block_title, ...props }: { block_title: keyof typ
 
 const componentMap: { [key: string]: React.ComponentType<any> } = {
 //associateHere
+	twoColumnSlider: TwoColumnSlider,
 	contentBubbles: ContentBubbles,
 	ctaTitleImg: CtaTitleImg,
 	fullPageZoom: FullPageZoom,
