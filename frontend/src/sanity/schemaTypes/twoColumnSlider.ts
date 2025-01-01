@@ -23,8 +23,18 @@ export const twoColumnSlider = defineType({
       title: 'Icon',
       type: 'image',
       options: {
-        hotspot: true,
+        accept: 'image/webp, image/svg+xml',
       },
+      description: 'Accept only .webp or .svg format image.',
+      fields: [
+        {
+          name: 'alt',
+          title: 'Image Alt Text',
+          type: 'string',
+          validation: Rule => Rule.required(),
+          initialValue: 'Image alt text',
+        },
+      ],
     }),
     defineField({
       name: 'body',

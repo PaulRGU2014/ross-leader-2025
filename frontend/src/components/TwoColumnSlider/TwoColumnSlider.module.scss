@@ -11,8 +11,8 @@
 .wrapper{
     @include centered($max-width);
     margin: {
-        top: 0;
-        bottom: 0;
+        top: -1px;
+        bottom: -1px;
     };
 }
 
@@ -43,18 +43,12 @@
     }
     h5{
         color: $white;
-        font-size: 28px;
-        font-style: normal;
         font-weight: bold;
-        line-height: 147.023%; /* 41.166px */
         margin: 35px 0 10px 0;
     }
     h6{
         color: $white;
-        font-size: 20px;
-        font-style: normal;
         font-weight: bold;
-        line-height: 147.023%; /* 29.405px */
         margin: 0 0 10px 0;
     }
     @include responsive (820px) {
@@ -67,11 +61,8 @@
 }
 
 .subtitle{
-    color: #86A96B;
-    font-size: 16px;
-    font-style: normal;
+    color: $red-100;
     font-weight: bold;
-    line-height: 22px; /* 137.5% */
 }
 
 .primary{
@@ -96,10 +87,7 @@
     h5{
         width: 100%;
         color: $white;
-        font-size: 28px;
-        font-style: normal;
         font-weight: bold;
-        line-height: 147.023%;
         margin: 0 0 5px 0;
     }
     @include responsive (820px) {
@@ -114,10 +102,6 @@
 
 .desc > p{
     color: $white;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 137.5%;
 }
 
 .secondary{
@@ -205,7 +189,6 @@
 .dots{
     margin: 30px 0 140px 0;
     background-color: transparent;
-    // position: absolute;
     ul{
         display: flex;
         justify-content: flex-start;
@@ -221,7 +204,7 @@
         background-color: $white;
         border-radius: 50%;
         &:global(.slick-active) {
-            background-color: $red-100;
+            background-color: $yellow-100;
         }
     }
     button {

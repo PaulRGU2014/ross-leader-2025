@@ -8,10 +8,23 @@ import RichTextUtil from '@/utils/RichText/RichText'
 import Image from '@/utils/ImageLoader/ImageLoader';
 
 interface TwoColumnSliderProps {
-  content: any; // Replace 'any' with the appropriate type
+  content: {
+    colors: string[];
+    icon?: {
+      asset: {
+        _ref: string;
+      };
+      alt?: string;
+    };
+    title: string;
+    body: string;
+    slides: {
+      title: string;
+      subtitle: string;
+      desc: string;
+    }[];
+  };
 }
-
-const colors = ['#2D3C58', '#86A96B', '#D18810', '#BBBDBF', '#3F687B', '#5BBDEB', '#F05133']
 
 function ArrowPrev(props: { className?: string; style?: React.CSSProperties; onClick?: () => void }) {
   const { className, style, onClick } = props;
@@ -87,13 +100,13 @@ export default function SliderColors({ content }: TwoColumnSliderProps) {
   return (
     <InViewAnim><div className={styles.component}>
       <div className={styles.colorsLine}>
-        {colors.map((color, index) => (
+        {content.colors?.map((color: string, index: number) => (
           <div
             className={styles.color}
             key={index}
             style={{
               backgroundColor: color,
-              height: `calc( 100% / ${colors.length} )`
+              height: `calc( 100% / ${content.colors.length} )`
             }}
           />
         ))}
@@ -102,7 +115,7 @@ export default function SliderColors({ content }: TwoColumnSliderProps) {
         <div
           className={styles.inner}
           style={{
-            minHeight: `${colors.length * 80}px`,
+            minHeight: `${content.colors.length * 80}px`,
           }}
         >
           <div className={styles.primary_wrapper}>
@@ -111,7 +124,7 @@ export default function SliderColors({ content }: TwoColumnSliderProps) {
                 <Image
                   className={styles.icon}
                   src={content.icon?.asset._ref}
-                  alt={content.icon?.alt}
+                  alt={content.icon?.alt || 'default alt text'}
                   objectFit="contain"
                   objectPosition="top left"
                 />
@@ -126,13 +139,13 @@ export default function SliderColors({ content }: TwoColumnSliderProps) {
             </section>
           </div>
           <div className={styles.colorsLine_mobile}>
-            {colors.map((color, index) => (
+            {content?.colors?.map((color, index) => (
               <div
                 className={styles.color}
                 key={index}
                 style={{
                   backgroundColor: color,
-                  width: `calc( 100% / ${colors.length} )`
+                  width: `calc( 100% / ${content.colors.length} )`
                 }}
               />
             ))}
@@ -146,7 +159,13 @@ export default function SliderColors({ content }: TwoColumnSliderProps) {
                 <div className={styles.secondary_wrapper}>
                   <section className={`${styles.secondary} ${activeSlideIndex === index ? styles.isActive : ""}`}>
                     <h6>{slide.title}</h6>
-                    <p className={styles.subtitle}>{slide.subtitle}</p>
+                    <p className={styles.subtitle}
+                      // style={{
+                      //   color: content.colors[content.colors.length - 1]
+                      // }}
+                    >
+                      {slide.subtitle}
+                    </p>
                     <RichTextUtil html={slide.desc} className={styles.desc} />
                   </section>
                 </div>
