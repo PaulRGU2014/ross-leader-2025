@@ -126,8 +126,8 @@
 
 .colorsLine{
     position: absolute;
-    left: calc(50% - 10px);
-    width: 20px;
+    left: calc(50% - 5px);
+    width: 10px;
     height: 100%;
     @include scroll-animation($anim: fromTop, $delay:100ms, $sequence: 60ms, $speed: 1000ms );
     &_mobile{
