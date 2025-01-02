@@ -4,6 +4,7 @@ import Head from "next/head"
 import '../scss/global.scss'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { CartProvider } from './../utils/CartContext/CartContext';
+import CookieBanner from './../utils/CookieBanner/CookieBanner';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 
@@ -15,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body suppressHydrationWarning={true}>
         <CartProvider>
           {children}
+          <CookieBanner />
         </CartProvider>
       </body>
       {/* <GoogleAnalytics gaId="G-606GP5V2VM" /> */}
