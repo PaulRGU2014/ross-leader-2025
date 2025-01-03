@@ -48,6 +48,13 @@ export const fullPageHero = defineType({
       })
     }),
     defineField({
+      name: 'hasSubtitle',
+      title: 'Video Subtitle',
+      type: 'boolean',
+      initialValue: true,
+      hidden: ({ parent }) => parent?.media_source !== 'url' || parent?.media_type !== 'video',
+    }),
+    defineField({
       name: 'image',
       title: 'Image File',
       type: 'image',

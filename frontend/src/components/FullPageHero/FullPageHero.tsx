@@ -32,6 +32,22 @@ export default function FullPageHero({ content }: FullPageHeroProps) {
           playsinline={true}
           width='177vh'
           height='100%'
+          volume={0.8}
+          config={{
+            youtube: {
+              playerVars: {
+                showinfo: 0,
+                modestbranding: 1,
+                rel: 0,
+                loop: 1,
+                controls: 0,
+                autoplay: 1,
+                playsinline: 1,
+                cc_lang_pref: 'en',
+                cc_load_policy: content.hasSubtitle ? 1 : 0,
+              }
+            }
+          }}
         />
       </div>
       <div className={styles.wrapper}>
